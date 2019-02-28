@@ -9,7 +9,7 @@
 Board::Board() {
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
-    /*for(int i = 0; i < 8; ++i) {
+    for(int i = 0; i < 8; ++i) {
         // iterate through each column to add the piece. For each column
         // multiply j by two then add the modulus of i to get the offset for
         // each odd column.
@@ -30,7 +30,7 @@ Board::Board() {
             }
         }
     }
-    */
+    /*
      // For testing purposes
     Checker* c1 = new Checker(RED, 4, 2);
     Checker* c2 = new Checker(WHITE, 3, 1);
@@ -52,6 +52,7 @@ Board::Board() {
     whitePieces->push_back(c4);
     whitePieces->push_back(c5);
     whitePieces->push_back(c6);
+     */
 }
 
 void Board::printBoard() {
