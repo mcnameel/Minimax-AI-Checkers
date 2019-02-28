@@ -3,7 +3,7 @@
 //
 
 #include "Move.h"
-#include "Parser.h"
+#include "../human/Parser.h"
 
 
 int Move::getCurRow() {
@@ -22,7 +22,7 @@ int Move::getDestCol() {
     return destCol;
 }
 
-char Move::getColor() {
+Color Move::getColor() {
     return color;
 }
 
@@ -34,7 +34,7 @@ int Move::getCapCol() {
     return capCol;
 }
 
-Move::Move(int curRow, int curCol, int destRow, int destCol, char color) {
+Move::Move(int curRow, int curCol, int destRow, int destCol, Color color) {
     this->curRow = curRow;
     this->curCol = curCol;
     this->destRow = destRow;
@@ -43,7 +43,7 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, char color) {
 }
 
 Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
-        int capCol, char color) {
+        int capCol, Color color) {
     this->curRow = curRow;
     this->curCol = curCol;
     this->destRow = destRow;
@@ -54,7 +54,8 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
 }
 
 std::string Move::toString() {
-    return std::to_string(curRow) + std::to_string(curCol) + " -> "
+    return std::to_string(getColor()) +
+           std::to_string(curRow) + std::to_string(curCol) + " -> "
     +      std::to_string(capRow) + std::to_string(capCol) + " - > "
     +      std::to_string(destRow) + std::to_string(destCol);
 }
@@ -87,4 +88,24 @@ Move *Move::getChainMove() {
 
 void Move::setChainMove(Move *m) {
     this->chainMove = m;
+}
+
+Move *Move::copy() {
+    Move* copy = new Move(getCurRow(), getCurCol(),
+            getDestRow(), getDestCol(),
+            getCapRow(), getCapCol(), getColor());
+    if(this->getKingMove())
+        copy->setKingMove(true);
+    if(this->getChainMove() != nullptr) {
+        copy->setChainMove(getChainMove()->copy());
+    }
+    return copy;
+}
+
+bool Move::isMustChainCapture() const {
+    return mustChainCapture;
+}
+
+void Move::setMustChainCapture(bool mustChainCapture) {
+    Move::mustChainCapture = mustChainCapture;
 }

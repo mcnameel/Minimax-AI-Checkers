@@ -11,13 +11,15 @@
 
 
 #include <iostream>
-#include "Move.h"
-#include "Player.h"
+#include "../POCO/Move.h"
+#include "../misc/Player.h"
+#include "../misc/Color.h"
+#include "../Board.h"
 
 class Parser: public Player {
 private:
     /* vars */
-    char color;
+    Color color;
     // Amount to use to convert the ascii value input into the proper int
     const int ROW_SHIFT = 48;
     const int COLUMN_SHIFT = 97;
@@ -42,10 +44,11 @@ private:
 public:
     /**
      * Initialize a parser to get input from a human player
-     * @param color
+     * @param color enum type of color, either red or black
      */
-    Parser(char color);
-    Move* getMove() {
+    explicit Parser(Color color);
+
+    Move *getMove(Board *boardState) {
         std::string in = "";
         std::cout << "\nEnter the current then destination square separated "
             << "by a \'->\' \n(aka a2->b3): ";
@@ -57,21 +60,7 @@ public:
             std::cin >> in;
         }
         return convertInput(in);
-    }
-
-    /**
-     * Translates character column into its numerical value
-     * @param a
-     * @return number value of the column
-     */
-    static int translateMove(char a);
-
-    /**
-     * Translates numerical column value into its character value
-     * @param i
-     * @return character value of the column
-     */
-    static char translateBack(int a);
+    };
 };
 
 #endif //CHECKERS_01_PARSER_H

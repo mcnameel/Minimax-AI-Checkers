@@ -11,7 +11,7 @@
 
 
 #include "Board.h"
-#include "Player.h"
+#include "misc/Player.h"
 #include "Rules.h"
 
 class GameManager {
@@ -20,32 +20,42 @@ public:
      * Initializes a GameManager object
      * @param board
      * @param rules
-     * @param red
-     * @param black
+     * @param player1 A pointer to a implementation of the player class
+     * @param player2 A pointer to a implementation of the player class
      */
-    GameManager(Board* board, Rules* rules, Player* red, Player* black);
+    GameManager(Board* board, Player* player1, Player* player2);
 
 private:
-
     /* vars */
     bool gameOver = false;
     Board* board;
-    Rules* rules;
-    Player* red;
-    Player* black;
-    // current turn starts with black by default
-    char curTurn = 'b';
+    Player* player1;
+    Player* player2;
 
     /* functions */
     /**
      * Gets the next move from the player whose turn it is
      * @return pointer to a move object
      */
-    Move* getMove();
+    Move* getMove(Board *bs);
 
+    /**
+     * After initialization this begins the game
+     */
     void play();
 
-    void kingMe(Move *move);
+    /**
+     * Check if a piece should be crowned and if so crowns the piece object
+     * @param move the piece to check
+     * @return true if the piece has been crowned
+     */
+    bool crownMe(Move *move);
+
+    /**
+     * gets a legal move by calling the rules
+     * @return the next move to be pushed to the board
+     */
+    Move* getLegalMove();
 };
 
 

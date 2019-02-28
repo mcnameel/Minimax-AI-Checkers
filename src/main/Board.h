@@ -9,36 +9,44 @@
 
 #include <vector>
 #include <set>
-#include "Checker.h"
-#include "Move.h"
+#include "POCO/Checker.h"
+#include "POCO/Move.h"
 
 class Board {
 private:
-    // Count of red and black pieces
-    int redCount = 12;
-    int blackCount = 12;
+    const std::string PLAYER_ONE_COLOR = "Red";
+    const std::string PLAYER_TWO_COLOR = "White";
+    Color turn = RED;
     // Data structure representing the board
     Checker* grid[8][8] = {nullptr};
-
-    // red and black pieces on the board
-    std::set<Checker*>* redPieces = new std::set<Checker*>();
-    std::set<Checker*>* blackPieces = new std::set<Checker*>();
-
+    std::vector<std::vector<Checker*>>* boardGrid = new std::vector<std::vector<Checker*>>();
+    std::vector<Move*>* movesToDelete = new std::vector<Move*>();
+    Move* lastMove = nullptr;
+    // player2 and player1 pieces on the board
+    std::vector<Checker*>* redPieces = new std::vector<Checker*>();
+    std::vector<Checker*>* whitePieces = new std::vector<Checker*>();
+    std::string getColorStr(Color);
+    void setLastMove(Move* lastMove);
 public:
     /**
      * Constructs a board with pieces ready for play
      */
     Board();
+    Color getTurn();
+    void setTurn(Color color);
+    Board(std::vector<Checker *> *startState, Color turn, std::vector<std::vector<Checker*>>* boardGrid);
+
+    Move* getLastMove();
 
     /**
      * @return a vector containing pointers to the red checkers still in play
      */
-    std::set<Checker*>* getRedPieces();
+    std::vector<Checker*>* getRedPieces();
 
     /**
      * @return a vector containing pointers to the black checkers still in play
      */
-    std::set<Checker*>* getBlackPieces();
+    std::vector<Checker*>* getWhitePieces();
 
     /**
      * Returns the piece at the space at the row and column indicated by parameters. Does not check if there is
@@ -61,7 +69,7 @@ public:
      * moves a piece from one row and column to another
      * @param move
      */
-    void move(Move* move);
+    void move(Move *move, bool dontClear);
 
     /**
      * Print the board to terminal
@@ -69,7 +77,11 @@ public:
     void printBoard();
 
     int getRedCount();
-    int getBlackCount();
+    int getWhiteCount();
+
+    void removePiece(Checker* c);
+
+    Board *copy();
 };
 
 

@@ -10,6 +10,7 @@
 #define CHECKERS_01_MOVE_H
 
 #include <string>
+#include "../misc/Color.h"
 
 class Move {
 private:
@@ -18,14 +19,17 @@ private:
     int destCol;
     int curRow;
     int curCol;
-    char color;
+    Color color;
     // initialize to  -1 which indicates that the move is not a jump/capture
     int capRow = -1;
     int capCol = -1;
     bool isKing = false;
+    bool mustChainCapture = false;
     // true if the player has to jump multiple times
-    Move* chainMove;
+    Move* chainMove = nullptr;
 public:
+    void setMustChainCapture(bool mustChainCapture);
+    bool isMustChainCapture() const;
 
     /**
      * Initialize an object move which is not a jump
@@ -35,7 +39,7 @@ public:
      * @param destCol
      * @param color
      */
-    Move(int curRow, int curCol, int destRow, int destCol, char color);
+    Move(int curRow, int curCol, int destRow, int destCol, Color color);
 
     /**
      * Initialize an object of move which is a jump
@@ -48,7 +52,7 @@ public:
      * @param color
      */
     Move(int curRow, int curCol, int destRow, int destCol, int capRow,
-            int capCol, char color);
+            int capCol, Color color);
 
     /**
      * Overload the == operator to check if the move matches the another
@@ -61,7 +65,7 @@ public:
     int getCurCol();
     int getDestRow();
     int getDestCol();
-    char getColor();
+    Color getColor();
     int getCapRow();
     int getCapCol();
     void setCapSpace(int row, int col);
@@ -69,6 +73,8 @@ public:
     bool getKingMove();
     Move* getChainMove();
     void setChainMove(Move* m);
+
+    Move* copy();
 
     std::string toString();
 };

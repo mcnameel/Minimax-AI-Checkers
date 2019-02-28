@@ -8,7 +8,8 @@
 #ifndef CHECKERS_01_PLAYER_H
 #define CHECKERS_01_PLAYER_H
 
-#include "Move.h"
+#include "../POCO/Move.h"
+#include "../Board.h"
 
 class Player {
 public:
@@ -16,7 +17,8 @@ public:
      * Gets a move from a either a human player or an AI
      * @return pointer to a move the player wishes to make
      */
-    virtual Move* getMove() = 0;
+    virtual Move *getMove(Board *boardState) = 0;
 };
 
 #endif //CHECKERS_01_PLAYER_H
+
