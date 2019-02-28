@@ -24,6 +24,8 @@ private:
     const int ROW_SHIFT = 48;
     const int COLUMN_SHIFT = 97;
 
+    Move *getMove(Board *boardState) override;
+
     /**
      * Checks if the input matches the regex [a-h][0-7]->[a-h][0-7]
      *  WARNING: this only checks the regex, it will return any illegal moves
@@ -47,20 +49,6 @@ public:
      * @param color enum type of color, either red or black
      */
     explicit Parser(Color color);
-
-    Move *getMove(Board *boardState) {
-        std::string in = "";
-        std::cout << "\nEnter the current then destination square separated "
-            << "by a \'->\' \n(aka a2->b3): ";
-
-        std::cin >> in;
-        while(!validateInput(in)) {
-            std::cout << "Please enter only values matching the regex "
-            << "[a-h][0-7]->[a-h][0-7]: ";
-            std::cin >> in;
-        }
-        return convertInput(in);
-    };
 };
 
 #endif //CHECKERS_01_PARSER_H

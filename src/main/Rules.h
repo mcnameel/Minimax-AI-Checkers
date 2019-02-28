@@ -101,7 +101,7 @@ public:
     static std::vector<Move*>* getJumps(Board* boardState);
 
     static bool validMultiCapture(Move* move, Board* boardState);
-    static bool requiredMultiCapture(Move* move, Board* boardState);
+    static bool requiredMultiCapture(Move *move, Board *boardState, bool isKing);
     static std::vector<Move*>* getAllLegalMoves(Board* boardState);
 
 private:

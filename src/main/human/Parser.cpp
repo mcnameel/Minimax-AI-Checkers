@@ -41,3 +41,17 @@ Move *Parser::convertInput(std::string in) {
     }
     return returnMe;
 }
+
+Move *Parser::getMove(Board *boardState) {
+    std::string in = "";
+    std::cout << "\nEnter the current then destination square separated "
+              << "by a \'->\' \n(aka a2->b3): ";
+
+    std::cin >> in;
+    while(!validateInput(in)) {
+        std::cout << "Please enter only values matching the regex "
+                  << "[a-h][0-7]->[a-h][0-7]: ";
+        std::cin >> in;
+    }
+    return convertInput(in);
+};

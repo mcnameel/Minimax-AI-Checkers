@@ -26,7 +26,11 @@ bool Rules::legalMove(Move *move, Board *boardState) {
                 std::cout << "You must make a legal capture" << std::endl;
                 legalMove = false;
             } else {
-                legalMove = requiredMultiCapture(move, boardState);
+                Checker* c = boardState->getAt(move->getCurRow(), move->getCurCol());
+                Board* copy = boardState->copy();
+                copy->move(move, true);
+                legalMove = requiredMultiCapture(move, boardState, c->isKing());
+                delete copy, c;
             }
         } else {
             legalMove = false;
@@ -375,27 +379,38 @@ bool Rules::shouldCrown(Move *move) {
     return crowned;
 }
 
-bool Rules::requiredMultiCapture(Move *move, Board *boardState) {
+bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     bool legal = true;
     auto * mockChecker = new Checker(move->getColor(), move->getDestRow(), move->getDestCol());
+    if(isKing)
+        mockChecker->makeKing();
     std::vector<Move *> *multiJumps = getJumpsAtPos(boardState, mockChecker);
     bool hasJumps = !multiJumps->empty();
-    bool crowned = shouldCrown(move);
+    bool crowned = false;
+    if(!isKing) {
+        crowned = shouldCrown(move);
+        isKing = crowned;
+    }
+
     // if there is a pointer to a multicapture in move and there are jumps to
     // make and the piece was not crowned this turn
     // Case: legal = false
+
     if ((validMultiCapture(move, boardState) && hasJumps) && !crowned) {
-        legal = requiredMultiCapture(move->getChainMove(), boardState);
+        Board* copy = boardState->copy();
+        copy->move(move, true);
+        legal = requiredMultiCapture(move->getChainMove(), copy, isKing);
+        delete copy;
     }
     // else if there is no pointer to a multicap and there are no available
     // jumps or the piece has been crowned this turn
     // case: legal = true
+
     else if(move->getChainMove() == nullptr && (!hasJumps || crowned)) {
         legal = true;
     }
     // else any other case is invalid
     else {
-        std::cout << "You must make a legal multiCapture" << std::endl;
         legal = false;
     }
     multiJumps->clear();
