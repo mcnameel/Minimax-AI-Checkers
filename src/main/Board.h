@@ -34,7 +34,7 @@ public:
     Board();
     Color getTurn();
     void setTurn(Color color);
-    Board(std::vector<Checker *> *startState, Color turn, std::vector<std::vector<Checker*>>* boardGrid);
+    Board(std::vector<Checker *> *startState, Color turn);
 
     Move* getLastMove();
 
@@ -69,7 +69,7 @@ public:
      * moves a piece from one row and column to another
      * @param move
      */
-    void move(Move *move, bool dontClear);
+    void move(Move *move, bool dontClear, bool changeTurn);
 
     /**
      * Print the board to terminal

@@ -9,11 +9,11 @@
 Board::Board() {
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
-    for(int i = 0; i < 8; ++i) {
+    /*for(int i = 0; i < 8; ++i) {
         // iterate through each column to add the piece. For each column
         // multiply j by two then add the modulus of i to get the offset for
         // each odd column.
-        for (int j = 0; j < 4; ++j) {
+       for (int j = 0; j < 4; ++j) {
             // the player2 pieces go from rows 1-3
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
@@ -30,29 +30,29 @@ Board::Board() {
             }
         }
     }
-    /*
+    */
      // For testing purposes
     Checker* c1 = new Checker(RED, 4, 2);
     Checker* c2 = new Checker(WHITE, 3, 1);
     Checker* c3 = new Checker(WHITE, 1, 1);
     Checker* c4 = new Checker(WHITE, 1, 3);
-    Checker* c5 = new Checker(WHITE, 3, 3);
+   // Checker* c5 = new Checker(WHITE, 3, 3);
     Checker* c6 = new Checker(WHITE, 5, 5);
     c1->makeKing();
     grid[4][2] = c1;
     grid[3][1] = c2;
     grid[1][1] = c3;
     grid[1][3] = c4;
-    grid[3][3] = c5;
+   // grid[3][3] = c5;
     grid[5][5] = c6;
 
     redPieces->push_back(c1);
     whitePieces->push_back(c2);
     whitePieces->push_back(c3);
     whitePieces->push_back(c4);
-    whitePieces->push_back(c5);
+   // whitePieces->push_back(c5);
     whitePieces->push_back(c6);
-     */
+
 }
 
 void Board::printBoard() {
@@ -83,7 +83,7 @@ Checker* Board::getAt(int row, int col) {
     return grid[row][col];
 }
 
-void Board::move(Move *move, bool dontClear) {
+void Board::move(Move *move, bool dontClear, bool changeTurn) {
     Checker* c = grid[move->getCurRow()][move->getCurCol()];
 
     Move* temp = move;
@@ -116,8 +116,10 @@ void Board::move(Move *move, bool dontClear) {
         }
         temp = temp->getChainMove();
     }
-    Color curTurn = (getTurn() == RED) ? WHITE : RED;
-    setTurn(curTurn);
+    if(changeTurn) {
+        Color curTurn = (getTurn() == RED) ? WHITE : RED;
+        setTurn(curTurn);
+    }
     Move* tempDel = lastMove;
     movesToDelete->push_back(tempDel);
     if(!dontClear){
@@ -160,7 +162,7 @@ void Board::removePiece(Checker *c) {
     }
 }
 
-Board::Board(std::vector<Checker *> *startState, Color turn, std::vector<std::vector<Checker*>>* boardGrid) {
+Board::Board(std::vector<Checker *> *startState, Color turn) {
     this->turn = turn;
     this->boardGrid = boardGrid;
     for (auto &piece : *startState) {
@@ -181,17 +183,17 @@ Move *Board::getLastMove() {
 }
 
 Board *Board::copy() {
-
+    static int i = 0;
     auto *pieces = new std::vector<Checker *>();
     for(auto &r : *redPieces) {
         Checker* c = r->copy();
         pieces->push_back(c);
-
+        ++i;
     }
     for(auto &w : *whitePieces) {
         pieces->push_back(w->copy());
     }
-    return new Board(pieces, getTurn(), 0);
+    return new Board(pieces, getTurn());
 }
 
 Color Board::getTurn() {

@@ -5,6 +5,7 @@
 ### C++ ###
 # Prerequisites
 *.d
+catch.hpp
 
 # Compiled Object files
 *.slo

@@ -1,0 +1,4 @@
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/CMakeFiles/Checkers_01.dir
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/CMakeFiles/Checkers_01_Test.dir
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/CMakeFiles/edit_cache.dir
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/CMakeFiles/rebuild_cache.dir

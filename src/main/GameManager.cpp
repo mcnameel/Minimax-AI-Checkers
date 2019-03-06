@@ -22,7 +22,7 @@ void GameManager::play() {
         auto *destroyMe = new std::vector<Move *>();
         destroyMe->push_back(curMove);
         // when we have a valid move push the move to the board
-        board->move(curMove, false);
+        board->move(curMove, false, true);
 
 
         /*std::vector<Move*>* jumps = Rules::getJumpsAtPos(curMove->getDestRow(),curMove->getDestCol(), board);
@@ -68,16 +68,16 @@ Move* GameManager::getLegalMove() {
     Move *currentMove;
 
     // while the move is not valid ask for a new move
-    bool validMove = false;
-    while (!validMove) {
+    bool invalidMove = true;
+    while (invalidMove) {
         // first print the board
         board->printBoard();
 
         // call getMove to request the next move from the current player
         currentMove = getMove(board);
         // check if the move is valid
-        validMove = Rules::legalMoveFromColor(currentMove, board);
-
+        invalidMove = !Rules::legalMoveFromColor(currentMove, board);
+        int i = 0;
     }
     return currentMove;
 }
@@ -85,6 +85,7 @@ Move* GameManager::getLegalMove() {
 
 
 Move *GameManager::getMove(Board *bs) {
+    static int i = 0;
     Move* currentMove;
     switch (bs->getTurn()) {
         case RED:
@@ -96,6 +97,7 @@ Move *GameManager::getMove(Board *bs) {
         default:
             std::cout << "Error" << std::endl;
     }
+    ++i;
     return currentMove;
 }
 

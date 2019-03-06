@@ -20,6 +20,7 @@ private:
     int col = 0;
 
 public:
+    bool operator==(const Checker& c);
     char getColorChar();
     Color getColor();
     /**
@@ -45,6 +46,7 @@ public:
      * @param col
      */
     Checker(Color color, int row, int col);
+    Checker(Color color, int row, int col, bool isKing);
 
     std::string toString();
     Checker* copy();

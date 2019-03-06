@@ -49,7 +49,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     auto *moves = Rules::getAllLegalMoves(bs);
     for (auto &newMove : *moves) {
         Board *succBS = bs->copy();
-        succBS->move(newMove, true);
+        succBS->move(newMove, true, true);
         successors->push_back(createTree(succBS, depth - 1, newMove));
     }
     return new Node(bs, successors, move);

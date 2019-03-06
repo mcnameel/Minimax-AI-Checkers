@@ -61,8 +61,14 @@ std::string Move::toString() {
 }
 
 bool Move::operator==(const Move& m) {
-    return (curRow == m.curRow &&
-        curCol == m.capCol &&
+    bool returnMe = false;
+    if(this->getChainMove() != nullptr && m.chainMove != nullptr) {
+        returnMe = (*this->getChainMove()) == (*m.chainMove);
+    }
+    else if(this->getChainMove() == nullptr && m.chainMove == nullptr){
+        returnMe = true;
+    }
+    return returnMe && (curRow == m.curRow &&
         destRow == m.destRow &&
         destCol == m.destCol &&
         capRow == m.capRow &&

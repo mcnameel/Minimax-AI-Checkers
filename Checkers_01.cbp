@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Checkers_01"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Checkers_01">
+				<Option output="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Checkers_01.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 Checkers_01"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Checkers_01/fast">
+				<Option output="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Checkers_01.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 Checkers_01/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Checkers_01_Test">
+				<Option output="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Checkers_01_Test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 Checkers_01_Test"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Checkers_01_Test/fast">
+				<Option output="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Checkers_01_Test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 Checkers_01_Test/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/MinimaxTree.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/MinimaxTree.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.cpp">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp">
+			<Option target="Checkers_01"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Color.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h">
+			<Option target="Checkers_01"/>
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/test/tests-Board.cpp">
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/test/tests-Board.h">
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/test/tests-main.cpp">
+			<Option target="Checkers_01_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -19,6 +19,7 @@ class Rules {
 public:
     /* functions */
 
+    static bool crownMe(Move *move);
     /**
      * checks if the move is a legal move
      * @param move

@@ -18,7 +18,19 @@ bool Rules::playableSpaces[8][8] = {{true, false, true, false, true, false, true
                                     {false, true, false, true, false, true, false, true}};
 
 bool Rules::legalMove(Move *move, Board *boardState) {
-    std::vector<Move *> *requiredCaps = getJumps(boardState);
+    bool legalMove = false;
+    std::vector<Move *> *possibleMoves = getAllLegalMoves(boardState);
+    Move* temp = move;
+    while(temp != nullptr) {
+        isCapture(temp);
+        temp = temp->getChainMove();
+    }
+    for(auto &posMove : *possibleMoves) {
+        if(*posMove == *move) {
+            legalMove = true;
+        }
+    }
+    /*std::vector<Move *> *requiredCaps = getJumps(boardState);
     bool legalMove = true;
     if (!requiredCaps->empty()){
         if(isCapture(move)) {
@@ -27,10 +39,8 @@ bool Rules::legalMove(Move *move, Board *boardState) {
                 legalMove = false;
             } else {
                 Checker* c = boardState->getAt(move->getCurRow(), move->getCurCol());
-                Board* copy = boardState->copy();
-                copy->move(move, true);
                 legalMove = requiredMultiCapture(move, boardState, c->isKing());
-                delete copy, c;
+                int i;
             }
         } else {
             legalMove = false;
@@ -42,15 +52,19 @@ bool Rules::legalMove(Move *move, Board *boardState) {
         legalMove = false;
         std::cout << "invalid space" << std::endl;
     }
+     */
     if(!move->getKingMove()){
         move->setKingMove(shouldCrown(move));
     }
-    delete requiredCaps;
+    //delete requiredCaps;
     return legalMove;
 }
 
 bool Rules::validSpace(int row, int col, Board* boardState) {
-    return playableSpaces[row][col] && !boardState->contains(row, col);
+    bool b1 = Rules::playableSpaces[row][col];
+    bool b2 = !boardState->contains(row, col);
+    int i;
+    return b1 && b2;
 }
 
 bool Rules::validCapture(Move *move, Board* boardState) {
@@ -68,18 +82,24 @@ bool Rules::validCapture(Move *move, Board* boardState) {
      std::cout << "RED "<< RED << std::endl;
      std::cout << "WHITE " << WHITE << std::endl;
     */
+    int capCol = move->getCapCol();
+    int capRow = move->getCapRow();
     bool returnMe = true;
+    // if not a valid space on the board or the space is occupied
     if (!validSpace(move->getDestRow(), move->getDestCol(), boardState)) {
         returnMe = false;
-    } else if (!Rules::playableSpaces[move->getCapRow()][move->getCapCol()]) {
-        returnMe = false;
-    } else if (boardState->contains(move->getCapRow(), move->getCapCol())) {
-        if (move->getColor() == boardState->getAt(move->getCapRow(), move->getCapCol())->getColor()) {
+    }
+    // else if board contains a piece at the cap space
+    else if (boardState->contains(capRow, capCol)) {
+        if (move->getColor() == boardState->getAt(capRow, capCol)->getColor()) {
             returnMe = false;
         }
-    } else
+        else{
+            int i;
+        }
+    } else {
         returnMe = false;
-
+    }
     return returnMe;
 
 }
@@ -114,6 +134,7 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     auto * returnMe = new std::vector<Move*>();
     int row = checker->getRow();
     int col = checker->getCol();
+
     Color color = checker->getColor();
 
     // check the possible moves for a player1 piece, else check for player2
@@ -134,10 +155,20 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     auto* incompleteJumps = new std::vector<Move*>();
     // for each jump that is found check if that jump has a multicapture available
     for(auto &jump: *returnMe) {
+        Board* boardCopy = boardState->copy();
+        // push the jump to the mock board
+        boardCopy->move(jump, true, false);
+
         //create a fake checker which is used to check if there is a capture available
-        auto * mockChecker = new Checker(jump->getColor(), jump->getDestRow(), jump->getDestCol());
+        auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
+
         // for the current jump get all of the jumps it has available
-        auto * jumps = getJumpsAtPos(boardState, mockChecker);
+        std::vector<Move *> * jumps;
+        if(jump->getKingMove()) {
+            jumps = new std::vector<Move*>();
+        } else {
+            jumps = getJumpsAtPos(boardCopy, mockChecker);
+        }
         // if the move has next jump available add the incomplete jump to the
         // vector and get all the jumps available to it
         if(!jumps->empty()) {
@@ -170,9 +201,13 @@ std::vector<Move *>* Rules::getUpJumps(int row, int col, Board* boardState) {
     // Upper left move
     Move *ULMove = new Move(row, col, row + 2, col - 2,
                             row + 1, col - 1, color);
+    crownMe(ULMove);
+
     // Upper right move
     Move *URMove = new Move(row, col, row + 2, col + 2,
                             row + 1, col + 1, color);
+    crownMe(URMove);
+
     if (validCapture(ULMove, boardState)) {
         returnMe->push_back(ULMove);
     } else
@@ -192,9 +227,12 @@ std::vector<Move *> * Rules::getDownJumps(int row, int col, Board *boardState) {
     // Lower left move
     Move* LLMove = new Move(row, col, row - 2, col - 2,
                             row - 1, col - 1, color);
+    crownMe(LLMove);
+
     // Lower right move
     Move* LRMove = new Move(row, col, row - 2, col + 2,
                             row - 1, col + 1, color);
+    crownMe(LRMove);
 
     // if it is a valid capture then add it to the set of moves
     if(validCapture(LLMove, boardState)) {
@@ -259,7 +297,8 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
     }
     // iterate through each piece and check if any of its moves is a capture
     for (auto &piece : *pieces) {
-        auto *jumps = getJumpsAtPos(boardState, piece);
+        Board * boardCopy = boardState->copy();
+        auto *jumps = getJumpsAtPos(boardCopy, piece);
         // now need a function to
         for (auto &jump : *jumps) {
             returnMe->push_back(jump);
@@ -366,7 +405,8 @@ bool Rules::legalMoveFromColor(Move *move, Board *boardState) {
         legalMove = false;
         std::cout << "not your turn" << std::endl;
     }
-    return (legalMove && Rules::legalMove(move, boardState));
+    bool b = Rules::legalMove(move, boardState);
+    return (legalMove && b);
 }
 
 bool Rules::shouldCrown(Move *move) {
@@ -381,10 +421,17 @@ bool Rules::shouldCrown(Move *move) {
 
 bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     bool legal = true;
+    /* copy the board state and push the move through to the mock board */
+    Board* boardCopy = boardState->copy();
+    boardCopy->move(move, true, false);
+    /* get a mock checker from where the piece lands */
     auto * mockChecker = new Checker(move->getColor(), move->getDestRow(), move->getDestCol());
+
     if(isKing)
         mockChecker->makeKing();
-    std::vector<Move *> *multiJumps = getJumpsAtPos(boardState, mockChecker);
+
+
+    std::vector<Move *> *multiJumps = getJumpsAtPos(boardCopy, mockChecker);
     bool hasJumps = !multiJumps->empty();
     bool crowned = false;
     if(!isKing) {
@@ -396,23 +443,14 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     // make and the piece was not crowned this turn
     // Case: legal = false
 
-    if ((validMultiCapture(move, boardState) && hasJumps) && !crowned) {
-        Board* copy = boardState->copy();
-        copy->move(move, true);
-        legal = requiredMultiCapture(move->getChainMove(), copy, isKing);
-        delete copy;
+    if ((validMultiCapture(move, boardCopy) && hasJumps) && !crowned) {
+        legal = requiredMultiCapture(move->getChainMove(), boardCopy, isKing);
     }
     // else if there is no pointer to a multicap and there are no available
     // jumps or the piece has been crowned this turn
     // case: legal = true
 
-    else if(move->getChainMove() == nullptr && (!hasJumps || crowned)) {
-        legal = true;
-    }
-    // else any other case is invalid
-    else {
-        legal = false;
-    }
+    else legal = move->getChainMove() == nullptr && (!hasJumps || crowned);
     multiJumps->clear();
     delete mockChecker, multiJumps;
     return legal;
@@ -443,4 +481,14 @@ bool Rules::legalDirection(Move *move, Board *boardState) {
         legalMove = true;
     }
     return legalMove;
+}
+
+bool Rules::crownMe(Move *move) {
+    bool crowned = false;
+    if ((move->getDestRow() == 7 && move->getColor() == WHITE) ||
+        (move->getDestRow() == 0 && move->getColor() == RED)) {
+        move->setKingMove(true);
+        crowned = true;
+    }
+    return crowned;
 }

@@ -11,6 +11,13 @@ Checker::Checker(Color color, int row, int col) {
     this->col = col;
 }
 
+Checker::Checker(Color color, int row, int col, bool isKing) {
+    this->COLOR = color;
+    this->row = row;
+    this->col = col;
+    this->king = isKing;
+}
+
 Color Checker::getColor() {
     return COLOR;
 }
@@ -65,4 +72,11 @@ Checker *Checker::copy() {
     if(this->isKing())
         c->makeKing();
     return c;
+}
+
+bool Checker::operator==(const Checker &c) {
+    return (this->getColor() == c.COLOR
+        && this->getCol() == c.col
+        && this->getRow() == c.row
+        && this->isKing() == c.king);
 }
