@@ -9,7 +9,7 @@ int main() {
 
     //Player *player1 = new AI(1);
     Player *player1 = new Parser(RED);
-    Player *player2 = new AI(3);
+    Player *player2 = new AI(6);
     //Player *player2 = new Parser(WHITE);
 
     auto * game = new GameManager(board , player1, player2);
