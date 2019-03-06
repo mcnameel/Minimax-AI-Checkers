@@ -14,6 +14,7 @@
 
 class Board {
 private:
+
     const std::string PLAYER_ONE_COLOR = "Red";
     const std::string PLAYER_TWO_COLOR = "White";
     Color turn = RED;
@@ -27,7 +28,15 @@ private:
     std::vector<Checker*>* whitePieces = new std::vector<Checker*>();
     std::string getColorStr(Color);
     void setLastMove(Move* lastMove);
+    bool gameOver = false;
 public:
+    bool isGameOver() const;
+
+    void setGameOver(bool gameOver);
+
+public:
+    const static int BOARDHEIGHT = 8;
+    const static int BOARDWIDTH = 8;
     /**
      * Constructs a board with pieces ready for play
      */

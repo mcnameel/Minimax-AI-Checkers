@@ -154,7 +154,9 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     // hols the jumps that have a next jump available but do not have them added yet
     auto* incompleteJumps = new std::vector<Move*>();
     // for each jump that is found check if that jump has a multicapture available
+    static int i = 0;
     for(auto &jump: *returnMe) {
+        i++;
         Board* boardCopy = boardState->copy();
         // push the jump to the mock board
         boardCopy->move(jump, true, false);
@@ -195,28 +197,36 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
 }
 
 std::vector<Move *>* Rules::getUpJumps(int row, int col, Board* boardState) {
-    auto* returnMe = new std::vector<Move *>();
+    auto *returnMe = new std::vector<Move *>();
     Color color = boardState->getTurn();
 
-    // Upper left move
-    Move *ULMove = new Move(row, col, row + 2, col - 2,
-                            row + 1, col - 1, color);
-    crownMe(ULMove);
+    int upRow = row + 2;
+    int rtCol = col + 2;
+    int ltCol = col - 2;
+    if (upRow < Board::BOARDHEIGHT) {
+        if (ltCol >= 0) {
+            // Upper left move
+            Move *ULMove = new Move(row, col, row + 2, col - 2,
+                                    row + 1, col - 1, color);
+            crownMe(ULMove);
 
-    // Upper right move
-    Move *URMove = new Move(row, col, row + 2, col + 2,
-                            row + 1, col + 1, color);
-    crownMe(URMove);
+            if (validCapture(ULMove, boardState)) {
+                returnMe->push_back(ULMove);
+            } else
+                delete ULMove;
+        }
+        if(rtCol < Board::BOARDWIDTH) {
+            // Upper right move
+            Move *URMove = new Move(row, col, row + 2, col + 2,
+                                    row + 1, col + 1, color);
+            crownMe(URMove);
 
-    if (validCapture(ULMove, boardState)) {
-        returnMe->push_back(ULMove);
-    } else
-        delete ULMove;
-    if (validCapture(URMove, boardState)) {
-        returnMe->push_back(URMove);
-    } else
-        delete URMove;
-
+            if (validCapture(URMove, boardState)) {
+                returnMe->push_back(URMove);
+            } else
+                delete URMove;
+        }
+    }
     return returnMe;
 }
 
@@ -224,25 +234,35 @@ std::vector<Move *> * Rules::getDownJumps(int row, int col, Board *boardState) {
     auto* returnMe = new std::vector<Move*>();
     Color color = boardState->getTurn();
 
-    // Lower left move
-    Move* LLMove = new Move(row, col, row - 2, col - 2,
-                            row - 1, col - 1, color);
-    crownMe(LLMove);
+    int downRow = row - 2;
+    int rtCol = col + 2;
+    int ltCol = col - 2;
+    if (downRow >= 0) {
+        if (ltCol >= 0) {
+            // Lower left move
+            Move *LLMove = new Move(row, col, row - 2, col - 2,
+                                    row - 1, col - 1, color);
+            crownMe(LLMove);
+            // if it is a valid capture then add it to the set of moves
+            if(validCapture(LLMove, boardState)) {
+                returnMe->push_back(LLMove);
+            } else
+                delete LLMove;
+        }
+        if(rtCol < Board::BOARDWIDTH) {
+            Move* LRMove = new Move(row, col, row - 2, col + 2,
+                                    row - 1, col + 1, color);
+            crownMe(LRMove);
+// Lower right move
 
-    // Lower right move
-    Move* LRMove = new Move(row, col, row - 2, col + 2,
-                            row - 1, col + 1, color);
-    crownMe(LRMove);
 
-    // if it is a valid capture then add it to the set of moves
-    if(validCapture(LLMove, boardState)) {
-        returnMe->push_back(LLMove);
-    } else
-        delete LLMove;
-    if(validCapture(LRMove, boardState)) {
-        returnMe->push_back(LRMove);
-    } else
-        delete LRMove;
+            if(validCapture(LRMove, boardState)) {
+                returnMe->push_back(LRMove);
+            } else
+                delete LRMove;
+        }
+    }
+
 
     return returnMe;
 }

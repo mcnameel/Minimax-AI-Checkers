@@ -9,11 +9,11 @@
 Board::Board() {
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
-    for(int i = 0; i < 8; ++i) {
+    for(int i = 0; i < BOARDHEIGHT; ++i) {
         // iterate through each column to add the piece. For each column
         // multiply j by two then add the modulus of i to get the offset for
         // each odd column.
-       for (int j = 0; j < 4; ++j) {
+       for (int j = 0; j < BOARDWIDTH / 2; ++j) {
             // the player2 pieces go from rows 1-3
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
@@ -106,12 +106,7 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
 
             Checker *cap = grid[temp->getCapRow()][temp->getCapCol()];
             grid[temp->getCapRow()][temp->getCapCol()] = nullptr;
-
-            if (temp->getColor() == RED) {
-                removePiece(cap);
-            } else {
-                removePiece(cap);
-            }
+            removePiece(cap);
             delete cap;
         }
         temp = temp->getChainMove();
@@ -126,6 +121,10 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
         movesToDelete->clear();
     }
     lastMove = move;
+
+    if(redPieces->empty() || whitePieces->empty()) {
+        setGameOver(true);
+    }
 }
 
 std::vector<Checker*>* Board::getRedPieces() {
@@ -153,12 +152,13 @@ void Board::removePiece(Checker *c) {
 
     auto it = deleteFromMe->begin();
     bool found = false;
-    while(!found) {
+    while(it != deleteFromMe->end() && !found) {
         if(*it == c) {
             deleteFromMe->erase(it);
             found = true;
+        } else {
+            ++it;
         }
-        ++it;
     }
 }
 
@@ -202,6 +202,14 @@ Color Board::getTurn() {
 
 void Board::setTurn(Color color) {
     this->turn = color;
+}
+
+bool Board::isGameOver() const {
+    return gameOver;
+}
+
+void Board::setGameOver(bool gameOver) {
+    Board::gameOver = gameOver;
 }
 
 

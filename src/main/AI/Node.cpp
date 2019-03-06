@@ -40,10 +40,9 @@ Node::Node(Board *boardState, Move *move) {
 
 Node * Node::createTree(Board *bs, int depth, Move *move) {
     // if depth is zero we have reached the target depth
-    if (depth == 0) {
+    if (depth == 0 || bs->isGameOver()) {
         return new Node(bs, move); // return leaf node
     }
-
 
     auto *successors = new std::vector<Node *>();
     auto *moves = Rules::getAllLegalMoves(bs);
@@ -57,7 +56,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
 
 Node::~Node() {
     successors->clear();
-    delete successors, boardState;
+    delete successors, boardState, move;
 }
 
 Move *Node::getMove() {

@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.h
+../POCO/Move.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.h
+Node.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.h
+MinimaxTree.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/MinimaxTree.h
+../misc/Player.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h
+
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/MinimaxTree.h
+
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.h
+vector
+-
+../POCO/Move.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.h
+../Board.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
+MinimaxTree.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/MinimaxTree.h
+
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
 vector
 -
@@ -16,6 +38,14 @@ C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.h
 POCO/Move.h
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.h
 
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.h
+Board.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
+misc/Player.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h
+Rules.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.h
+
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.h
 string
 -
@@ -27,18 +57,6 @@ string
 -
 ../misc/Color.h
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Color.h
-
-C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp
-iostream
--
-set
--
-algorithm
--
-Rules.h
-C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.h
-misc/Player.h
-C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h
 
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Rules.h
 vector
@@ -51,6 +69,30 @@ Board.h
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
 misc/Player.h
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h
+
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.h
+iostream
+-
+../POCO/Move.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.h
+../misc/Player.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Player.h
+../misc/Color.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Color.h
+../Board.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
+
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp
+iostream
+-
+Board.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/Board.h
+human/Parser.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.h
+GameManager.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.h
+AI/AI.h
+C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.h
 
 C:/Users/Luke/CLionProjects/Minimax-AI-Checkers/src/main/misc/Color.h
 
