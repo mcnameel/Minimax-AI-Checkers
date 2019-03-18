@@ -18,6 +18,11 @@ int Move::getDestRow() {
     return destRow;
 }
 
+Move::~Move() {
+    if(getChainMove() != nullptr)
+        delete chainMove;
+}
+
 int Move::getDestCol() {
     return destCol;
 }
@@ -72,7 +77,8 @@ bool Move::operator==(const Move& m) {
         destRow == m.destRow &&
         destCol == m.destCol &&
         capRow == m.capRow &&
-        capCol == m.capCol);
+        capCol == m.capCol &&
+        isKing == m.isKing);
 }
 
 void Move::setCapSpace(int row, int col) {

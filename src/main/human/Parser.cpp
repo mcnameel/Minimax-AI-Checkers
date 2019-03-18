@@ -7,8 +7,7 @@
 #include <string>
 #include <regex>
 
-Parser::Parser(Color color) {
-    this->color = color;
+Parser::Parser(Color color) : Player(color) {
 }
 
 bool Parser::validateInput(std::string in) {
@@ -30,7 +29,7 @@ Move *Parser::convertInput(std::string in) {
                               in.at(indexCol1 + (offset * i)) - COLUMN_SHIFT,
                               in.at(indexRow2 + (offset * i)) - ROW_SHIFT,
                               in.at(indexCol2 + (offset * i)) - COLUMN_SHIFT,
-                              color);
+                              playerColor);
         if(i == 0) {
             returnMe = lastMove = temp;
         }

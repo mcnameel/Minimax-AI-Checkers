@@ -9,7 +9,7 @@
 Board::Board() {
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
-    for(int i = 0; i < BOARDHEIGHT; ++i) {
+   for(int i = 0; i < BOARDHEIGHT; ++i) {
         // iterate through each column to add the piece. For each column
         // multiply j by two then add the modulus of i to get the offset for
         // each odd column.
@@ -68,9 +68,9 @@ void Board::printBoard() {
         std::cout << "|" << std::endl;
     }
     std::cout << "   -------------------------------   ";
-    std::cout << "player 1: " << getWhitePieces()->size() << std::endl;
+    std::cout << "White: " << getWhitePieces()->size() << std::endl;
     std::cout << "    a   b   c   d   e   f   g   h    ";
-    std::cout << "player 2: " << getRedPieces()->size() << std::endl;
+    std::cout << "Red:   " << getRedPieces()->size() << std::endl;
     std::string turn = (getTurn() == RED) ? PLAYER_ONE_COLOR : PLAYER_TWO_COLOR;
     std::cout << turn + "'s turn" << std::endl;
 }
@@ -114,6 +114,11 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
     if(changeTurn) {
         Color curTurn = (getTurn() == RED) ? WHITE : RED;
         setTurn(curTurn);
+
+        // check if the game is over
+        if(Rules::getAllLegalMoves(this)->empty()) {
+            setGameOver(true);
+        }
     }
     Move* tempDel = lastMove;
     movesToDelete->push_back(tempDel);
@@ -122,9 +127,6 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
     }
     lastMove = move;
 
-    if(redPieces->empty() || whitePieces->empty()) {
-        setGameOver(true);
-    }
 }
 
 std::vector<Checker*>* Board::getRedPieces() {
@@ -144,27 +146,32 @@ int Board::getWhiteCount() {
 }
 
 void Board::removePiece(Checker *c) {
-    std::vector<Checker*>* deleteFromMe;
-    if(c->getColor() == RED)
+    std::vector<Checker *> *deleteFromMe;
+    if (c->getColor() == RED)
         deleteFromMe = getRedPieces();
     else
         deleteFromMe = getWhitePieces();
 
-    auto it = deleteFromMe->begin();
-    bool found = false;
-    while(it != deleteFromMe->end() && !found) {
-        if(*it == c) {
-            deleteFromMe->erase(it);
-            found = true;
-        } else {
-            ++it;
+    if(deleteFromMe->size() == 1) {
+        deleteFromMe->pop_back();
+//        deleteFromMe->clear();
+    }
+    else {
+        auto it = deleteFromMe->begin();
+        bool found = false;
+        while (it != deleteFromMe->end() && !found) {
+            if (*it == c) {
+                deleteFromMe->erase(it, ++it);
+                found = true;
+            } else {
+                ++it;
+            }
         }
     }
 }
 
 Board::Board(std::vector<Checker *> *startState, Color turn) {
     this->turn = turn;
-    this->boardGrid = boardGrid;
     for (auto &piece : *startState) {
         grid[piece->getRow()][piece->getCol()] = piece;
         if(piece->getColor() == RED)
@@ -209,7 +216,7 @@ bool Board::isGameOver() const {
 }
 
 void Board::setGameOver(bool gameOver) {
-    Board::gameOver = gameOver;
+    this->gameOver = gameOver;
 }
 
 

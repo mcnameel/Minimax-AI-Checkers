@@ -6,8 +6,8 @@
 // Created by Luke on 1/29/2019.
 //
 
-#ifndef CHECKERS_01_GAMEMANAGER_H
-#define CHECKERS_01_GAMEMANAGER_H
+#ifndef MINIMAX_AI_CHECKERS_GAMEMANAGER_H
+#define MINIMAX_AI_CHECKERS_GAMEMANAGER_H
 
 
 #include "Board.h"
@@ -59,4 +59,4 @@ private:
 };
 
 
-#endif //CHECKERS_01_GAMEMANAGER_H
+#endif //MINIMAX_AI_CHECKERS_GAMEMANAGER_H

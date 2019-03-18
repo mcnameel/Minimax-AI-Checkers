@@ -18,54 +18,22 @@ void GameManager::play() {
     bool gameOver = false;
     while(!gameOver) {
         Move *curMove = getLegalMove();
-
-        auto *destroyMe = new std::vector<Move *>();
-        destroyMe->push_back(curMove);
-        // when we have a valid move push the move to the board
-        board->move(curMove, false, true);
-
-
-        /*std::vector<Move*>* jumps = Rules::getJumpsAtPos(curMove->getDestRow(),curMove->getDestCol(), board);
-        // check if the piece should be crowned and if so then king the piece
-        // get the next move if the player can changed
-        bool crowned = crownMe(curMove);
-        while (curMove->getCapRow() != -1 && !jumps->empty() && !crowned) {
-            Move *newMove = getLegalMove();
-         *//*  this will not work now *//*if (Rules::validMultiCapture(newMove, board)) {
-                // Check if the piece is crowned this turn and if so the turn
-                // must end even if another capture is available
-                crowned = crownMe(newMove);
-
-                // When the move is valid we delete the old jumps and get a new
-                // one to see if there is another jump available
-                delete jumps;
-                jumps = Rules::getJumpsAtPos(newMove->getCurRow(), newMove->getCurCol(), board);
-
-                // when we have a valid move push the move to the board
-                //board->move(newMove, false);
-                destroyMe->push_back(curMove);
-                curMove = newMove;
-            } else {
-                std::cout << "not valid multi capture" << std::endl;
-                delete newMove;
-            }
+        if(curMove != nullptr) {
+            auto *destroyMe = new std::vector<Move *>();
+            destroyMe->push_back(curMove);
+            // when we have a valid move push the move to the board
+            board->move(curMove, false, true);
         }
-
-        destroyMe->erase(destroyMe->begin(), destroyMe->end());
-        delete destroyMe, jumps;
-*/
-        // Change the turn
-
 
 
         // check if the game is over
-        if (board->getRedCount() == 0 || board->getWhiteCount() == 0)
+        if (board->isGameOver())
             gameOver = true;
     }
 }
 
 Move* GameManager::getLegalMove() {
-    Move *currentMove;
+    Move *currentMove = nullptr;
 
     // while the move is not valid ask for a new move
     bool invalidMove = true;
@@ -73,8 +41,14 @@ Move* GameManager::getLegalMove() {
         // first print the board
         board->printBoard();
 
+        if(Rules::getAllLegalMoves(board)->empty()) {
+            board->setGameOver(true);
+            break;
+        }
+        
         // call getMove to request the next move from the current player
         currentMove = getMove(board);
+        
         // check if the move is valid
         invalidMove = !Rules::legalMoveFromColor(currentMove, board);
         int i = 0;
@@ -87,16 +61,13 @@ Move* GameManager::getLegalMove() {
 Move *GameManager::getMove(Board *bs) {
     static int i = 0;
     Move* currentMove;
-    switch (bs->getTurn()) {
-        case RED:
-            currentMove = player1->getMove(bs);
-            break;
-        case WHITE:
-            currentMove = player2->getMove(bs);
-            break;
-        default:
-            std::cout << "Error" << std::endl;
-    }
+
+    if(player1->getColor() == bs->getTurn())
+        currentMove = player1->getMove(bs);
+
+    else if(player2->getColor() == bs->getTurn())
+        currentMove = player2->getMove(bs);
+
     ++i;
     return currentMove;
 }

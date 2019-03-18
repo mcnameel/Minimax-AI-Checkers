@@ -4,8 +4,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#ifndef CHECKERS_01_CHECKER_H
-#define CHECKERS_01_CHECKER_H
+#ifndef MINIMAX_AI_CHECKERS_CHECKER_H
+#define MINIMAX_AI_CHECKERS_CHECKER_H
 
 #include <string>
 #include "../misc/Color.h"
@@ -52,4 +52,4 @@ public:
     Checker* copy();
 };
 
-#endif //CHECKERS_01_CHECKER_H
+#endif //MINIMAX_AI_CHECKERS_CHECKER_H

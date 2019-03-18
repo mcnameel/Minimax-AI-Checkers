@@ -17,13 +17,13 @@ Node* AI::minimax(Node* node, int depth, bool maximizingPlayer) {
     // each time minimax is recursively called it returns the node from the
     // params with the best value from its successors as its value
     if (maximizingPlayer) {
-        int value = -200; // set value to something lower than is possible in the game
+        int value = MIN; // set value to something lower than is possible in the game
         node->setValue(value); // set the curBest to something to be overwritten
         for (auto &n : *(node->getSuccessors())) {
             node->setValue(max(node, minimax(n, depth - 1, false)));
         }
     } else { // minimizing player
-        int value = 200;
+        int value = MAX;
         node->setValue(value); // set the curBest to something to be overwritten
         for (auto &n : *(node->getSuccessors())) {
             // Compare the new minimax node to the last one
@@ -52,7 +52,7 @@ int AI::evaluateBoardState(Node *node) {
             redValue += MAN_POINT_VAL;
     }
     int returnMe = 0;
-    if(node->getLastMove()->getColor() == RED) {
+    if(this->getColor() == RED) {
         returnMe = redValue - whiteValue;
     } else {
         returnMe = whiteValue - redValue;
@@ -81,24 +81,41 @@ Node *AI::makeTree(Board *bs) {
 Move *AI::getMove(Board *boardState) {
     Node* nextMoveTree = makeTree(boardState);
     nextMoveTree = minimax(nextMoveTree, lookAhead, true);
-    Move* nextMove;
+    Move* nextMove = nullptr;
 
-    for(auto &node : *nextMoveTree->getSuccessors()) {
-        if(node->getValue() == nextMoveTree->getValue())
-            nextMove = node->getMove()->copy();
+    if(nextMoveTree->getSuccessors()->empty()) {
+        boardState->setGameOver(true);
     }
+
+    auto *bestMoves = new std::vector<Move*>();
+    for(auto &node : *nextMoveTree->getSuccessors()) {
+        if(node->getValue() == nextMoveTree->getValue()) {
+            bestMoves->push_back(node->getMove()->copy());
+        }
+    }
+    nextMove = bestMoves->at(static_cast<unsigned long>(random(0, static_cast<int>(bestMoves->size() - 1))));
     delete nextMoveTree;
     return nextMove;
 }
 
-AI::AI(int lookAhead) {
+AI::AI(int lookAhead, Color color) : Player(color) {
     this->lookAhead = lookAhead;
 }
 
 int AI::random(int low, int high) {
     std::default_random_engine generator(time(nullptr));
     std::uniform_int_distribution<int> distribution(low, high);
-    return distribution(generator);
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> random(static_cast<unsigned int>(low),
+                                                                   static_cast<unsigned int>(high));
+
+    return random(rng);
+
+//    return distribution(generator);
+
+
 }
 
 

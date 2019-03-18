@@ -6,8 +6,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#ifndef CHECKERS_01_PARSER_H
-#define CHECKERS_01_PARSER_H
+#ifndef MINIMAX_AI_CHECKERS_PARSER_H
+#define MINIMAX_AI_CHECKERS_PARSER_H
 
 
 #include <iostream>
@@ -19,7 +19,6 @@
 class Parser: public Player {
 private:
     /* vars */
-    Color color;
     // Amount to use to convert the ascii value input into the proper int
     const int ROW_SHIFT = 48;
     const int COLUMN_SHIFT = 97;
@@ -51,4 +50,4 @@ public:
     explicit Parser(Color color);
 };
 
-#endif //CHECKERS_01_PARSER_H
+#endif //MINIMAX_AI_CHECKERS_PARSER_H

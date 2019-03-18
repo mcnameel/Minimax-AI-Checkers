@@ -419,13 +419,14 @@ bool Rules::validMove(Move* move, Board* boardState) {
 bool Rules::legalMoveFromColor(Move *move, Board *boardState) {
     bool legalMove = true;
     Color turn = boardState->getTurn();
-
+    
     if (boardState->contains(move->getCurRow(), move->getCurCol())
         && turn != boardState->getAt(move->getCurRow(), move->getCurCol())->getColor()) {
         legalMove = false;
         std::cout << "not your turn" << std::endl;
     }
     bool b = Rules::legalMove(move, boardState);
+    
     return (legalMove && b);
 }
 

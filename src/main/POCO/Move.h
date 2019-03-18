@@ -6,8 +6,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#ifndef CHECKERS_01_MOVE_H
-#define CHECKERS_01_MOVE_H
+#ifndef MINIMAX_AI_CHECKERS_MOVE_H
+#define MINIMAX_AI_CHECKERS_MOVE_H
 
 #include <string>
 #include "../misc/Color.h"
@@ -55,6 +55,11 @@ public:
             int capCol, Color color);
 
     /**
+     * delete the chainMove if it is not null
+     */
+    ~Move();
+    
+    /**
      * Overload the == operator to check if the move matches the another
      * @param m
      * @return true if they are equal
@@ -73,10 +78,8 @@ public:
     bool getKingMove();
     Move* getChainMove();
     void setChainMove(Move* m);
-
     Move* copy();
-
     std::string toString();
 };
 
-#endif //CHECKERS_01_MOVE_H
+#endif //MINIMAX_AI_CHECKERS_MOVE_H

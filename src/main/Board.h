@@ -4,8 +4,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#ifndef CHECKERS_01_BOARD_H
-#define CHECKERS_01_BOARD_H
+#ifndef MINIMAX_AI_CHECKERS_BOARD_H
+#define MINIMAX_AI_CHECKERS_BOARD_H
 
 #include <vector>
 #include <set>
@@ -94,4 +94,4 @@ public:
 };
 
 
-#endif //CHECKERS_01_BOARD_H
+#endif //MINIMAX_AI_CHECKERS_BOARD_H

@@ -2,8 +2,8 @@
 // Created by Luke on 2/19/2019.
 //
 
-#ifndef CHECKERS_01_NODE_H
-#define CHECKERS_01_NODE_H
+#ifndef MINIMAX_AI_CHECKERS_NODE_H
+#define MINIMAX_AI_CHECKERS_NODE_H
 
 #include<vector>
 #include "../POCO/Move.h"
@@ -58,4 +58,4 @@ public:
 };
 
 
-#endif //CHECKERS_01_NODE_H
+#endif //MINIMAX_AI_CHECKERS_NODE_H

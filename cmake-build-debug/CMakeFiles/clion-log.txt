@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2018.3.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Luke\CLionProjects\Minimax-AI-Checkers
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Luke/CLionProjects/Minimax-AI-Checkers
+-- Build files have been written to: /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug

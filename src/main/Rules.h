@@ -5,8 +5,8 @@
 // Created by Luke on 1/31/2019.
 //
 
-#ifndef CHECKERS_01_RULES_H
-#define CHECKERS_01_RULES_H
+#ifndef MINIMAX_AI_CHECKERS_RULES_H
+#define MINIMAX_AI_CHECKERS_RULES_H
 
 
 #include <vector>
@@ -140,4 +140,4 @@ private:
     static bool checkDownMoves(Checker* c, std::set<Move*>* captures);
 };
 
-#endif //CHECKERS_01_RULES_H
+#endif //MINIMAX_AI_CHECKERS_RULES_H

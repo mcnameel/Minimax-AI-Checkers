@@ -2,8 +2,8 @@
 // Created by Luke on 2/21/2019.
 //
 
-#ifndef CHECKERS_01_MINIMAXTREE_H
-#define CHECKERS_01_MINIMAXTREE_H
+#ifndef MINIMAX_AI_CHECKERS_MINIMAXTREE_H
+#define MINIMAX_AI_CHECKERS_MINIMAXTREE_H
 
 
 //#include "Node.h"
@@ -19,4 +19,4 @@ public:
 };
 
 
-#endif //CHECKERS_01_MINIMAXTREE_H
+#endif //MINIMAX_AI_CHECKERS_MINIMAXTREE_H

@@ -5,8 +5,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#ifndef CHECKERS_01_PLAYER_H
-#define CHECKERS_01_PLAYER_H
+#ifndef MINIMAX_AI_CHECKERS_PLAYER_H
+#define MINIMAX_AI_CHECKERS_PLAYER_H
 
 #include "../POCO/Move.h"
 #include "../Board.h"
@@ -18,7 +18,18 @@ public:
      * @return pointer to a move the player wishes to make
      */
     virtual Move *getMove(Board *boardState) = 0;
+
+    Player(Color playerColor) {
+        this->playerColor = playerColor;
+    }
+
+    Color getColor() {
+        return playerColor;
+    }
+
+protected:
+    Color playerColor;
 };
 
-#endif //CHECKERS_01_PLAYER_H
+#endif //MINIMAX_AI_CHECKERS_PLAYER_H
 
