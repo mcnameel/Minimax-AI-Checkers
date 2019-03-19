@@ -136,7 +136,7 @@ int AI::min(int val1, int val2) {
 }
 
 Node *AI::makeTree(Board *bs) {
-    return Node::createTree(bs, lookAhead, nullptr);
+    return Node::createTree(bs->copy(), lookAhead, nullptr);
 }
 
 Move *AI::getMove(Board *boardState) {

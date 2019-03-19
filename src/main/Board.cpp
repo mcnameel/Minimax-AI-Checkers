@@ -17,19 +17,20 @@ Board::Board() {
             // the player2 pieces go from rows 1-3
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
-                auto * c = new Checker(WHITE, i, 2 * j + (i % 2));
+                Checker * c = new Checker(WHITE, i, 2 * j + (i % 2));
                 whitePieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
             // the player1 pieces go from rows 1-3
             else if(i > 4) {
                 // add a player1 piece to the board and to the container set
-                auto * c = new Checker(RED, i, 2 * j + (i % 2));
+                Checker * c = new Checker(RED, i, 2 * j + (i % 2));
                 redPieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
         }
     }
+
     /*
      // For testing purposes
     Checker* c1 = new Checker(RED, 4, 2);
@@ -152,13 +153,17 @@ void Board::removePiece(Checker *c) {
     else
         deleteFromMe = getWhitePieces();
 
+
     if(deleteFromMe->size() == 1) {
         deleteFromMe->pop_back();
     } else {
-        for(int i = 0; i < deleteFromMe->size(); i++) {
+        int size = static_cast<int>(deleteFromMe->size());
+        for(int i = 0; i < size; i++) {
             Checker *curPiece = deleteFromMe->at(i);
             if (curPiece == c) {
                 deleteFromMe->erase(deleteFromMe->begin() + i);
+                i = size;
+                //break;
             }
         }
     }
