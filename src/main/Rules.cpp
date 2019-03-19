@@ -473,7 +473,8 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
 
     else legal = move->getChainMove() == nullptr && (!hasJumps || crowned);
     multiJumps->clear();
-    delete mockChecker, multiJumps;
+    delete mockChecker;
+    delete multiJumps;
     return legal;
 }
 

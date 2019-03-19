@@ -80,7 +80,9 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
 
 Node::~Node() {
     successors->clear();
-    delete successors, boardState, move;
+    delete successors;
+    delete boardState;
+    delete move;
 }
 
 Move *Node::getMove() {

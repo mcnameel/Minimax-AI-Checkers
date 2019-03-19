@@ -155,11 +155,13 @@ Move *AI::getMove(Board *boardState) {
     auto *bestMoves = new std::vector<Move*>();
     for(auto &node : *nextMoveTree->getSuccessors()) {
         if(node->getValue() == bestMoveVal) {
-            bestMoves->push_back(node->getMove()->copy());
+            bestMoves->push_back(node->getMove());
         }
     }
-    nextMove = bestMoves->at(static_cast<unsigned long>(random(0, static_cast<int>(bestMoves->size() - 1))));
+    nextMove = bestMoves->at(static_cast<unsigned long>(random(0, static_cast<int>(bestMoves->size() - 1))))->copy();
+    bestMoves->clear();
     delete nextMoveTree;
+    delete bestMoves;
     return nextMove;
 }
 
@@ -168,19 +170,12 @@ AI::AI(int lookAhead, Color color) : Player(color) {
 }
 
 int AI::random(int low, int high) {
-    std::default_random_engine generator(time(nullptr));
-    std::uniform_int_distribution<int> distribution(low, high);
-
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> random(static_cast<unsigned int>(low),
-                                                                   static_cast<unsigned int>(high));
-
+    std::uniform_int_distribution<std::mt19937::result_type> random(
+            static_cast<unsigned int>(low), static_cast<unsigned int>(high)
+            );
     return random(rng);
-
-//    return distribution(generator);
-
-
 }
 
 

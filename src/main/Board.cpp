@@ -17,14 +17,14 @@ Board::Board() {
             // the player2 pieces go from rows 1-3
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
-                Checker* c = new Checker(WHITE, i, 2 * j + (i % 2));
+                auto * c = new Checker(WHITE, i, 2 * j + (i % 2));
                 whitePieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
             // the player1 pieces go from rows 1-3
             else if(i > 4) {
                 // add a player1 piece to the board and to the container set
-                Checker* c = new Checker(RED, i, 2 * j + (i % 2));
+                auto * c = new Checker(RED, i, 2 * j + (i % 2));
                 redPieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
@@ -138,11 +138,11 @@ std::vector<Checker*>* Board::getWhitePieces() {
 }
 
 int Board::getRedCount() {
-    return redPieces->size();
+    return static_cast<int>(redPieces->size());
 }
 
 int Board::getWhiteCount() {
-    return whitePieces->size();
+    return static_cast<int>(whitePieces->size());
 }
 
 void Board::removePiece(Checker *c) {
@@ -154,17 +154,11 @@ void Board::removePiece(Checker *c) {
 
     if(deleteFromMe->size() == 1) {
         deleteFromMe->pop_back();
-//        deleteFromMe->clear();
-    }
-    else {
-        auto it = deleteFromMe->begin();
-        bool found = false;
-        while (it != deleteFromMe->end() && !found) {
-            if (*it == c) {
-                deleteFromMe->erase(it, ++it);
-                found = true;
-            } else {
-                ++it;
+    } else {
+        for(int i = 0; i < deleteFromMe->size(); i++) {
+            Checker *curPiece = deleteFromMe->at(i);
+            if (curPiece == c) {
+                deleteFromMe->erase(deleteFromMe->begin() + i);
             }
         }
     }
