@@ -41,7 +41,7 @@ int AI::minimax(Node* node, int depth, bool maximizingPlayer) {
 int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer, int alpha, int beta) {
     int returnValue;
     if (depth == 0 || node->isTerminal()) {
-        returnValue = evaluateBoardState_02(node);
+        returnValue = evaluateBoardState_03(node);
         node->setValue(returnValue);
         return returnValue;
     }
@@ -110,6 +110,38 @@ int AI::evaluateBoardState_01(Node *node) {
 int AI::evaluateBoardState_02(Node *node) {
     int KING_POINT_VAL = 15;
     int MAN_POINT_VAL = 3;
+    int whiteValue = 0;
+    int redValue = 0;
+    Board *bs = node->getBoardState();
+    for (auto &c : *(bs->getWhitePieces())) {
+        if (c->isKing()) {
+            whiteValue += KING_POINT_VAL;
+        }
+        else {
+            int rowVal = c->getRow();
+            whiteValue += (MAN_POINT_VAL + rowVal);
+        }
+    }
+    for (auto &c : *(bs->getRedPieces())) {
+        if (c->isKing()) {
+            redValue += KING_POINT_VAL;
+        } else {
+            int rowVal = abs(c->getRow() - (Board::BOARDHEIGHT - 1));
+            redValue += (MAN_POINT_VAL + rowVal);
+        }
+    }
+    int returnMe = 0;
+    if(this->getColor() == RED) {
+        returnMe = redValue - whiteValue;
+    } else {
+        returnMe = whiteValue - redValue;
+    }
+    return returnMe;
+}
+
+int AI::evaluateBoardState_03(Node *node) {
+    int KING_POINT_VAL = 22;
+    int MAN_POINT_VAL = 6;
     int whiteValue = 0;
     int redValue = 0;
     Board *bs = node->getBoardState();
