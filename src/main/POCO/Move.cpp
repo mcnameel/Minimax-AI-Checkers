@@ -59,10 +59,10 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
 }
 
 std::string Move::toString() {
-    return std::to_string(getColor()) +
-           std::to_string(curRow) + std::to_string(curCol) + " -> "
-    +      std::to_string(capRow) + std::to_string(capCol) + " - > "
-    +      std::to_string(destRow) + std::to_string(destCol);
+    std::string cur = std::to_string(curRow) + std::to_string(curCol) + " -> ";
+    std::string cap = (capRow == -1) ? "" : std::to_string(capRow) + std::to_string(capCol) + " - > ";
+    std::string dest = std::to_string(destRow) + std::to_string(destCol);
+    return cur + cap + dest;
 }
 
 bool Move::operator==(const Move& m) {

@@ -46,8 +46,12 @@ Move* GameManager::getLegalMove() {
     while (invalidMove) {
         // first print the board
         board->printBoard();
-
-        if(Rules::getAllLegalMoves(board)->empty()) {
+        std::vector<Move*> *moves = Rules::getAllLegalMoves(board);
+        std::cout << "Possible Moves:" << std::endl;
+        for(auto &move : *moves) {
+            std::cout << "    " << move->toString() << std::endl;
+        }
+        if(moves->empty()) {
             board->setGameOver(true);
             break;
         }
