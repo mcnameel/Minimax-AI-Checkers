@@ -8,29 +8,76 @@
 #include "AI.h"
 #include "Node.h"
 
-Node* AI::minimax(Node* node, int depth, bool maximizingPlayer) {
+int AI::minimax(Node* node, int depth, bool maximizingPlayer) {
+    int returnValue;
     if (depth == 0 || node->isTerminal()) {
-        int value = evaluateBoardState(node);
-        node->setValue(value);
-        return node;
+        returnValue = evaluateBoardState(node);
+        node->setValue(returnValue);
+        return returnValue;
     }
     // each time minimax is recursively called it returns the node from the
     // params with the best value from its successors as its value
     if (maximizingPlayer) {
-        int value = MIN; // set value to something lower than is possible in the game
-        node->setValue(value); // set the curBest to something to be overwritten
+        returnValue = MIN; // set value to something lower than is possible in the game
+        node->setValue(returnValue); // set the curBest to something to be overwritten
         for (auto &n : *(node->getSuccessors())) {
-            node->setValue(max(node, minimax(n, depth - 1, false)));
+            returnValue = max(node->getValue(), minimax(n, depth - 1, false));
+            node->setValue(returnValue);
         }
+        return returnValue;
+
     } else { // minimizing player
-        int value = MAX;
-        node->setValue(value); // set the curBest to something to be overwritten
+        returnValue = MAX;
+        node->setValue(returnValue); // set the curBest to something to be overwritten
         for (auto &n : *(node->getSuccessors())) {
             // Compare the new minimax node to the last one
-            node->setValue(min(node, minimax(n, depth - 1, true)));
+            returnValue = min(node->getValue(), minimax(n, depth - 1, true));
+            node->setValue(returnValue);
         }
+        return returnValue;
     }
-    return node;
+}
+
+int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer, int alpha, int beta) {
+    int returnValue;
+    if (depth == 0 || node->isTerminal()) {
+        returnValue = evaluateBoardState(node);
+        node->setValue(returnValue);
+        return returnValue;
+    }
+    // each time minimax is recursively called it returns the node from the
+    // params with the best value from its successors as its value
+    if (maximizingPlayer) {
+        returnValue = MIN; // set value to something lower than is possible in the game
+        node->setValue(returnValue); // set the curBest to something to be overwritten
+        for (auto &n : *(node->getSuccessors())) {
+            returnValue = max(node->getValue(), minimaxAB(n, depth - 1, false, alpha, beta));
+            node->setValue(returnValue);
+            alpha = max(alpha, returnValue);
+
+            // if the alpha our current value is greater than the min break
+            if (beta <= alpha) {
+                break;
+            }
+        }
+        return returnValue;
+
+    } else { // minimizing player
+        returnValue = MAX;
+        node->setValue(returnValue); // set the curBest to something to be overwritten
+        for (auto &n : *(node->getSuccessors())) {
+            // Compare the new minimax node to the last one
+            returnValue = min(node->getValue(), minimaxAB(n, depth - 1, true, alpha, beta));
+            node->setValue(returnValue);
+            beta = min(beta, returnValue);
+
+            // if the alpha our current value is greater than the min break
+            if (beta <= alpha) {
+                break;
+            }
+        }
+        return returnValue;
+    }
 }
 
 int AI::evaluateBoardState(Node *node) {
@@ -60,17 +107,31 @@ int AI::evaluateBoardState(Node *node) {
     return returnMe;
 }
 
-int AI::max(Node *n1, Node *n2) {
+int AI::maxNode(Node *n1, Node *n2) {
     int returnMe = n1->getValue();
     if(n1->getValue() < n2->getValue())
         returnMe = n2->getValue();
     return returnMe;
 }
 
-int AI::min(Node *n1, Node *n2) {
+int AI::minNode(Node *n1, Node *n2) {
     int returnMe = n1->getValue();
     if(n1->getValue() > n2->getValue())
         returnMe = n2->getValue();
+    return returnMe;
+}
+
+int AI::max(int val1, int val2) {
+    int returnMe = val1;
+    if(val1 < val2)
+        returnMe = val2;
+    return returnMe;
+}
+
+int AI::min(int val1, int val2) {
+    int returnMe = val1;
+    if(val1 > val2)
+        returnMe = val2;
     return returnMe;
 }
 
@@ -79,8 +140,12 @@ Node *AI::makeTree(Board *bs) {
 }
 
 Move *AI::getMove(Board *boardState) {
+    std::cout << "making tree" << std::endl;
     Node* nextMoveTree = makeTree(boardState);
-    nextMoveTree = minimax(nextMoveTree, lookAhead, true);
+    std::cout << "made tree" << std::endl;
+    int bestMoveVal = minimaxAB(nextMoveTree, lookAhead, true, MIN, MAX);
+    std::cout << "calculated best move" << std::endl;
+
     Move* nextMove = nullptr;
 
     if(nextMoveTree->getSuccessors()->empty()) {
@@ -89,7 +154,7 @@ Move *AI::getMove(Board *boardState) {
 
     auto *bestMoves = new std::vector<Move*>();
     for(auto &node : *nextMoveTree->getSuccessors()) {
-        if(node->getValue() == nextMoveTree->getValue()) {
+        if(node->getValue() == bestMoveVal) {
             bestMoves->push_back(node->getMove()->copy());
         }
     }

@@ -239,6 +239,6 @@ TEST_CASE("AI::getMove() | When black can win in three moves it chooses the corr
     Move *m1 = player2->getMove(board);
     auto *m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
     m2->setKingMove(true);
-
-    REQUIRE((*m1 == *m2));
+    bool returnMe = (*m1 == *m2);
+    REQUIRE(returnMe);
 }

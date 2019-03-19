@@ -73,6 +73,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     }
     if(depth == orgDepth) {
         std::cout << "Moves derivations generated: " << i << std::endl;
+        i = 0;
     }
     return new Node(bs, successors, move);
 }

@@ -15,7 +15,8 @@ class AI : public Player{
 
 public:
     Move *getMove(Board *boardState) override;
-    Node* minimax(Node* node, int depth, bool maximizingPlayer);
+    int minimax(Node* node, int depth, bool maximizingPlayer);
+    int minimaxAB(Node* node, int depth, bool maximizingPlayer, int alpha, int beta);
     /**
      * Create an instance of the AI class implementing player
      * @param lookAhead the number if moves to look ahead
@@ -28,12 +29,14 @@ private:
     static const int MAX =  32767;
     static const int MIN =  -32767;
     int lookAhead;
-    int random(int low, int high);
+    static int random(int low, int high);
     int evaluateBoardState(Node* node);
 
-    int max(Node *n1, Node *n2);
-    int min(Node *n1, Node *n2);
-};
+    int maxNode(Node *n1, Node *n2);
+    int minNode(Node *n1, Node *n2);
+    int max(int val1, int val2);
+    int min(int val1, int val2);
+    };
 
 
 #endif //MINIMAX_AI_CHECKERS_AI_H

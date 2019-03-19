@@ -15,6 +15,7 @@ GameManager::GameManager(Board* board, Player* player1, Player* player2) {
 }
 
 void GameManager::play() {
+    Color winner;
     bool gameOver = false;
     while(!gameOver) {
         Move *curMove = getLegalMove();
@@ -27,9 +28,14 @@ void GameManager::play() {
 
 
         // check if the game is over
-        if (board->isGameOver())
+        if (board->isGameOver()) {
             gameOver = true;
+            winner = board->getTurn();
+        }
     }
+
+    std::string player = (winner == WHITE) ? "Red" : "White";
+    std::cout << "Game Over. " + player + " wins!" << std::endl;
 }
 
 Move* GameManager::getLegalMove() {
@@ -51,7 +57,6 @@ Move* GameManager::getLegalMove() {
         
         // check if the move is valid
         invalidMove = !Rules::legalMoveFromColor(currentMove, board);
-        int i = 0;
     }
     return currentMove;
 }

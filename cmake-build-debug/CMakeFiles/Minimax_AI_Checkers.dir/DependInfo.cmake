@@ -4,16 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/AI/AI.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/AI/MinimaxTree.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/MinimaxTree.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/AI/Node.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/Board.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/GameManager.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/POCO/Checker.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/POCO/Move.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/Rules.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/human/Parser.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o"
-  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/src/main/main.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-02/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/AI/AI.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/AI/MinimaxTree.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/MinimaxTree.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/AI/Node.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/Board.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/GameManager.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/POCO/Checker.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/POCO/Move.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/Rules.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/human/Parser.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o"
+  "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/src/main/main.cpp" "/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-03/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

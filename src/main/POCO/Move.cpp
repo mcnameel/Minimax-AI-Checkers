@@ -73,12 +73,11 @@ bool Move::operator==(const Move& m) {
     else if(this->getChainMove() == nullptr && m.chainMove == nullptr){
         returnMe = true;
     }
-    return returnMe && (curRow == m.curRow &&
-        destRow == m.destRow &&
-        destCol == m.destCol &&
-        capRow == m.capRow &&
-        capCol == m.capCol &&
-        isKing == m.isKing);
+    bool ret2 = curRow == m.curRow;
+    bool ret3 = destRow == m.destRow && destCol == m.destCol;
+    bool ret4 = capRow == m.capRow && capCol == m.capCol;
+    bool ret5 = isKing == m.isKing;
+    return returnMe && ret2 && ret3 && ret4 && ret5;
 }
 
 void Move::setCapSpace(int row, int col) {
