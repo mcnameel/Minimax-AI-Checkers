@@ -30,7 +30,8 @@ private:
     static const int MIN =  -32767;
     int lookAhead;
     static int random(int low, int high);
-    int evaluateBoardState(Node* node);
+    int evaluateBoardState_01(Node *node);
+    int evaluateBoardState_02(Node *node);
 
     int maxNode(Node *n1, Node *n2);
     int minNode(Node *n1, Node *n2);

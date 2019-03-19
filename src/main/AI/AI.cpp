@@ -11,7 +11,7 @@
 int AI::minimax(Node* node, int depth, bool maximizingPlayer) {
     int returnValue;
     if (depth == 0 || node->isTerminal()) {
-        returnValue = evaluateBoardState(node);
+        returnValue = evaluateBoardState_01(node);
         node->setValue(returnValue);
         return returnValue;
     }
@@ -41,7 +41,7 @@ int AI::minimax(Node* node, int depth, bool maximizingPlayer) {
 int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer, int alpha, int beta) {
     int returnValue;
     if (depth == 0 || node->isTerminal()) {
-        returnValue = evaluateBoardState(node);
+        returnValue = evaluateBoardState_02(node);
         node->setValue(returnValue);
         return returnValue;
     }
@@ -80,7 +80,7 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer, int alpha, int b
     }
 }
 
-int AI::evaluateBoardState(Node *node) {
+int AI::evaluateBoardState_01(Node *node) {
     int KING_POINT_VAL = 3;
     int MAN_POINT_VAL = 1;
     int whiteValue = 0;
@@ -97,6 +97,38 @@ int AI::evaluateBoardState(Node *node) {
             redValue += KING_POINT_VAL;
         else
             redValue += MAN_POINT_VAL;
+    }
+    int returnMe = 0;
+    if(this->getColor() == RED) {
+        returnMe = redValue - whiteValue;
+    } else {
+        returnMe = whiteValue - redValue;
+    }
+    return returnMe;
+}
+
+int AI::evaluateBoardState_02(Node *node) {
+    int KING_POINT_VAL = 15;
+    int MAN_POINT_VAL = 3;
+    int whiteValue = 0;
+    int redValue = 0;
+    Board *bs = node->getBoardState();
+    for (auto &c : *(bs->getWhitePieces())) {
+        if (c->isKing()) {
+            whiteValue += KING_POINT_VAL;
+        }
+        else {
+            int rowVal = c->getRow();
+            whiteValue += (MAN_POINT_VAL + rowVal);
+        }
+    }
+    for (auto &c : *(bs->getRedPieces())) {
+        if (c->isKing()) {
+            redValue += KING_POINT_VAL;
+        } else {
+            int rowVal = abs(c->getRow() - (Board::BOARDHEIGHT - 1));
+            redValue += (MAN_POINT_VAL + rowVal);
+        }
     }
     int returnMe = 0;
     if(this->getColor() == RED) {
@@ -142,9 +174,8 @@ Node *AI::makeTree(Board *bs) {
 Move *AI::getMove(Board *boardState) {
     std::cout << "making tree" << std::endl;
     Node* nextMoveTree = makeTree(boardState);
-    std::cout << "made tree" << std::endl;
     int bestMoveVal = minimaxAB(nextMoveTree, lookAhead, true, MIN, MAX);
-    std::cout << "calculated best move" << std::endl;
+    std::cout << "calculated best move, valued at " << bestMoveVal << std::endl;
 
     Move* nextMove = nullptr;
 

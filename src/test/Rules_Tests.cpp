@@ -76,3 +76,63 @@ TEST_CASE("Rules::getAllLegalMoves | multicapture landing in starting space") {
     }
     REQUIRE((found1 && found2));
 }
+
+
+/**
+ * Check that when a piece is captured that it is removed from the vector
+ * holding the pieces of a specific color
+ @setup:
+   -------------------
+7 |   |   | r |   | r |
+  |-------------------|
+6 |   | w |   | w |   |
+  |-------------------|
+5 |   |   |   |   |   |
+  |-------------------|
+4 |   | w |   | w |   |
+  |-------------------|
+3 |   |   |   |   |   |
+   -------------------
+    d   e   f   g    h
+White's turn
+ */
+TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one be taken") {
+    auto *r1 = new Checker(RED, 7, 5);
+    auto *r2 = new Checker(RED, 7, 7);
+    auto *w1 = new Checker(WHITE, 6, 4);
+    auto *w2 = new Checker(WHITE, 6, 6);
+    auto *w3 = new Checker(WHITE, 4, 4);
+    auto *w4 = new Checker(WHITE, 4, 6);
+    auto pieces = new std::vector<Checker *>();
+    pieces->push_back(r1);
+    pieces->push_back(r2);
+    pieces->push_back(w1);
+    pieces->push_back(w2);
+    pieces->push_back(w3);
+    pieces->push_back(w4);
+    auto *board = new Board(pieces, RED);
+
+    auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
+    auto *m2 = new Move(5, 3, 3, 5, 4, 4, RED);
+    expected1->setChainMove(m2);
+
+    auto *expected2 = new Move(7, 5, 5, 7, 6, 6, RED);
+    m2 = new Move(5, 7, 3, 5, 4, 6, RED);
+    expected2->setChainMove(m2);
+
+    auto *expected3 = new Move(7, 7, 5, 5, 6, 4, RED);
+    m2 = new Move(5, 5, 3, 7, 4, 6, RED);
+    expected3->setChainMove(m2);
+
+    auto *expected4 = new Move(7, 7, 5, 5, 6, 4, RED);
+    m2 = new Move(5, 5, 3, 3, 4, 4, RED);
+    expected4->setChainMove(m2);
+
+
+    bool l1 = Rules::legalMoveFromColor(expected1, board);
+    bool l2 = Rules::legalMoveFromColor(expected2, board);
+    bool l3 = Rules::legalMoveFromColor(expected3, board);
+    bool l4 = Rules::legalMoveFromColor(expected4, board);
+    bool success = l1 && l2 && l3 && l4;
+    REQUIRE(success);
+}
