@@ -30,30 +30,69 @@ Board::Board() {
             }
         }
     }
+}
 
-    /*
-     // For testing purposes
-    Checker* c1 = new Checker(RED, 4, 2);
-    Checker* c2 = new Checker(WHITE, 3, 1);
-    Checker* c3 = new Checker(WHITE, 1, 1);
-    Checker* c4 = new Checker(WHITE, 1, 3);
-   // Checker* c5 = new Checker(WHITE, 3, 3);
-    Checker* c6 = new Checker(WHITE, 5, 5);
-    c1->makeKing();
-    grid[4][2] = c1;
-    grid[3][1] = c2;
-    grid[1][1] = c3;
-    grid[1][3] = c4;
-   // grid[3][3] = c5;
-    grid[5][5] = c6;
+Board::Board(std::vector<Checker *> *startState, Color turn) {
+    this->turn = turn;
+    for (auto &piece : *startState) {
+        grid[piece->getRow()][piece->getCol()] = piece;
+        if(piece->getColor() == RED)
+            redPieces->push_back(piece);
+        else
+            whitePieces->push_back(piece);
+    }
+}
 
-    redPieces->push_back(c1);
-    whitePieces->push_back(c2);
-    whitePieces->push_back(c3);
-    whitePieces->push_back(c4);
-   // whitePieces->push_back(c5);
-    whitePieces->push_back(c6);
-*/
+Board::~Board() {
+    for(int i = 0; i < BOARDWIDTH; i++) {
+        delete[] *grid[i];
+    }
+    delete [] **grid;
+
+    for(int i = 0; i < movesToDelete->size(); i++) {
+        delete movesToDelete->at(i);
+    }
+    delete movesToDelete;
+    delete redPieces;
+    delete whitePieces;
+    delete lastMove;
+}
+
+Board *Board::copy() {
+    static int i = 0;
+    auto *pieces = new std::vector<Checker *>();
+    for(auto &r : *redPieces) {
+        Checker* c = r->copy();
+        pieces->push_back(c);
+        ++i;
+    }
+    for(auto &w : *whitePieces) {
+        pieces->push_back(w->copy());
+    }
+    return new Board(pieces, getTurn());
+}
+
+void Board::removePiece(Checker *c) {
+    std::vector<Checker *> *deleteFromMe;
+    if (c->getColor() == RED)
+        deleteFromMe = getRedPieces();
+    else
+        deleteFromMe = getWhitePieces();
+
+
+    if(deleteFromMe->size() == 1) {
+        deleteFromMe->pop_back();
+    } else {
+        int size = static_cast<int>(deleteFromMe->size());
+        for(int i = 0; i < size; i++) {
+            Checker *curPiece = deleteFromMe->at(i);
+            if (curPiece == c) {
+                deleteFromMe->erase(deleteFromMe->begin() + i);
+                i = size;
+                //break;
+            }
+        }
+    }
 }
 
 void Board::printBoard() {
@@ -146,60 +185,8 @@ int Board::getWhiteCount() {
     return static_cast<int>(whitePieces->size());
 }
 
-void Board::removePiece(Checker *c) {
-    std::vector<Checker *> *deleteFromMe;
-    if (c->getColor() == RED)
-        deleteFromMe = getRedPieces();
-    else
-        deleteFromMe = getWhitePieces();
-
-
-    if(deleteFromMe->size() == 1) {
-        deleteFromMe->pop_back();
-    } else {
-        int size = static_cast<int>(deleteFromMe->size());
-        for(int i = 0; i < size; i++) {
-            Checker *curPiece = deleteFromMe->at(i);
-            if (curPiece == c) {
-                deleteFromMe->erase(deleteFromMe->begin() + i);
-                i = size;
-                //break;
-            }
-        }
-    }
-}
-
-Board::Board(std::vector<Checker *> *startState, Color turn) {
-    this->turn = turn;
-    for (auto &piece : *startState) {
-        grid[piece->getRow()][piece->getCol()] = piece;
-        if(piece->getColor() == RED)
-            redPieces->push_back(piece);
-        else
-            whitePieces->push_back(piece);
-    }
-}
-
-void Board::setLastMove(Move *lastMove) {
-    this->lastMove = lastMove;
-}
-
 Move *Board::getLastMove() {
     return lastMove;
-}
-
-Board *Board::copy() {
-    static int i = 0;
-    auto *pieces = new std::vector<Checker *>();
-    for(auto &r : *redPieces) {
-        Checker* c = r->copy();
-        pieces->push_back(c);
-        ++i;
-    }
-    for(auto &w : *whitePieces) {
-        pieces->push_back(w->copy());
-    }
-    return new Board(pieces, getTurn());
 }
 
 Color Board::getTurn() {
@@ -216,6 +203,14 @@ bool Board::isGameOver() const {
 
 void Board::setGameOver(bool gameOver) {
     this->gameOver = gameOver;
+}
+
+const int Board::getBOARDHEIGHT() {
+    return BOARDHEIGHT;
+}
+
+const int Board::getBOARDWIDTH() {
+    return BOARDWIDTH;
 }
 
 

@@ -1,8 +1,4 @@
 //
-// Parser implements player
-// Parser is a class which represents a human player by getting input from the
-// terminal.
-//
 // Created by Luke on 1/28/2019.
 //
 
@@ -15,14 +11,19 @@
 #include "../misc/Player.h"
 #include "../misc/Color.h"
 #include "../Board.h"
-
+/** Parser implements player
+ * Parser is a class which represents a human player by getting input from the
+ * terminal.
+ */
 class Parser: public Player {
+
 private:
     /* vars */
     // Amount to use to convert the ascii value input into the proper int
     const int ROW_SHIFT = 48;
     const int COLUMN_SHIFT = 97;
 
+    /* methods */
     Move *getMove(Board *boardState) override;
 
     /**

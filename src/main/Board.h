@@ -1,6 +1,4 @@
 //
-// This class represents the board by holding the 24 pieces in a 2d-array
-//
 // Created by Luke on 1/28/2019.
 //
 
@@ -12,9 +10,12 @@
 #include "POCO/Checker.h"
 #include "POCO/Move.h"
 
+/**
+ * This class represents the board by holding the 24 pieces in a 2d-array
+ */
 class Board {
 private:
-
+    /* field vars */
     const std::string PLAYER_ONE_COLOR = "Red";
     const std::string PLAYER_TWO_COLOR = "White";
     Color turn = RED;
@@ -26,36 +27,33 @@ private:
     // player2 and player1 pieces on the board
     std::vector<Checker*>* redPieces = new std::vector<Checker*>();
     std::vector<Checker*>* whitePieces = new std::vector<Checker*>();
-    std::string getColorStr(Color);
-    void setLastMove(Move* lastMove);
     bool gameOver = false;
-public:
-    bool isGameOver() const;
-
-    void setGameOver(bool gameOver);
-
-public:
     const static int BOARDHEIGHT = 8;
     const static int BOARDWIDTH = 8;
+public:
+    /* constructors, destructor, and copy */
     /**
-     * Constructs a board with pieces ready for play
-     */
+    * Constructs a board with pieces ready for play at starting configuration
+    */
     Board();
-    Color getTurn();
-    void setTurn(Color color);
+
+    /**
+    * Constructs a board with pieces ready for play at any configuration given
+    */
     Board(std::vector<Checker *> *startState, Color turn);
 
-    Move* getLastMove();
+    /**
+     * destroys the board and deletes all fields
+     */
+    ~Board();
 
     /**
-     * @return a vector containing pointers to the red checkers still in play
+     * returns a pointer to a copy of this object
+     * @return a copy of this
      */
-    std::vector<Checker*>* getRedPieces();
+    Board *copy();
 
-    /**
-     * @return a vector containing pointers to the black checkers still in play
-     */
-    std::vector<Checker*>* getWhitePieces();
+    /* util functions  */
 
     /**
      * Returns the piece at the space at the row and column indicated by parameters. Does not check if there is
@@ -85,12 +83,31 @@ public:
      */
     void printBoard();
 
-    int getRedCount();
-    int getWhiteCount();
-
+    /**
+     * removes a piece from the board and from all containers within
+     * @param c the checker to be removed
+     */
     void removePiece(Checker* c);
 
-    Board *copy();
+
+    /* accessors and mutators */
+    bool isGameOver() const;
+    void setGameOver(bool gameOver);
+    static const int getBOARDHEIGHT();
+    static const int getBOARDWIDTH();
+    Color getTurn();
+    void setTurn(Color color);
+    Move* getLastMove();
+    int getRedCount();
+    int getWhiteCount();
+    /**
+     * @return a vector containing pointers to the red checkers still in play
+     */
+    std::vector<Checker*>* getRedPieces();
+    /**
+     * @return a vector containing pointers to the black checkers still in play
+     */
+    std::vector<Checker*>* getWhitePieces();
 };
 
 

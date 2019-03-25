@@ -11,11 +11,23 @@ Checker::Checker(Color color, int row, int col) {
     this->col = col;
 }
 
-Checker::Checker(Color color, int row, int col, bool isKing) {
-    this->COLOR = color;
-    this->row = row;
-    this->col = col;
-    this->king = isKing;
+Checker *Checker::copy() {
+    auto * c = new Checker(getColor(),getRow(), getCol());
+    if(this->isKing())
+        c->makeKing();
+    return c;
+}
+
+std::string Checker::toString() {
+    std::cout << getColor() << " row: " << getRow() << " | column: " << getCol() << std::endl;
+    return "";
+}
+
+bool Checker::operator==(const Checker &c) {
+    return (this->getColor() == c.COLOR
+            && this->getCol() == c.col
+            && this->getRow() == c.row
+            && this->isKing() == c.king);
 }
 
 Color Checker::getColor() {
@@ -46,11 +58,6 @@ void Checker::setCol(int c) {
     this->col = c;
 }
 
-std::string Checker::toString() {
-    std::cout << getColor() << " row: " << getRow() << " | column: " << getCol() << std::endl;
-    return "";
-}
-
 char Checker::getColorChar() {
     char returnMe;
     if(getColor() == RED){
@@ -65,18 +72,4 @@ char Checker::getColorChar() {
             returnMe = 'w';
     }
     return returnMe;
-}
-
-Checker *Checker::copy() {
-    auto * c = new Checker(getColor(),getRow(), getCol());
-    if(this->isKing())
-        c->makeKing();
-    return c;
-}
-
-bool Checker::operator==(const Checker &c) {
-    return (this->getColor() == c.COLOR
-        && this->getCol() == c.col
-        && this->getRow() == c.row
-        && this->isKing() == c.king);
 }

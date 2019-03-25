@@ -136,3 +136,55 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     bool success = l1 && l2 && l3 && l4;
     REQUIRE(success);
 }
+
+
+/**
+ * Check that when a piece is captured that it is removed from the vector
+ * holding the pieces of a specific color
+ @setup:
+   -------------------
+7 |   |   |   |   |   |
+  |-------------------|
+6 |   | r |   |   |   |
+  |-------------------|
+5 |   |   |   |   |   |
+  |-------------------|
+4 |   | r |   | r |   |
+  |-------------------|
+3 | w |   | w |   |   |
+   -------------------
+    d   e   f   g    h
+White's turn
+ */
+TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one be taken if one becomes a king") {
+    auto *w1 = new Checker(WHITE, 3, 3);
+    auto *w2 = new Checker(WHITE, 3, 5);
+    auto *r1 = new Checker(RED, 6, 4);
+    auto *r2 = new Checker(RED, 4, 4);
+    auto *r3 = new Checker(RED, 4, 6);
+    auto pieces = new std::vector<Checker *>();
+    pieces->push_back(r1);
+    pieces->push_back(w1);
+    pieces->push_back(w2);
+    pieces->push_back(r3);
+    pieces->push_back(r2);
+    auto *board = new Board(pieces, WHITE);
+
+    auto *expected1 = new Move(3, 3, 5, 5, 4, 4, WHITE);
+    auto *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
+    m2->setKingMove(true);
+    expected1->setChainMove(m2);
+
+    auto *expected2 = new Move(3, 5, 5, 3, 4, 4, WHITE);
+    m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
+    m2->setKingMove(true);
+    expected2->setChainMove(m2);
+
+    auto *expected3 = new Move(3, 5, 5, 7, 4, 6, WHITE);
+
+    bool l1 = Rules::legalMoveFromColor(expected1, board);
+    bool l2 = Rules::legalMoveFromColor(expected2, board);
+    bool l3 = Rules::legalMoveFromColor(expected3, board);
+    bool success = l1 && l2 && l3;
+    REQUIRE(success);
+}

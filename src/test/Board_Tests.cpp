@@ -7,7 +7,7 @@
 //#define CATCH_CONFIG_MAIN
 
 #include "../main/Rules.h"
-#include "../main/AI/AI.h"
+#include "../main/AI/AI_Minimax_01.h"
 
 // Test Case 1, ensure constructors work
 TEST_CASE("First Test case") {
@@ -109,8 +109,8 @@ TEST_CASE("Game Over Case 1") {
 
     Board* board = new Board(pieces, RED);
     board->printBoard();
-    AI* player1 = new AI(2, RED);
-    AI* player2 = new AI(2, WHITE);
+    AI_Minimax_01* player1 = new AI_Minimax_01(2, RED);
+    AI_Minimax_01* player2 = new AI_Minimax_01(2, WHITE);
 
     Move* m = player1->getMove(board);
     board->move(m, false, true);

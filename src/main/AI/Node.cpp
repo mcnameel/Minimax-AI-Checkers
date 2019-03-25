@@ -6,26 +6,6 @@
 #include "Node.h"
 #include "../Rules.h"
 
-std::vector<Node *>* Node::getSuccessors() {
-    return successors;
-}
-
-Node *Node::getPredecessor() {
-    return predecessor;
-}
-
-int Node::getValue() {
-    return value;
-}
-
-void Node::setValue(int value) {
-    this->value = value;
-}
-
-bool Node::isTerminal() {
-    return terminal;
-}
-
 Node::Node(Board *boardState, std::vector<Node *> *successors, Move *move) {
     this->boardState = boardState;
     this->successors = successors;
@@ -37,6 +17,16 @@ Node::Node(Board *boardState, Move *move) {
     this->boardState = boardState;
     this->terminal = true;
     this->move = move;
+}
+
+Node::~Node() {
+    Node *child;
+    for(int i = 0; i < successors->size(); i++) {
+        delete successors->at(i);
+    }
+    delete successors;
+    delete boardState;
+    delete move;
 }
 
 Node * Node::createTree(Board *bs, int depth, Move *move) {
@@ -66,7 +56,10 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     // recursively call this function on each of the moves that can be made
     // return a node with successors populated
     auto *successors = new std::vector<Node *>();
-    for (auto &newMove : *moves) {
+    Move *newMove = nullptr;
+    for(int index = 0; index < moves->size(); index++) {
+        //for (auto &newMove : *moves) {
+        newMove = moves->at(static_cast<unsigned long>(index));
         Board *succBS = bs->copy();
         succBS->move(newMove, true, true);
         successors->push_back(createTree(succBS, depth - 1, newMove));
@@ -78,11 +71,82 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     return new Node(bs, successors, move);
 }
 
-Node::~Node() {
-    successors->clear();
-    delete successors;
-    delete boardState;
-    delete move;
+Node *Node::appendToTree(Board *bs, int depth, Node *node) {
+    static int orgDepth = depth;
+    static int i = 0;
+    /* return condition 1 */
+    // if depth is zero we have reached the target depth
+    // return leaf node
+    if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
+        ++i;
+        return node;
+    }
+
+    /* return condition 2 */
+    // there are no moves left for a player to make, aka, they have lost
+    // return leaf node
+    auto *moves = Rules::getAllLegalMoves(bs);
+    if (moves->empty()) {
+        ++i;
+        bs->setGameOver(true);
+        return node;
+    }
+
+    /* return condition 3 */
+    // traverse previous node tree until we need to create more nodes
+    auto *successors = node->getSuccessors();
+    if(successors != nullptr) {
+        for(auto &child : *successors) {
+            appendToTree(bs, depth - 1, child);
+        }
+        return node;
+
+    } else {
+        /* return condition 4 */
+        // there are moves left to make by a both players and we have not reached
+        // target depth
+        // recursively call this function on each of the moves that can be made
+        // return a node with successors populated
+        successors = new std::vector<Node *>();
+        for (auto &newMove : *moves) {
+            Board *succBS = bs->copy();
+            succBS->move(newMove, true, true);
+            successors->push_back(createTree(succBS, depth - 1, newMove));
+        }
+        if(depth == orgDepth) {
+            std::cout << "Moves derivations generated: " << i << std::endl;
+            i = 0;
+        }
+        return new Node(bs, successors, node->getMove());
+    }
+}
+
+Node *Node::seekAndRemoveSuccessor(Move *findMe, Node *searchMe) {
+    for (auto &node : *searchMe->getSuccessors()) {
+        if(node->getMove() == findMe) {
+            auto *temp = node;
+            node = nullptr;
+            return node;
+        }
+    }
+    throw NodeNotFoundException();
+}
+
+
+std::vector<Node *>* Node::getSuccessors() {
+    return successors;
+}
+
+int Node::getValue() {
+    return value;
+}
+
+void Node::setValue(int value) {
+    this->value = value;
+}
+
+bool Node::isTerminal() {
+    return terminal;
 }
 
 Move *Node::getMove() {
@@ -101,10 +165,10 @@ void Node::setMove(Move *move) {
     Node::move = move;
 }
 
-Node::Node(int value) {
-    this->value = value;
-}
-
 Move *Node::getLastMove() {
     return boardState->getLastMove();
+}
+
+void Node::setSuccessors(std::vector<Node *> *successors) {
+    Node::successors = successors;
 }

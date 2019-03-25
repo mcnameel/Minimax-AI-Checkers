@@ -5,40 +5,6 @@
 #include "Move.h"
 #include "../human/Parser.h"
 
-
-int Move::getCurRow() {
-    return curRow;
-}
-
-int Move::getCurCol() {
-    return curCol;
-}
-
-int Move::getDestRow() {
-    return destRow;
-}
-
-Move::~Move() {
-    if(getChainMove() != nullptr)
-        delete chainMove;
-}
-
-int Move::getDestCol() {
-    return destCol;
-}
-
-Color Move::getColor() {
-    return color;
-}
-
-int Move::getCapRow() {
-    return capRow;
-}
-
-int Move::getCapCol() {
-    return capCol;
-}
-
 Move::Move(int curRow, int curCol, int destRow, int destCol, Color color) {
     this->curRow = curRow;
     this->curCol = curCol;
@@ -48,7 +14,7 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, Color color) {
 }
 
 Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
-        int capCol, Color color) {
+           int capCol, Color color) {
     this->curRow = curRow;
     this->curCol = curCol;
     this->destRow = destRow;
@@ -56,6 +22,23 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
     this->capRow = capRow;
     this->capCol = capCol;
     this->color = color;
+}
+
+Move::~Move() {
+    if(getChainMove() != nullptr)
+        delete chainMove;
+}
+
+Move *Move::copy() {
+    Move* copy = new Move(getCurRow(), getCurCol(),
+                          getDestRow(), getDestCol(),
+                          getCapRow(), getCapCol(), getColor());
+    if(this->getKingMove())
+        copy->setKingMove(true);
+    if(this->getChainMove() != nullptr) {
+        copy->setChainMove(getChainMove()->copy());
+    }
+    return copy;
 }
 
 std::string Move::toString() {
@@ -73,11 +56,37 @@ bool Move::operator==(const Move& m) {
     else if(this->getChainMove() == nullptr && m.chainMove == nullptr){
         returnMe = true;
     }
-    bool ret2 = curRow == m.curRow;
-    bool ret3 = destRow == m.destRow && destCol == m.destCol;
-    bool ret4 = capRow == m.capRow && capCol == m.capCol;
-    bool ret5 = isKing == m.isKing;
-    return returnMe && ret2 && ret3 && ret4 && ret5;
+    return returnMe && curRow == m.curRow && destRow == m.destRow
+           && destCol == m.destCol && capRow == m.capRow
+           && capCol == m.capCol && isKing == m.isKing;
+}
+
+int Move::getCurRow() {
+    return curRow;
+}
+
+int Move::getCurCol() {
+    return curCol;
+}
+
+int Move::getDestRow() {
+    return destRow;
+}
+
+int Move::getDestCol() {
+    return destCol;
+}
+
+Color Move::getColor() {
+    return color;
+}
+
+int Move::getCapRow() {
+    return capRow;
+}
+
+int Move::getCapCol() {
+    return capCol;
 }
 
 void Move::setCapSpace(int row, int col) {
@@ -99,24 +108,4 @@ Move *Move::getChainMove() {
 
 void Move::setChainMove(Move *m) {
     this->chainMove = m;
-}
-
-Move *Move::copy() {
-    Move* copy = new Move(getCurRow(), getCurCol(),
-            getDestRow(), getDestCol(),
-            getCapRow(), getCapCol(), getColor());
-    if(this->getKingMove())
-        copy->setKingMove(true);
-    if(this->getChainMove() != nullptr) {
-        copy->setChainMove(getChainMove()->copy());
-    }
-    return copy;
-}
-
-bool Move::isMustChainCapture() const {
-    return mustChainCapture;
-}
-
-void Move::setMustChainCapture(bool mustChainCapture) {
-    Move::mustChainCapture = mustChainCapture;
 }

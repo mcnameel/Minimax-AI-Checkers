@@ -1,8 +1,4 @@
 //
-// This class is a simple data object which represents a move. A move can
-// either be a simple move which is one space or a capture/jump which is two
-// spaces over an opponents piece
-//
 // Created by Luke on 1/28/2019.
 //
 
@@ -12,9 +8,15 @@
 #include <string>
 #include "../misc/Color.h"
 
+/**
+ * This class is a simple data object which represents a move. A move can
+ * either be a simple move which is one space or a capture/jump which is two
+ * spaces over an opponents piece
+ */
 class Move {
+
 private:
-    /* vars */
+    /* field vars */
     int destRow;
     int destCol;
     int curRow;
@@ -24,13 +26,10 @@ private:
     int capRow = -1;
     int capCol = -1;
     bool isKing = false;
-    bool mustChainCapture = false;
     // true if the player has to jump multiple times
     Move* chainMove = nullptr;
 public:
-    void setMustChainCapture(bool mustChainCapture);
-    bool isMustChainCapture() const;
-
+    /* constructors, destructor, and copy*/
     /**
      * Initialize an object move which is not a jump
      * @param curRow
@@ -58,14 +57,14 @@ public:
      * delete the chainMove if it is not null
      */
     ~Move();
-    
-    /**
-     * Overload the == operator to check if the move matches the another
-     * @param m
-     * @return true if they are equal
-     */
+
+    Move* copy();
+
+    /* util functions */
+    std::string toString();
     bool operator==(const Move& m);
 
+    /* accessors and mutators */
     int getCurRow();
     int getCurCol();
     int getDestRow();
@@ -78,8 +77,6 @@ public:
     bool getKingMove();
     Move* getChainMove();
     void setChainMove(Move* m);
-    Move* copy();
-    std::string toString();
 };
 
 #endif //MINIMAX_AI_CHECKERS_MOVE_H

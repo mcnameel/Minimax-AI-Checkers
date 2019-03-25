@@ -5,7 +5,7 @@
 #include "../../Catch2/catch.hpp"
 #include "../main/POCO/Checker.h"
 #include "../main/Board.h"
-#include "../main/AI/AI.h"
+#include "../main/AI/AI_Minimax_01.h"
 
 /**
  * Case: Red's turn and they are capturing a piece
@@ -43,7 +43,7 @@ TEST_CASE("Red capture") {
     Board *board = new Board(pieces, RED);
     //board->printBoard();
 
-    AI *player2 = new AI(2, RED);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, RED);
 
     Move *m1 = player2->getMove(board);
     Move *m2 = new Move(6, 4, 4, 6, 5, 5, RED);
@@ -108,7 +108,7 @@ TEST_CASE("White king-capture") {
 
     Board *board = new Board(pieces, WHITE);
 
-    AI *player2 = new AI(2, WHITE);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
 
     Move *m1 = player2->getMove(board);
     Move *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
@@ -155,7 +155,7 @@ TEST_CASE("Game Over turn after") {
     auto *board = new Board(pieces, RED);
     // board->printBoard();
 
-    AI *player1 = new AI(2, RED);
+    AI_Minimax_01 *player1 = new AI_Minimax_01(2, RED);
 
     Move *m = player1->getMove(board);
     board->move(m, false, true);
@@ -200,7 +200,7 @@ TEST_CASE("Game Over this turn") {
     Board *board = new Board(pieces, WHITE);
     // board->printBoard();
 
-    AI *player2 = new AI(2, WHITE);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
 
     Move *m = player2->getMove(board);
     board->move(m, false, true);
@@ -222,7 +222,7 @@ TEST_CASE("Game Over this turn") {
     d   e   f   g    h
 White's turn
  */
-TEST_CASE("AI::getMove() | When black can win in three moves it chooses the correct move") {
+TEST_CASE("AI_Minimax_01::getMove() | When black can win in three moves it chooses the correct move") {
     auto *c1 = new Checker(RED, 7, 7);
     auto *c2 = new Checker(RED, 6, 4);
     auto *c3 = new Checker(WHITE, 5, 5);
@@ -235,7 +235,7 @@ TEST_CASE("AI::getMove() | When black can win in three moves it chooses the corr
     pieces->push_back(c4);
 
     auto *board = new Board(pieces, WHITE);
-    auto player2 = new AI(4, WHITE);
+    auto player2 = new AI_Minimax_01(4, WHITE);
     Move *m1 = player2->getMove(board);
     auto *m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
     m2->setKingMove(true);
