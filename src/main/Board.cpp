@@ -47,7 +47,7 @@ Board::~Board() {
     for(int i = 0; i < BOARDWIDTH; i++) {
         delete[] *grid[i];
     }
-    delete [] **grid;
+    //delete [] **grid;
 
     for(int i = 0; i < movesToDelete->size(); i++) {
         delete movesToDelete->at(i);
