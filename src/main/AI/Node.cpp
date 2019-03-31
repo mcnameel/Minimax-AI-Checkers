@@ -3,8 +3,8 @@
 //
 
 #include <iostream>
-#include "Node.h"
-#include "../Rules.h"
+#include "../../../include/internal/Node.h"
+#include "../../../include/internal/Rules.h"
 
 Node::Node(Board *boardState, std::vector<Node *> *successors, Move *move) {
     this->boardState = boardState;
@@ -21,12 +21,14 @@ Node::Node(Board *boardState, Move *move) {
 
 Node::~Node() {
     Node *child;
-    for(int i = 0; i < successors->size(); i++) {
-        delete successors->at(i);
+    if(successors != nullptr) {
+        for (int i = 0; i < successors->size(); i++) {
+            delete successors->at(i);
+        }
     }
     delete successors;
     delete boardState;
-    delete move;
+    //delete move;
 }
 
 Node * Node::createTree(Board *bs, int depth, Move *move) {

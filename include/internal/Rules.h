@@ -8,9 +8,9 @@
 
 #include <vector>
 #include <set>
-#include "POCO/Move.h"
+#include "Move.h"
 #include "Board.h"
-#include "misc/Player.h"
+#include "Player.h"
 /**
  * This class is used as a rulebook for the game. All functions are static and
  * can be called at any time as long as the game state is passed through params
@@ -52,6 +52,45 @@ public:
      * @return vector of jumps which can be made
      */
     static std::vector<Move*>* getUpJumps(int row, int col, Board* boardState);
+
+    /**
+     * getDownLeftJumps
+     * get the jump which can be made in current row -2, column -2
+     * @param row
+     * @param col
+     * @param boardState
+     * @return a pointer to the move if the jump is valid otherwise nullptr
+     */
+    static Move *getDLJump(int row, int col, Board *boardState);
+
+    /**
+     * getDownRightJumps
+     * get the jump which can be made in current row -2, column +2
+     * @param row
+     * @param col
+     * @param boardState
+     * @return a pointer to the move if the jump is valid otherwise nullptr
+     */
+    static Move* getDRJump(int row, int col, Board* boardState);
+
+    /**
+     * get the which can be made in current row +2, column -2
+     * @param row
+     * @param col
+     * @param boardState
+     * @return a pointer to the move if the jump is valid otherwise nullptr
+     */
+    static Move *getULJump(int row, int col, Board *boardState);
+
+    /**
+     * getUpperRightJump
+     * get the jump which can be made in current row +2, column +2
+     * @param row
+     * @param col
+     * @param boardState
+     * @return a pointer to the move if the jump is valid otherwise nullptr
+     */
+    static Move* getURJump(int row, int col, Board* boardState);
 
     /**
      * combine two vectors

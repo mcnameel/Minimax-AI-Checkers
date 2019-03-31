@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Checker.h"
+#include "../../../include/internal/Checker.h"
 
 Checker::Checker(Color color, int row, int col) {
     this->COLOR = color;

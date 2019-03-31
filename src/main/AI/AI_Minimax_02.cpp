@@ -2,7 +2,7 @@
 // Created by Luke McNamee on 2019-03-21.
 //
 
-#include "AI_Minimax_02.h"
+#include "../../../include/internal/AI_Minimax_02.h"
 
 int AI_Minimax_02::evaluateBoardState(Node *node) {
     int KING_POINT_VAL = 15;

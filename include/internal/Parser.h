@@ -7,10 +7,10 @@
 
 
 #include <iostream>
-#include "../POCO/Move.h"
-#include "../misc/Player.h"
-#include "../misc/Color.h"
-#include "../Board.h"
+#include "Move.h"
+#include "Player.h"
+#include "Color.h"
+#include "Board.h"
 /** Parser implements player
  * Parser is a class which represents a human player by getting input from the
  * terminal.

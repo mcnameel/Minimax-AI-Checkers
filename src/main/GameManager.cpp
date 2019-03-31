@@ -3,8 +3,8 @@
 //
 
 #include <iostream>
-#include "GameManager.h"
-#include "Rules.h"
+#include "../../include/internal/GameManager.h"
+#include "../../include/internal/Rules.h"
 
 GameManager::GameManager(Board* board, Player* player1, Player* player2) {
     this->board = board;

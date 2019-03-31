@@ -6,7 +6,7 @@
 #define MINIMAX_AI_CHECKERS_MOVE_H
 
 #include <string>
-#include "../misc/Color.h"
+#include "Color.h"
 
 /**
  * This class is a simple data object which represents a move. A move can
@@ -17,17 +17,19 @@ class Move {
 
 private:
     /* field vars */
-    int destRow;
-    int destCol;
     int curRow;
     int curCol;
-    Color color;
+    int destRow;
+    int destCol;
     // initialize to  -1 which indicates that the move is not a jump/capture
     int capRow = -1;
     int capCol = -1;
+    Color color;
     bool isKing = false;
-    // true if the player has to jump multiple times
-    Move* chainMove = nullptr;
+    // a boolean which signifies if this move is a chain move
+    bool chainMove = false;
+    // a pointer to the next move if this move has a chain move
+    Move* nextChainMove = nullptr;
 public:
     /* constructors, destructor, and copy*/
     /**
@@ -75,8 +77,10 @@ public:
     void setCapSpace(int row, int col);
     void setKingMove(bool isKing);
     bool getKingMove();
-    Move* getChainMove();
-    void setChainMove(Move* m);
+    Move* getNextChainMove();
+    void setNextChainMove(Move *m);
+    bool isChainMove();
+    void setIsChainMove(bool isChainMove);
 };
 
 #endif //MINIMAX_AI_CHECKERS_MOVE_H

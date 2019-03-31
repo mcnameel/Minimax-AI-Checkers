@@ -6,8 +6,8 @@
 #define MINIMAX_AI_CHECKERS_NODE_H
 
 #include<vector>
-#include "../POCO/Move.h"
-#include "../Board.h"
+#include "Move.h"
+#include "Board.h"
 
 /**
  * a node of the move tree which is used to represent all of the possible move

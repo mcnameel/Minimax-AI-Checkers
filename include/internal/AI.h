@@ -6,8 +6,8 @@
 #define MINIMAX_AI_CHECKERS_02_AI_H
 
 #include <random>
-#include "../misc/Player.h"
-#include "../POCO/Move.h"
+#include "Player.h"
+#include "Move.h"
 #include "Node.h"
 
 /**

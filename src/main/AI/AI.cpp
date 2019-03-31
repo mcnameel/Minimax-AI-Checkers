@@ -3,9 +3,9 @@
 //
 
 #include <iostream>
-#include "AI.h"
-#include "../POCO/Move.h"
-#include "../Board.h"
+#include "../../../include/internal/AI.h"
+#include "../../../include/internal/Move.h"
+#include "../../../include/internal/Board.h"
 
 Move *AI::getMove(Board *boardState) {
     // delete the old nodes and successors in the tree except for the move that
@@ -36,9 +36,11 @@ Move *AI::getMove(Board *boardState) {
     nextMove = nodeToSave->getMove()->copy();
 
     lastBoard = boardState->copy();
-    lastBoard->move(nextMove, true, true);
+    lastBoard->move(nextMove, false, true);
 
-    bestMoves->clear();
+    for (int i = 0; i < bestMoves->size(); ++i) {
+        delete bestMoves->at(i);
+    }
     delete bestMoves;
     return nextMove;
 }

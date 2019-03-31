@@ -6,7 +6,7 @@
 #define MINIMAX_AI_CHECKERS_CHECKER_H
 
 #include <string>
-#include "../misc/Color.h"
+#include "Color.h"
 /*
  * This class is a simple data object which represents one checkers piece
  */

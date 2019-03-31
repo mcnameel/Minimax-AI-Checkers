@@ -7,7 +7,7 @@
 
 
 #include "Board.h"
-#include "misc/Player.h"
+#include "Player.h"
 #include "Rules.h"
 
 /**
@@ -34,12 +34,13 @@ public:
      * @returns color of the winner: either RED, WHITE, or NEITHER
      */
     Color play();
+    int turnCount = 0;
 private:
     /* field vars */
     Board* board;
     Player* player1;
     Player* player2;
-    int turnCount = 0;
+    //int turnCount = 0;
 
     /* functions */
     /**

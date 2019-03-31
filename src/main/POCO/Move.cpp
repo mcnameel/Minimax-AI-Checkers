@@ -2,8 +2,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#include "Move.h"
-#include "../human/Parser.h"
+#include "../../../include/internal/Move.h"
+#include "../../../include/internal/Parser.h"
 
 Move::Move(int curRow, int curCol, int destRow, int destCol, Color color) {
     this->curRow = curRow;
@@ -25,8 +25,8 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
 }
 
 Move::~Move() {
-    if(getChainMove() != nullptr)
-        delete chainMove;
+    if(getNextChainMove() != nullptr)
+        delete nextChainMove;
 }
 
 Move *Move::copy() {
@@ -35,8 +35,11 @@ Move *Move::copy() {
                           getCapRow(), getCapCol(), getColor());
     if(this->getKingMove())
         copy->setKingMove(true);
-    if(this->getChainMove() != nullptr) {
-        copy->setChainMove(getChainMove()->copy());
+    if(this->isChainMove()) {
+        copy->setIsChainMove(true);
+    }
+    if(this->getNextChainMove() != nullptr) {
+        copy->setNextChainMove(this->getNextChainMove()->copy());
     }
     return copy;
 }
@@ -50,15 +53,15 @@ std::string Move::toString() {
 
 bool Move::operator==(const Move& m) {
     bool returnMe = false;
-    if(this->getChainMove() != nullptr && m.chainMove != nullptr) {
-        returnMe = (*this->getChainMove()) == (*m.chainMove);
+    if(this->getNextChainMove() != nullptr && m.nextChainMove != nullptr) {
+        returnMe = (*this->getNextChainMove()) == (*m.nextChainMove);
     }
-    else if(this->getChainMove() == nullptr && m.chainMove == nullptr){
+    else if(this->getNextChainMove() == nullptr && m.nextChainMove == nullptr){
         returnMe = true;
     }
     return returnMe && curRow == m.curRow && destRow == m.destRow
            && destCol == m.destCol && capRow == m.capRow
-           && capCol == m.capCol && isKing == m.isKing;
+           && capCol == m.capCol && chainMove == m.chainMove && isKing == m.isKing;
 }
 
 int Move::getCurRow() {
@@ -102,10 +105,18 @@ bool Move::getKingMove() {
     return isKing;
 }
 
-Move *Move::getChainMove() {
+Move *Move::getNextChainMove() {
+    return nextChainMove;
+}
+
+void Move::setNextChainMove(Move *m) {
+    this->nextChainMove = m;
+}
+
+bool Move::isChainMove() {
     return chainMove;
 }
 
-void Move::setChainMove(Move *m) {
-    this->chainMove = m;
+void Move::setIsChainMove(bool isChainMove) {
+    this->chainMove = isChainMove;
 }

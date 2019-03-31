@@ -5,8 +5,8 @@
 #include <iostream>
 #include <set>
 #include <algorithm>
-#include "Rules.h"
-#include "misc/Player.h"
+#include "../../include/internal/Rules.h"
+#include "../../include/internal/Player.h"
 
 bool Rules::playableSpaces[8][8] = {{true, false, true, false, true, false, true, false},
                                     {false, true, false, true, false, true, false, true},
@@ -23,7 +23,7 @@ bool Rules::legalMove(Move *move, Board *boardState) {
     Move* temp = move;
     while(temp != nullptr) {
         isCapture(temp);
-        temp = temp->getChainMove();
+        temp = temp->getNextChainMove();
     }
     for(auto &posMove : *possibleMoves) {
         if(*posMove == *move) {
@@ -111,9 +111,7 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     // hols the jumps that have a next jump available but do not have them added yet
     auto* incompleteJumps = new std::vector<Move*>();
     // for each jump that is found check if that jump has a multicapture available
-    static int i = 0;
     for(auto &jump: *returnMe) {
-        i++;
         Board* boardCopy = boardState->copy();
         // push the jump to the mock board
         boardCopy->move(jump, true, false);
@@ -134,11 +132,13 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
             incompleteJumps->push_back(jump);
             for (auto &nextJump : *jumps) {
                 Move* jumpCopy = jump->copy();
-                jumpCopy->setChainMove(nextJump);
+                jumpCopy->setNextChainMove(nextJump);
+                nextJump->setIsChainMove(true);
                 successorJumps->push_back(jumpCopy);
             }
         }
         delete mockChecker;
+        delete jumps;
     }
     // for each jump that has a multijump available that has not been found yet
     // remove this jump from the return list
@@ -233,7 +233,7 @@ std::vector<Move*>* Rules::combine(std::vector<Move*>* vec1, std::vector<Move*>*
 }
 
 bool Rules::validMultiCapture(Move *move, Board* boardState) {
-    Move* newMove = move->getChainMove();
+    Move* newMove = move->getNextChainMove();
     bool legal = (newMove != nullptr) && (isCapture(newMove) && validCapture(newMove, boardState) &&
             move->getDestRow() == newMove->getCurRow() &&
             move->getDestCol() == newMove->getCurCol());
@@ -417,14 +417,16 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     // Case: legal = false
 
     if ((validMultiCapture(move, boardCopy) && hasJumps) && !crowned) {
-        legal = requiredMultiCapture(move->getChainMove(), boardCopy, isKing);
+        legal = requiredMultiCapture(move->getNextChainMove(), boardCopy, isKing);
     }
     // else if there is no pointer to a multicap and there are no available
     // jumps or the piece has been crowned this turn
     // case: legal = true
 
-    else legal = move->getChainMove() == nullptr && (!hasJumps || crowned);
-    multiJumps->clear();
+    else legal = move->getNextChainMove() == nullptr && (!hasJumps || crowned);
+    for (int i = 0; i < multiJumps->size(); ++i) {
+        delete multiJumps->at(i);
+    }
     delete mockChecker;
     delete multiJumps;
     return legal;
@@ -462,3 +464,38 @@ bool Rules::crownMe(Move *move) {
     }
     return crowned;
 }
+/*
+Move *Rules::getDLJump(int row, int col, Board *boardState) {
+    Move *returnMe;
+    Color color = boardState->getTurn();
+
+    int upRow = row + 2;
+    int rtCol = col + 2;
+    int ltCol = col - 2;
+    if (upRow < Board::getBOARDHEIGHT()) {
+        if (ltCol >= 0) {
+            // Upper left move
+            Move *ULMove = new Move(row, col, row + 2, col - 2,
+                                    row + 1, col - 1, color);
+            crownMe(ULMove);
+
+            if (validCapture(ULMove, boardState)) {
+                returnMe->push_back(ULMove);
+            } else
+                delete ULMove;
+        }
+        if(rtCol < Board::getBOARDWIDTH()) {
+            // Upper right move
+            Move *URMove = new Move(row, col, row + 2, col + 2,
+                                    row + 1, col + 1, color);
+            crownMe(URMove);
+
+            if (validCapture(URMove, boardState)) {
+                returnMe->push_back(URMove);
+            } else
+                delete URMove;
+        }
+    }
+    return returnMe;
+}
+*/

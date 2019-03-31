@@ -5,8 +5,8 @@
 #include <chrono>
 #include <iostream>
 #include <random>
-#include "AI_Minimax_01.h"
-#include "Node.h"
+#include "../../../include/internal/AI_Minimax_01.h"
+#include "../../../include/internal/Node.h"
 
 int AI_Minimax_01::evaluateBoardState(Node *node) {
     int KING_POINT_VAL = 3;

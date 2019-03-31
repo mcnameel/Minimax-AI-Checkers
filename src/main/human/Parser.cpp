@@ -2,8 +2,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#include "Parser.h"
-#include "../Rules.h"
+#include "../../../include/internal/Parser.h"
+#include "../../../include/internal/Rules.h"
 #include <iostream>
 #include <string>
 #include <regex>
@@ -50,7 +50,8 @@ Move *Parser::convertInput(std::string in) {
             returnMe = lastMove = temp;
         }
         else {
-            lastMove->setChainMove(temp);
+            lastMove->setNextChainMove(temp);
+            temp->setIsChainMove(true);
             lastMove = temp;
         }
     }

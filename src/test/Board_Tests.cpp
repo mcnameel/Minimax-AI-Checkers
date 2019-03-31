@@ -3,11 +3,11 @@
 //
 
 #include "Board_Tests.h"
-#include "../../Catch2/catch.hpp"
-//#define CATCH_CONFIG_MAIN
+#include "../../include/external/Catch2/catch.hpp"
 
-#include "../main/Rules.h"
-#include "../main/AI/AI_Minimax_01.h"
+//#define CATCH_CONFIG_MAIN
+#include "../../include/internal/Rules.h"
+#include "../../include/internal/AI_Minimax_01.h"
 
 // Test Case 1, ensure constructors work
 TEST_CASE("First Test case") {

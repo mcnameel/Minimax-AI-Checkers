@@ -1,20 +1,17 @@
 //
-// Created by Luke on 2/8/2019.
+// Created by Luke McNamee on 2019-03-21.
 //
 
-#ifndef MINIMAX_AI_CHECKERS_AI_H
-#define MINIMAX_AI_CHECKERS_AI_H
+#ifndef MINIMAX_AI_CHECKERS_02_AI_MINIMAX_02_H
+#define MINIMAX_AI_CHECKERS_02_AI_MINIMAX_02_H
 
-
-#include "../POCO/Move.h"
-#include "Node.h"
-#include "../misc/Player.h"
 #include "AI.h"
+#include "Move.h"
 
 /**
  * A definition of evaluateBoardState
  */
-class AI_Minimax_01 : public AI {
+class AI_Minimax_02 : public AI {
 
 public:
     /* constructor */
@@ -22,23 +19,22 @@ public:
      * Create an instance of the AI class implementing player
      * @param lookAhead the number if moves to look ahead
      */
-    AI_Minimax_01(int lookAhead, Color color) : AI(lookAhead, color) {};
+    AI_Minimax_02(int lookAhead, Color color) : AI(lookAhead, color) {};
 
 private:
     /* destructor */
-    ~AI_Minimax_01() override {
+    ~AI_Minimax_02() override {
         delete currentTree;
     };
 
     /* methods */
     /**
-     * a simple evaluation function where a non king piece is valued as 1 and
-     * a king piece is valued at 3
+     * an evaluation function where the location of a non king piece longitudinally
+     * across the board effects the value
      * @param node the node to evaluate
      * @return the numerical value of the board state
      */
     int evaluateBoardState(Node *node) override;
 };
 
-
-#endif //MINIMAX_AI_CHECKERS_AI_H
+#endif //MINIMAX_AI_CHECKERS_02_AI_MINIMAX_02_H

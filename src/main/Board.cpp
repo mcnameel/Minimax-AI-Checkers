@@ -2,8 +2,8 @@
 // Created by Luke on 1/28/2019.
 //
 
-#include "Board.h"
-#include "Rules.h"
+#include "../../include/internal/Board.h"
+#include "../../include/internal/Rules.h"
 #include <iostream>
 
 Board::Board() {
@@ -124,6 +124,8 @@ Checker* Board::getAt(int row, int col) {
 }
 
 void Board::move(Move *move, bool dontClear, bool changeTurn) {
+    static int statI = 0;
+    statI++;
     Checker* c = grid[move->getCurRow()][move->getCurCol()];
 
     Move* temp = move;
@@ -149,7 +151,58 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
             removePiece(cap);
             delete cap;
         }
-        temp = temp->getChainMove();
+        temp = temp->getNextChainMove();
+    }
+    if(changeTurn) {
+        Color curTurn = (getTurn() == RED) ? WHITE : RED;
+        setTurn(curTurn);
+
+        // check if the game is over
+        if(Rules::getAllLegalMoves(this)->empty()) {
+            setGameOver(true);
+        }
+    }
+    // if lastMove was not a chain move then set it to be deleted
+    if(lastMove != nullptr && !lastMove->isChainMove()) {
+        movesToDelete->push_back(lastMove);
+    }
+    if(!dontClear){
+        for (int i = movesToDelete->size() - 1; i > 0; --i) {
+            delete movesToDelete->at(i);
+            movesToDelete->pop_back();
+        }
+    }
+    lastMove = move;
+}
+
+
+void Board::move(Move move, bool dontClear, bool changeTurn) {
+    Checker* c = grid[move.getCurRow()][move.getCurCol()];
+
+    Move* temp = &move;
+    while(temp != nullptr) {
+
+        // remove the piece from the starting space then move it to the next
+        grid[temp->getCurRow()][temp->getCurCol()] = nullptr;
+        grid[temp->getDestRow()][temp->getDestCol()] = c;
+
+        // set the destination vars
+        c->setRow(temp->getDestRow());
+        c->setCol(temp->getDestCol());
+
+        // if the move is a king move then set the piece to be a king
+        if (temp->getKingMove())
+            c->makeKing();
+
+        // Check if piece should be deleted
+        if (temp->getCapCol() != -1) {
+
+            Checker *cap = grid[temp->getCapRow()][temp->getCapCol()];
+            grid[temp->getCapRow()][temp->getCapCol()] = nullptr;
+            removePiece(cap);
+            delete cap;
+        }
+        temp = temp->getNextChainMove();
     }
     if(changeTurn) {
         Color curTurn = (getTurn() == RED) ? WHITE : RED;
@@ -163,9 +216,11 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
     Move* tempDel = lastMove;
     movesToDelete->push_back(tempDel);
     if(!dontClear){
-        movesToDelete->clear();
+        for (int i = 0; i < movesToDelete->size(); ++i) {
+            delete movesToDelete->at(i);
+        }
     }
-    lastMove = move;
+    lastMove = &move;
 
 }
 

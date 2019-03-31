@@ -7,8 +7,8 @@
 
 #include <vector>
 #include <set>
-#include "POCO/Checker.h"
-#include "POCO/Move.h"
+#include "Checker.h"
+#include "Move.h"
 
 /**
  * This class represents the board by holding the 24 pieces in a 2d-array
@@ -74,7 +74,14 @@ public:
 
     /**
      * moves a piece from one row and column to another
-     * @param move
+     * @param move the move to implement
+     */
+    void move(Move move, bool dontClear, bool changeTurn);
+
+
+    /**
+     * moves a piece from one row and column to another
+     * @param move the pointer to the move to implement
      */
     void move(Move *move, bool dontClear, bool changeTurn);
 
