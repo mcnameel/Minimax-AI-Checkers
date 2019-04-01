@@ -53,8 +53,8 @@ void run() {
 }
 
 int main() {
-    //run();
-    runXTimes(500);
+    run();
+    //runXTimes(500);
     
     return 0;
 }
