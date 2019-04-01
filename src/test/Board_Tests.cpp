@@ -97,7 +97,7 @@ Red's turn
 
  */
 TEST_CASE("Game Over Case 1") {
-/*    Checker* c1 = new Checker(RED, 7, 7);
+    /*Checker* c1 = new Checker(RED, 7, 7);
     Checker* c2 = new Checker(WHITE, 6, 6);
     Checker* c3 = new Checker(WHITE, 6, 4);
 
@@ -113,13 +113,17 @@ TEST_CASE("Game Over Case 1") {
     AI_Minimax_01* player2 = new AI_Minimax_01(2, WHITE);
 
     Move* m = player1->getMove(board);
-    board->move(m, false, true);
+    board->move(m, true);
     delete m;
 
     m = player2->getMove(board);
-    board->move(m, false, true);
-*/
-//    REQUIRE(board->isGameOver());
+    board->move(m, true);
+
+    m = player1->getMove(board);
+    board->move(m, true);
+
+    REQUIRE(board->isGameOver());
+    */
 }
 
 /**
@@ -157,7 +161,7 @@ Red's turn
     move->setKingMove(true);
 
     /* testing */
-    board->move(move, false, true);
+    board->move(move, true);
     REQUIRE(!board->contains(6, 4));
  }
 /**
@@ -186,7 +190,7 @@ Red's turn
     auto *move = new Move(5, 5, 7, 3, 6, 4, WHITE);
     move->setKingMove(true);
 
-    board->move(move, false, true);
+    board->move(move, true);
     REQUIRE(board->getRedCount() == 0);
  }
 
@@ -226,7 +230,7 @@ Red's turn
 
     auto *move = new Move(6, 4, 4, 6, 5, 5, RED);
 
-    board->move(move, false, true);
+    board->move(move, true);
     REQUIRE(!board->contains(5, 5));
  }
 /**
@@ -265,7 +269,7 @@ Red's turn
 
     auto *move = new Move(6, 4, 4, 6, 5, 5, RED);
 
-    board->move(move, false, true);
+    board->move(move, true);
     REQUIRE(board->getWhiteCount() == 0);
  }
 

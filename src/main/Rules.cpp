@@ -31,9 +31,9 @@ bool Rules::legalMove(Move *move, Board *boardState) {
         }
     }
     if(!move->getKingMove()){
-        move->setKingMove(shouldCrown(move));
+        shouldCrown(move);
     }
-    //delete requiredCaps;
+    delete possibleMoves;
     return legalMove;
 }
 
@@ -109,12 +109,13 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     // holds the jumps successor jumps of each move
     auto* successorJumps = new std::vector<Move*>();
     // hols the jumps that have a next jump available but do not have them added yet
-    auto* incompleteJumps = new std::vector<Move*>();
+    std::vector<Move*> incompleteJumps;
+
     // for each jump that is found check if that jump has a multicapture available
     for(auto &jump: *returnMe) {
         Board* boardCopy = boardState->copy();
         // push the jump to the mock board
-        boardCopy->move(jump, true, false);
+        boardCopy->move(jump, false);
 
         //create a fake checker which is used to check if there is a capture available
         auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
@@ -129,23 +130,27 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
         // if the move has next jump available add the incomplete jump to the
         // vector and get all the jumps available to it
         if(!jumps->empty()) {
-            incompleteJumps->push_back(jump);
+            incompleteJumps.push_back(jump);
             for (auto &nextJump : *jumps) {
                 Move* jumpCopy = jump->copy();
                 jumpCopy->setNextChainMove(nextJump);
-                nextJump->setIsChainMove(true);
                 successorJumps->push_back(jumpCopy);
             }
         }
+        delete boardCopy;
         delete mockChecker;
         delete jumps;
     }
     // for each jump that has a multijump available that has not been found yet
     // remove this jump from the return list
-    for(auto &incJump : *incompleteJumps) {
-        auto e = std::find(returnMe->begin(), returnMe->end(), incJump);
-        if (e != returnMe->end()) {
-            returnMe->erase(e);
+    for(int i = 0; i < incompleteJumps.size(); ++i) {
+        Move *incJump = incompleteJumps[i];
+        for(int j = 0; j < returnMe->size(); ++j) {
+            Move *jump = (*returnMe)[j];
+            if(*jump == *incJump) {
+                delete jump;
+                returnMe->erase(returnMe->begin() + j);
+            }
         }
     }
     returnMe = combine(returnMe, successorJumps);
@@ -258,6 +263,7 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
         for (auto &jump : *jumps) {
             returnMe->push_back(jump);
         }
+        delete jumps;
     }
     if (returnMe->empty()) {
         for (auto &piece : *pieces) {
@@ -265,8 +271,8 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
             for (auto &move : *moves) {
                 returnMe->push_back(move);
             }
+            delete moves;
         }
-        //delete jumps;
     }
 
     return returnMe;
@@ -396,13 +402,12 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     bool legal = true;
     /* copy the board state and push the move through to the mock board */
     Board* boardCopy = boardState->copy();
-    boardCopy->move(move, true, false);
+    boardCopy->move(move, false);
     /* get a mock checker from where the piece lands */
     auto * mockChecker = new Checker(move->getColor(), move->getDestRow(), move->getDestCol());
 
     if(isKing)
         mockChecker->makeKing();
-
 
     std::vector<Move *> *multiJumps = getJumpsAtPos(boardCopy, mockChecker);
     bool hasJumps = !multiJumps->empty();

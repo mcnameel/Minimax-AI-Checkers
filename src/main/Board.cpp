@@ -45,12 +45,18 @@ Board::Board(std::vector<Checker *> *startState, Color turn) {
 
 Board::~Board() {
     for(int i = 0; i < BOARDWIDTH; i++) {
-        delete[] *grid[i];
+        for (int j = 0; j < BOARDHEIGHT; ++j) {
+            delete grid[i][j];
+        }
     }
-    //delete [] **grid;
 
     for(int i = 0; i < movesToDelete->size(); i++) {
-        delete movesToDelete->at(i);
+        Move *deleteMe = (*movesToDelete)[i];
+        if(*deleteMe == *lastMove) {
+        }
+        else {
+            delete deleteMe;
+        }
     }
     delete movesToDelete;
     delete redPieces;
@@ -123,7 +129,7 @@ Checker* Board::getAt(int row, int col) {
     return grid[row][col];
 }
 
-void Board::move(Move *move, bool dontClear, bool changeTurn) {
+void Board::move(Move *move, bool changeTurn) {
     static int statI = 0;
     statI++;
     Checker* c = grid[move->getCurRow()][move->getCurCol()];
@@ -162,66 +168,12 @@ void Board::move(Move *move, bool dontClear, bool changeTurn) {
             setGameOver(true);
         }
     }
+    // clean up
     // if lastMove was not a chain move then set it to be deleted
     if(lastMove != nullptr && !lastMove->isChainMove()) {
-        movesToDelete->push_back(lastMove);
+        delete lastMove;
+        lastMove = move->copy();
     }
-    if(!dontClear){
-        for (int i = movesToDelete->size() - 1; i > 0; --i) {
-            delete movesToDelete->at(i);
-            movesToDelete->pop_back();
-        }
-    }
-    lastMove = move;
-}
-
-
-void Board::move(Move move, bool dontClear, bool changeTurn) {
-    Checker* c = grid[move.getCurRow()][move.getCurCol()];
-
-    Move* temp = &move;
-    while(temp != nullptr) {
-
-        // remove the piece from the starting space then move it to the next
-        grid[temp->getCurRow()][temp->getCurCol()] = nullptr;
-        grid[temp->getDestRow()][temp->getDestCol()] = c;
-
-        // set the destination vars
-        c->setRow(temp->getDestRow());
-        c->setCol(temp->getDestCol());
-
-        // if the move is a king move then set the piece to be a king
-        if (temp->getKingMove())
-            c->makeKing();
-
-        // Check if piece should be deleted
-        if (temp->getCapCol() != -1) {
-
-            Checker *cap = grid[temp->getCapRow()][temp->getCapCol()];
-            grid[temp->getCapRow()][temp->getCapCol()] = nullptr;
-            removePiece(cap);
-            delete cap;
-        }
-        temp = temp->getNextChainMove();
-    }
-    if(changeTurn) {
-        Color curTurn = (getTurn() == RED) ? WHITE : RED;
-        setTurn(curTurn);
-
-        // check if the game is over
-        if(Rules::getAllLegalMoves(this)->empty()) {
-            setGameOver(true);
-        }
-    }
-    Move* tempDel = lastMove;
-    movesToDelete->push_back(tempDel);
-    if(!dontClear){
-        for (int i = 0; i < movesToDelete->size(); ++i) {
-            delete movesToDelete->at(i);
-        }
-    }
-    lastMove = &move;
-
 }
 
 std::vector<Checker*>* Board::getRedPieces() {

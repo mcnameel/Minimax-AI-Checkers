@@ -36,7 +36,7 @@ Move *AI::getMove(Board *boardState) {
     nextMove = nodeToSave->getMove()->copy();
 
     lastBoard = boardState->copy();
-    lastBoard->move(nextMove, false, true);
+    lastBoard->move(nextMove, true);
 
     for (int i = 0; i < bestMoves->size(); ++i) {
         delete bestMoves->at(i);

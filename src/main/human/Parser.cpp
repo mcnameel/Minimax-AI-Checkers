@@ -51,7 +51,6 @@ Move *Parser::convertInput(std::string in) {
         }
         else {
             lastMove->setNextChainMove(temp);
-            temp->setIsChainMove(true);
             lastMove = temp;
         }
     }

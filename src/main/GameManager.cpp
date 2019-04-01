@@ -130,7 +130,7 @@ void GameManager::takeTurn() {
         auto *destroyMe = new std::vector<Move *>();
         destroyMe->push_back(curMove);
         // when we have a valid move push the move to the board
-        board->move(curMove, false, true);
+        board->move(curMove, true);
     }
 }
 

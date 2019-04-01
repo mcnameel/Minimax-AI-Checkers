@@ -41,37 +41,29 @@ TEST_CASE("Rules::getAllLegalMoves | multicapture landing in starting space") {
     pieces->push_back(c5);
     auto *board = new Board(pieces, RED);
 
-
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
     auto *m2 = new Move(5, 3, 3, 5, 4, 4, RED);
     expected1->setNextChainMove(m2);
-    m2->setIsChainMove(true);
     auto *m3 = new Move(3, 5, 5, 7, 4, 6, RED);
     m2->setNextChainMove(m3);
-    m3->setIsChainMove(true);
     auto *m4 = new Move(5, 7, 7, 5, 6, 6, RED);
     m3->setNextChainMove(m4);
-    m4->setIsChainMove(true);
 
     Move *expected2 = new Move(7, 5, 5, 7, 6, 6, RED);
     m2 = new Move(5, 7, 3, 5, 4, 6, RED);
     expected2->setNextChainMove(m2);
-    m2->setIsChainMove(true);
     m3 = new Move(3, 5, 5, 3, 4, 4, RED);
     m2->setNextChainMove(m3);
-    m3->setIsChainMove(true);
     m4 = new Move(5, 3, 7, 5, 6, 4, RED);
     m3->setNextChainMove(m4);
-    m4->setIsChainMove(true);
-
 
     std::vector<Move *> *actual = Rules::getAllLegalMoves(board);
 
     bool found1 = false;
     bool found2 = false;
 
-    Move *actual1 = actual->at(0);
-    Move *actual2 = actual->at(1);
+    Move *actual1 = (*actual)[0];
+    Move *actual2 = (*actual)[1];
 
     if(*expected1 == *actual1 || *expected1 == *actual2) {
         found1 = true;
@@ -120,23 +112,18 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
     auto *m2 = new Move(5, 3, 3, 5, 4, 4, RED);
     expected1->setNextChainMove(m2);
-    m2->setIsChainMove(true);
 
     auto *expected2 = new Move(7, 5, 5, 7, 6, 6, RED);
     m2 = new Move(5, 7, 3, 5, 4, 6, RED);
     expected2->setNextChainMove(m2);
-    m2->setIsChainMove(true);
 
     auto *expected3 = new Move(7, 7, 5, 5, 6, 4, RED);
     m2 = new Move(5, 5, 3, 7, 4, 6, RED);
     expected3->setNextChainMove(m2);
-    m2->setIsChainMove(true);
 
     auto *expected4 = new Move(7, 7, 5, 5, 6, 4, RED);
     m2 = new Move(5, 5, 3, 3, 4, 4, RED);
     expected4->setNextChainMove(m2);
-    m2->setIsChainMove(true);
-
 
     bool l1 = Rules::legalMoveFromColor(expected1, board);
     bool l2 = Rules::legalMoveFromColor(expected2, board);
@@ -183,13 +170,11 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     auto *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
     m2->setKingMove(true);
     expected1->setNextChainMove(m2);
-    m2->setIsChainMove(true);
 
     auto *expected2 = new Move(3, 5, 5, 3, 4, 4, WHITE);
     m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
     m2->setKingMove(true);
     expected2->setNextChainMove(m2);
-    m2->setIsChainMove(true);
 
     auto *expected3 = new Move(3, 5, 5, 7, 4, 6, WHITE);
 

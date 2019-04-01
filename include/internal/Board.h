@@ -74,16 +74,10 @@ public:
 
     /**
      * moves a piece from one row and column to another
-     * @param move the move to implement
-     */
-    void move(Move move, bool dontClear, bool changeTurn);
-
-
-    /**
-     * moves a piece from one row and column to another
      * @param move the pointer to the move to implement
+     * @param changeTurn indicates wheather the turn should change
      */
-    void move(Move *move, bool dontClear, bool changeTurn);
+    void move(Move *move, bool changeTurn);
 
     /**
      * Print the board to terminal

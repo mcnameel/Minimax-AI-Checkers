@@ -165,7 +165,6 @@ TEST_CASE("White king-multicapture") {
     Move *expected = new Move(3, 7, 5, 5, 4, 6, WHITE);
     Move *expectedChain = new Move(5, 5, 7, 3, 6, 4, WHITE);
     expectedChain->setKingMove(true);
-    expectedChain->setIsChainMove(true);
     expected->setNextChainMove(expectedChain);
 
     /* condition */
@@ -217,7 +216,7 @@ TEST_CASE("Game Over turn after") {
     AI_Minimax_01 *player1 = new AI_Minimax_01(2, RED);
 
     Move *m = player1->getMove(board);
-    board->move(m, false, true);
+    board->move(m, true);
 
     REQUIRE(!board->isGameOver());
 }
@@ -262,7 +261,7 @@ TEST_CASE("Game Over this turn") {
     AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
 
     Move *m = player2->getMove(board);
-    board->move(m, false, true);
+    board->move(m, true);
 
     REQUIRE(board->isGameOver());
 }

@@ -63,7 +63,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
         //for (auto &newMove : *moves) {
         newMove = moves->at(static_cast<unsigned long>(index));
         Board *succBS = bs->copy();
-        succBS->move(newMove, true, true);
+        succBS->move(newMove, true);
         successors->push_back(createTree(succBS, depth - 1, newMove));
     }
     if(depth == orgDepth) {
@@ -112,7 +112,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
         successors = new std::vector<Node *>();
         for (auto &newMove : *moves) {
             Board *succBS = bs->copy();
-            succBS->move(newMove, true, true);
+            succBS->move(newMove, true);
             successors->push_back(createTree(succBS, depth - 1, newMove));
         }
         if(depth == orgDepth) {

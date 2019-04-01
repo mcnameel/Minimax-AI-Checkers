@@ -110,6 +110,7 @@ Move *Move::getNextChainMove() {
 }
 
 void Move::setNextChainMove(Move *m) {
+    m->setIsChainMove(true);
     this->nextChainMove = m;
 }
 
