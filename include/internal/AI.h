@@ -25,7 +25,7 @@ public:
      * @param boardState the current board
      * @return the best move to make
      */
-    Move *getMove(Board *boardState) override;;
+    Move *getMove(Board *boardState) override;
 private:
     /* field vars */
     // The board state from the last time this player moved
@@ -54,7 +54,7 @@ protected:
     /**
      * destroy all fields of this class
      */
-    ~AI() override = default;
+    ~AI() override;
 
     /* virtual functions */
     /**

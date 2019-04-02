@@ -133,3 +133,8 @@ int AI::max(int val1, int val2) {
         returnMe = val2;
     return returnMe;
 }
+
+AI::~AI() {
+    delete currentTree;
+    delete lastBoard;
+}

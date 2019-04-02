@@ -49,16 +49,6 @@ Board::~Board() {
             delete grid[i][j];
         }
     }
-
-    for(int i = 0; i < movesToDelete->size(); i++) {
-        Move *deleteMe = (*movesToDelete)[i];
-        if(*deleteMe == *lastMove) {
-        }
-        else {
-            delete deleteMe;
-        }
-    }
-    delete movesToDelete;
     delete redPieces;
     delete whitePieces;
     delete lastMove;

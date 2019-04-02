@@ -21,8 +21,6 @@ private:
     Color turn = RED;
     // Data structure representing the board
     Checker* grid[8][8] = {{nullptr}};
-    std::vector<std::vector<Checker*>>* boardGrid = new std::vector<std::vector<Checker*>>();
-    std::vector<Move*>* movesToDelete = new std::vector<Move*>();
     Move* lastMove = nullptr;
     // player2 and player1 pieces on the board
     std::vector<Checker*>* redPieces = new std::vector<Checker*>();

@@ -420,29 +420,20 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     // if there is a pointer to a multicapture in move and there are jumps to
     // make and the piece was not crowned this turn
     // Case: legal = false
-
     if ((validMultiCapture(move, boardCopy) && hasJumps) && !crowned) {
         legal = requiredMultiCapture(move->getNextChainMove(), boardCopy, isKing);
     }
     // else if there is no pointer to a multicap and there are no available
     // jumps or the piece has been crowned this turn
     // case: legal = true
-
     else legal = move->getNextChainMove() == nullptr && (!hasJumps || crowned);
     for (int i = 0; i < multiJumps->size(); ++i) {
-        delete multiJumps->at(i);
+        delete (*multiJumps)[i];
     }
     delete mockChecker;
     delete multiJumps;
-    return legal;
-}
 
-std::vector<Move *>* Rules::copy(std::vector<Move *>* vector) {
-    auto * copy = new std::vector<Move *>();
-    for(auto &move : *vector) {
-        copy->push_back(move->copy());
-    }
-    return copy;
+    return legal;
 }
 
 bool Rules::legalDirection(Move *move, Board *boardState) {

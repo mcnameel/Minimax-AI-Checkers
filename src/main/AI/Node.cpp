@@ -20,7 +20,6 @@ Node::Node(Board *boardState, Move *move) {
 }
 
 Node::~Node() {
-    Node *child;
     if(successors != nullptr) {
         for (int i = 0; i < successors->size(); i++) {
             delete successors->at(i);
@@ -28,7 +27,7 @@ Node::~Node() {
     }
     delete successors;
     delete boardState;
-    //delete move;
+    delete move;
 }
 
 Node * Node::createTree(Board *bs, int depth, Move *move) {
