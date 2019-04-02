@@ -25,6 +25,7 @@ Node::~Node() {
             delete successors->at(i);
         }
     }
+
     delete successors;
     delete boardState;
     delete move;

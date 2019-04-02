@@ -154,6 +154,7 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
         }
     }
     returnMe = combine(returnMe, successorJumps);
+    delete successorJumps;
 
     return returnMe;
 }

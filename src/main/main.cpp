@@ -50,6 +50,14 @@ void run() {
     game->play();
 
     delete game;
+
+    std::vector<Node*> notFound;
+    for (auto &it : Node::memCheck) {
+        if(!it.second) {
+            notFound.push_back(it.first);
+        }
+    }
+    std::cout << "I didnt delete " << notFound.size() << std::endl;
 }
 
 int main() {
