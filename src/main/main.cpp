@@ -41,7 +41,7 @@ void runXTimes(const int timesToRun) {
 
 void run() {
     Board* board = new Board();
-    auto *player1 = new AI_Minimax_03(4, RED);
+    auto *player1 = new AI_Minimax_03(5, RED);
     //Player *player1 = new Parser(RED);
     auto *player2 = new AI_Minimax_02(4, WHITE);
     //Player *player2 = new Parser(WHITE);
@@ -53,8 +53,8 @@ void run() {
 }
 
 int main() {
-    run();
-    //runXTimes(500);
+    //run();
+    runXTimes(500);
     
     return 0;
 }

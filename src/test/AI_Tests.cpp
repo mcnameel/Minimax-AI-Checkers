@@ -40,7 +40,7 @@ TEST_CASE("Red capture") {
     pieces->push_back(c1);
     pieces->push_back(c2);
 
-    Board *board = new Board(pieces, RED);
+    Board *board = new Board(pieces, RED, nullptr);
     //board->printBoard();
 
     AI_Minimax_01 *player2 = new AI_Minimax_01(2, RED);
@@ -106,7 +106,7 @@ TEST_CASE("White king-capture") {
     pieces->push_back(c1);
     pieces->push_back(c2);
 
-    Board *board = new Board(pieces, WHITE);
+    Board *board = new Board(pieces, WHITE, nullptr);
 
     AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
 
@@ -168,7 +168,7 @@ TEST_CASE("White king-multicapture") {
     expected->setNextChainMove(expectedChain);
 
     /* condition */
-    Board *board = new Board(pieces, WHITE);
+    Board *board = new Board(pieces, WHITE, nullptr);
     AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
     Move *actual = player2->getMove(board);
 
@@ -210,7 +210,7 @@ TEST_CASE("Game Over turn after") {
     pieces->push_back(c2);
     pieces->push_back(c3);
 
-    auto *board = new Board(pieces, RED);
+    auto *board = new Board(pieces, RED, nullptr);
     // board->printBoard();
 
     AI_Minimax_01 *player1 = new AI_Minimax_01(2, RED);
@@ -255,7 +255,7 @@ TEST_CASE("Game Over this turn") {
     pieces->push_back(c2);
     //pieces->push_back(c3);
 
-    Board *board = new Board(pieces, WHITE);
+    Board *board = new Board(pieces, WHITE, nullptr);
     // board->printBoard();
 
     AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
@@ -292,7 +292,7 @@ TEST_CASE("AI_Minimax_01::getMove() | When black can win in three moves it choos
     pieces->push_back(c3);
     pieces->push_back(c4);
 
-    auto *board = new Board(pieces, WHITE);
+    auto *board = new Board(pieces, WHITE, nullptr);
     auto player2 = new AI_Minimax_01(4, WHITE);
     Move *m1 = player2->getMove(board);
     auto *m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);

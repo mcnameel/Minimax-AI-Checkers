@@ -45,7 +45,7 @@ TEST_CASE("First Test case") {
         pieces->push_back(piece);
     }
 
-    Board* board2 = new Board(pieces, RED);
+    Board* board2 = new Board(pieces, RED, nullptr);
 
     for(int i = 0; i < 8; ++i) {
         // iterate through each column to add the piece. For each column
@@ -156,7 +156,7 @@ Red's turn
     auto pieces = new std::vector<Checker *>();
     pieces->push_back(c1);
     pieces->push_back(c2);
-    auto *board = new Board(pieces, WHITE);
+    auto *board = new Board(pieces, WHITE, nullptr);
     auto *move = new Move(5, 5, 7, 3, 6, 4, WHITE);
     move->setKingMove(true);
 
@@ -186,7 +186,7 @@ Red's turn
     pieces->push_back(c1);
     pieces->push_back(c2);
 
-    auto *board = new Board(pieces, WHITE);
+    auto *board = new Board(pieces, WHITE, nullptr);
     auto *move = new Move(5, 5, 7, 3, 6, 4, WHITE);
     move->setKingMove(true);
 
@@ -226,7 +226,7 @@ Red's turn
     pieces->push_back(c1);
     pieces->push_back(c2);
 
-    auto *board = new Board(pieces, RED);
+    auto *board = new Board(pieces, RED, nullptr);
 
     auto *move = new Move(6, 4, 4, 6, 5, 5, RED);
 
@@ -265,7 +265,7 @@ Red's turn
     pieces->push_back(c1);
     pieces->push_back(c2);
 
-    auto *board = new Board(pieces, RED);
+    auto *board = new Board(pieces, RED, nullptr);
 
     auto *move = new Move(6, 4, 4, 6, 5, 5, RED);
 

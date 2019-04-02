@@ -7,6 +7,7 @@
 #include <iostream>
 
 Board::Board() {
+    this->lastMove = nullptr;
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
    for(int i = 0; i < BOARDHEIGHT; ++i) {
@@ -32,8 +33,9 @@ Board::Board() {
     }
 }
 
-Board::Board(std::vector<Checker *> *startState, Color turn) {
+Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove) {
     this->turn = turn;
+    this->lastMove = lastMove;
     for (auto &piece : *startState) {
         grid[piece->getRow()][piece->getCol()] = piece;
         if(piece->getColor() == RED)
@@ -65,7 +67,13 @@ Board *Board::copy() {
     for(auto &w : *whitePieces) {
         pieces->push_back(w->copy());
     }
-    return new Board(pieces, getTurn());
+    Move *lastMoveCopy;
+    if(lastMove != nullptr) {
+        lastMoveCopy = lastMove->copy();
+    } else {
+        lastMoveCopy = nullptr;
+    }
+    return new Board(pieces, getTurn(), lastMoveCopy);
 }
 
 void Board::removePiece(Checker *c) {

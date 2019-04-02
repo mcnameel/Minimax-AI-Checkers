@@ -262,7 +262,7 @@ std::vector<Move*>* Rules::getMovesAtPos(Checker *checker, Board* boardState) {
         }
         if (checker->isKing()) {
             Move *ULMove = getULMove(checker, boardState);
-            if (LLMove != nullptr) {
+            if (ULMove != nullptr) {
                 returnMe->push_back(ULMove);
             }
             Move *URMove = getURMove(checker, boardState);
