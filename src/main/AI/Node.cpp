@@ -49,6 +49,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     if (moves->empty()) {
         ++i;
         bs->setGameOver(true);
+        delete moves;
         return new Node(bs, move);
     }
 
@@ -70,6 +71,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
         std::cout << "Moves derivations generated: " << i << std::endl;
         i = 0;
     }
+    delete moves;
     return new Node(bs, successors, move);
 }
 
@@ -91,6 +93,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     if (moves->empty()) {
         ++i;
         bs->setGameOver(true);
+        delete moves;
         return node;
     }
 
@@ -119,6 +122,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
             std::cout << "Moves derivations generated: " << i << std::endl;
             i = 0;
         }
+        delete moves;
         return new Node(bs, successors, node->getMove());
     }
 }
