@@ -33,9 +33,6 @@ bool Rules::legalMove(Move *move, Board *boardState) {
     if(!move->getKingMove()){
         shouldCrown(move);
     }
-    for(int i = 0; i < possibleMoves->size(); ++i) {
-        delete (*possibleMoves)[i];
-    }
     delete possibleMoves;
     return legalMove;
 }

@@ -73,13 +73,9 @@ Move* GameManager::getLegalMove() {
         }
         if(moves->empty()) {
             board->setGameOver(true);
-        } else {
-            for(int i = 0; i < moves->size(); ++i) {
-                delete (*moves)[i];
-            }
+            //break;
         }
-        delete moves;
-
+        
         // call getMove to request the next move from the current player
         currentMove = getMove(board);
         
