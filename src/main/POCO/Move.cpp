@@ -52,16 +52,16 @@ std::string Move::toString() {
 }
 
 bool Move::operator==(const Move& m) {
+    bool returnMe1 = curRow == m.curRow && destRow == m.destRow
+                     && destCol == m.destCol && capRow == m.capRow
+                     && capCol == m.capCol && chainMove == m.chainMove && isKing == m.isKing;
     bool returnMe = false;
     if(this->getNextChainMove() != nullptr && m.nextChainMove != nullptr) {
         returnMe = (*this->getNextChainMove()) == (*m.nextChainMove);
-    }
-    else if(this->getNextChainMove() == nullptr && m.nextChainMove == nullptr){
+    } else if(this->getNextChainMove() == nullptr && m.nextChainMove == nullptr){
         returnMe = true;
     }
-    return returnMe && curRow == m.curRow && destRow == m.destRow
-           && destCol == m.destCol && capRow == m.capRow
-           && capCol == m.capCol && chainMove == m.chainMove && isKing == m.isKing;
+    return returnMe && returnMe1;
 }
 
 int Move::getCurRow() {

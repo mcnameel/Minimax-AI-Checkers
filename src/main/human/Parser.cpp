@@ -21,14 +21,14 @@ Move *Parser::getMove(Board *boardState) {
                   << "[a-h][0-7]->[a-h][0-7]: ";
         std::cin >> in;
     }
-    return convertInput(in);
+    return convertInput(in, boardState);
 };
 
 bool Parser::validateInput(std::string in) {
     return (std::regex_match(in, std::regex("([a-h][0-7])(->[a-h][0-7])*")));
 }
 
-Move *Parser::convertInput(std::string in) {
+Move *Parser::convertInput(std::string in, Board *boardState) {
     int offset = 4;
     int numOfMoves = static_cast<int>((in.size() - 2) / offset);
     int indexRow1 = 1;
@@ -44,7 +44,7 @@ Move *Parser::convertInput(std::string in) {
                               in.at(indexRow2 + (offset * i)) - ROW_SHIFT,
                               in.at(indexCol2 + (offset * i)) - COLUMN_SHIFT,
                               getColor());
-        Rules::crownMe(temp);
+        Rules::crownMe(temp, boardState);
 
         if(i == 0) {
             returnMe = lastMove = temp;

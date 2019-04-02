@@ -40,6 +40,142 @@ bool Rules::legalMove(Move *move, Board *boardState) {
     return legalMove;
 }
 
+std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
+    auto *returnMe = new std::vector<Move *>();
+    std::vector<Checker *> *pieces;
+    // if the last move was red get the white pieces else vice versa
+    if (boardState->getTurn() == RED) {
+        pieces = boardState->getRedPieces();
+    } else {
+        pieces = boardState->getWhitePieces();
+    }
+    // iterate through each piece and check if any of its moves is a capture
+    for (auto &piece : *pieces) {
+        auto *jumps = getAllJumpsAtPos(boardState, piece);
+        // now need a function to
+        for (auto &jump : *jumps) {
+            returnMe->push_back(jump);
+        }
+        delete jumps;
+    }
+    if (returnMe->empty()) {
+        for (auto &piece : *pieces) {
+            auto *moves = getMovesAtPos(piece->getRow(), piece->getCol(), boardState);
+            for (auto &move : *moves) {
+                returnMe->push_back(move);
+            }
+            delete moves;
+        }
+    }
+    return returnMe;
+}
+
+std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker) {
+    static int counter = 0;
+    counter++;
+    auto *returnMe = getJumpsAtPos(boardState, checker);
+
+    // holds the jumps successor jumps of each move
+    auto* successorJumps = new std::vector<Move*>();
+    // hols the jumps that have a next jump available but do not have them added yet
+    std::vector<Move*> incompleteJumps;
+
+    // for each jump that is found check if that jump has a multicapture available
+    for(auto &jump: *returnMe) {
+        Board* boardCopy = boardState->copy();
+        // push the jump to the mock board
+        boardCopy->move(jump, false);
+
+        //create a fake checker which is used to check if there is a capture available
+        auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
+
+        // for the current jump get all of the jumps it has available
+        std::vector<Move *> * jumps;
+        if(jump->getKingMove()) {
+            jumps = new std::vector<Move*>();
+        } else {
+            jumps = getAllJumpsAtPos(boardCopy, mockChecker);
+        }
+        // if the move has next jump available add the incomplete jump to the
+        // vector and get all the jumps available to it
+        if(!jumps->empty()) {
+            incompleteJumps.push_back(jump);
+            for (auto &nextJump : *jumps) {
+                Move* jumpCopy = jump->copy();
+                jumpCopy->setNextChainMove(nextJump);
+                successorJumps->push_back(jumpCopy);
+            }
+        }
+        delete boardCopy;
+        delete mockChecker;
+        delete jumps;
+    }
+    // for each jump that has a multijump available that has not been found yet
+    // remove this jump from the return list
+    for(int i = 0; i < incompleteJumps.size(); ++i) {
+        Move *incJump = incompleteJumps[i];
+        for(int j = 0; j < returnMe->size(); ++j) {
+            Move *jump = (*returnMe)[j];
+            if(*jump == *incJump) {
+                delete jump;
+                returnMe->erase(returnMe->begin() + j);
+            }
+        }
+    }
+    returnMe = combine(returnMe, successorJumps);
+    delete successorJumps;
+
+    return returnMe;
+}
+
+std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
+    Color color = checker->getColor();
+    auto *returnMe = new std::vector<Move*>();
+
+    // check the possible moves for a player1 piece, else check for player2
+    if(color == RED) {
+        Move *LLJump = getLLJump(checker, boardState);
+        if(LLJump != nullptr) {
+            returnMe->push_back(LLJump);
+        }
+        Move *LRJump = getLRJump(checker, boardState);
+        if(LRJump != nullptr) {
+            returnMe->push_back(LRJump);
+        }
+        if(checker->isKing()) {
+            Move *ULJump = getULJump(checker, boardState);
+            if(ULJump != nullptr) {
+                returnMe->push_back(ULJump);
+            }
+            Move *URJump = getURJump(checker, boardState);
+            if(URJump != nullptr) {
+                returnMe->push_back(URJump);
+            }
+        }
+    } else {
+        // do the same with player2 but in the opposite direction
+        Move *ULJump = getULJump(checker, boardState);
+        if(ULJump != nullptr) {
+            returnMe->push_back(ULJump);
+        }
+        Move *URJump = getURJump(checker, boardState);
+        if(URJump != nullptr) {
+            returnMe->push_back(URJump);
+        }
+        if(checker->isKing()) {
+            Move *LLJump = getLLJump(checker, boardState);
+            if (LLJump != nullptr) {
+                returnMe->push_back(LLJump);
+            }
+            Move *LRJump = getLRJump(checker, boardState);
+            if (LRJump != nullptr) {
+                returnMe->push_back(LRJump);
+            }
+        }
+    }
+    return returnMe;
+}
+
 bool Rules::validSpace(int row, int col, Board* boardState) {
     return Rules::playableSpaces[row][col] && !boardState->contains(row, col);
 }
@@ -54,6 +190,7 @@ bool Rules::validCapture(Move *move, Board* boardState) {
     }
     // else if board contains a piece at the cap space
     else if (boardState->contains(capRow, capCol)) {
+        // check that it is an opponents piece
         if (move->getColor() == boardState->getAt(capRow, capCol)->getColor()) {
             returnMe = false;
         }
@@ -90,148 +227,6 @@ bool Rules::isCapture(Move *m) {
     return returnMe;
 }
 
-std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
-    std::vector<Move*>* returnMe;
-    int row = checker->getRow();
-    int col = checker->getCol();
-
-    Color color = checker->getColor();
-
-    // check the possible moves for a player1 piece, else check for player2
-    if(color == RED) {
-        returnMe = getDownJumps(row, col, boardState);
-        if(checker->isKing()) {
-            returnMe = combine(returnMe, getUpJumps(row, col, boardState));
-        }
-    } else {
-        // do the same with player2 but in the opposite direction
-        returnMe = getUpJumps(row, col, boardState);
-        if(checker->isKing())
-            returnMe = combine(returnMe, getDownJumps(row, col, boardState));
-    }
-    // holds the jumps successor jumps of each move
-    auto* successorJumps = new std::vector<Move*>();
-    // hols the jumps that have a next jump available but do not have them added yet
-    std::vector<Move*> incompleteJumps;
-
-    // for each jump that is found check if that jump has a multicapture available
-    for(auto &jump: *returnMe) {
-        Board* boardCopy = boardState->copy();
-        // push the jump to the mock board
-        boardCopy->move(jump, false);
-
-        //create a fake checker which is used to check if there is a capture available
-        auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
-
-        // for the current jump get all of the jumps it has available
-        std::vector<Move *> * jumps;
-        if(jump->getKingMove()) {
-            jumps = new std::vector<Move*>();
-        } else {
-            jumps = getJumpsAtPos(boardCopy, mockChecker);
-        }
-        // if the move has next jump available add the incomplete jump to the
-        // vector and get all the jumps available to it
-        if(!jumps->empty()) {
-            incompleteJumps.push_back(jump);
-            for (auto &nextJump : *jumps) {
-                Move* jumpCopy = jump->copy();
-                jumpCopy->setNextChainMove(nextJump);
-                successorJumps->push_back(jumpCopy);
-            }
-        }
-        delete boardCopy;
-        delete mockChecker;
-        delete jumps;
-    }
-    // for each jump that has a multijump available that has not been found yet
-    // remove this jump from the return list
-    for(int i = 0; i < incompleteJumps.size(); ++i) {
-        Move *incJump = incompleteJumps[i];
-        for(int j = 0; j < returnMe->size(); ++j) {
-            Move *jump = (*returnMe)[j];
-            if(*jump == *incJump) {
-                delete jump;
-                returnMe->erase(returnMe->begin() + j);
-            }
-        }
-    }
-    returnMe = combine(returnMe, successorJumps);
-    delete successorJumps;
-
-    return returnMe;
-}
-
-std::vector<Move *>* Rules::getUpJumps(int row, int col, Board* boardState) {
-    auto *returnMe = new std::vector<Move *>();
-    Color color = boardState->getTurn();
-
-    int upRow = row + 2;
-    int rtCol = col + 2;
-    int ltCol = col - 2;
-    if (upRow < Board::getBOARDHEIGHT()) {
-        if (ltCol >= 0) {
-            // Upper left move
-            Move *ULMove = new Move(row, col, row + 2, col - 2,
-                                    row + 1, col - 1, color);
-            crownMe(ULMove);
-
-            if (validCapture(ULMove, boardState)) {
-                returnMe->push_back(ULMove);
-            } else
-                delete ULMove;
-        }
-        if(rtCol < Board::getBOARDWIDTH()) {
-            // Upper right move
-            Move *URMove = new Move(row, col, row + 2, col + 2,
-                                    row + 1, col + 1, color);
-            crownMe(URMove);
-
-            if (validCapture(URMove, boardState)) {
-                returnMe->push_back(URMove);
-            } else
-                delete URMove;
-        }
-    }
-    return returnMe;
-}
-
-std::vector<Move *> * Rules::getDownJumps(int row, int col, Board *boardState) {
-    auto* returnMe = new std::vector<Move*>();
-    Color color = boardState->getTurn();
-
-    int downRow = row - 2;
-    int rtCol = col + 2;
-    int ltCol = col - 2;
-    if (downRow >= 0) {
-        if (ltCol >= 0) {
-            // Lower left move
-            Move *LLMove = new Move(row, col, row - 2, col - 2,
-                                    row - 1, col - 1, color);
-            crownMe(LLMove);
-            // if it is a valid capture then add it to the set of moves
-            if(validCapture(LLMove, boardState)) {
-                returnMe->push_back(LLMove);
-            } else
-                delete LLMove;
-        }
-        if(rtCol < Board::getBOARDWIDTH()) {
-            // Lower right move
-            Move* LRMove = new Move(row, col, row - 2, col + 2,
-                                    row - 1, col + 1, color);
-            crownMe(LRMove);
-
-
-            if(validCapture(LRMove, boardState)) {
-                returnMe->push_back(LRMove);
-            } else
-                delete LRMove;
-        }
-    }
-
-    return returnMe;
-}
-
 std::vector<Move*>* Rules::combine(std::vector<Move*>* vec1, std::vector<Move*>* vec2) {
     for(auto &move : *vec2) {
         vec1->push_back(move);
@@ -247,36 +242,6 @@ bool Rules::validMultiCapture(Move *move, Board* boardState) {
             move->getDestCol() == newMove->getCurCol());
 
     return legal;
-}
-
-std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
-    auto *returnMe = new std::vector<Move *>();
-    std::vector<Checker *> *pieces;
-    // if the last move was red get the white pieces else vice versa
-    if (boardState->getTurn() == RED) {
-        pieces = boardState->getRedPieces();
-    } else {
-        pieces = boardState->getWhitePieces();
-    }
-    // iterate through each piece and check if any of its moves is a capture
-    for (auto &piece : *pieces) {
-        auto *jumps = getJumpsAtPos(boardState, piece);
-        // now need a function to
-        for (auto &jump : *jumps) {
-            returnMe->push_back(jump);
-        }
-        delete jumps;
-    }
-    if (returnMe->empty()) {
-        for (auto &piece : *pieces) {
-            auto *moves = getMovesAtPos(piece->getRow(), piece->getCol(), boardState);
-            for (auto &move : *moves) {
-                returnMe->push_back(move);
-            }
-            delete moves;
-        }
-    }
-    return returnMe;
 }
 
 std::vector<Move*>* Rules::getMovesAtPos(int row, int col, Board* boardState) {
@@ -312,7 +277,7 @@ std::vector<Move *>* Rules::getUpMoves(int row, int col, Board* boardState) {
             int destCol = col - 1;
             // Upper left move
             Move *ULMove = new Move(row, col, destRow, destCol, -1, -1, color);
-            crownMe(ULMove);
+            crownMe(ULMove, boardState);
             if (validSpace(destRow, destCol, boardState)
                 && legalDirection(ULMove, boardState)) {
                 returnMe->push_back(ULMove);
@@ -324,7 +289,7 @@ std::vector<Move *>* Rules::getUpMoves(int row, int col, Board* boardState) {
             int destCol = col + 1;
             // Upper right move
             Move *URMove = new Move(row, col, destRow, destCol, -1, -1, color);
-            crownMe(URMove);
+            crownMe(URMove, boardState);
             if (validSpace(destRow, destCol, boardState) && legalDirection(URMove, boardState)) {
                 returnMe->push_back(URMove);
             } else
@@ -349,7 +314,7 @@ std::vector<Move*>* Rules::getDownMoves(int row, int col, Board* boardState) {
             // Lower left move
             Move *LLMove = new Move(row, col, destRow, destCol,
                                     -1, -1, color);
-            crownMe(LLMove);
+            crownMe(LLMove, boardState);
             if (validSpace(destRow, destCol, boardState)
                 && legalDirection(LLMove, boardState)) {
                 returnMe->push_back(LLMove);
@@ -362,7 +327,7 @@ std::vector<Move*>* Rules::getDownMoves(int row, int col, Board* boardState) {
             // Lower right move
             Move* LRMove = new Move(row, col, destRow, destCol,
                                     -1, -1, color);
-            crownMe(LRMove);
+            crownMe(LRMove, boardState);
             if (validSpace(destRow, destCol, boardState)
                 && legalDirection(LRMove, boardState)) {
                 returnMe->push_back(LRMove);
@@ -408,7 +373,7 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     if(isKing)
         mockChecker->makeKing();
 
-    std::vector<Move *> *multiJumps = getJumpsAtPos(boardCopy, mockChecker);
+    std::vector<Move *> *multiJumps = getAllJumpsAtPos(boardCopy, mockChecker);
     bool hasJumps = !multiJumps->empty();
     bool crowned = false;
     if(!isKing) {
@@ -451,47 +416,192 @@ bool Rules::legalDirection(Move *move, Board *boardState) {
     return legalMove;
 }
 
-bool Rules::crownMe(Move *move) {
+bool Rules::crownMe(Move *move, Board *boardState) {
     bool crowned = false;
-    if ((move->getDestRow() == 7 && move->getColor() == WHITE) ||
-        (move->getDestRow() == 0 && move->getColor() == RED)) {
+    Checker *checker = boardState->getAt(move->getCurRow(), move->getCurCol());
+
+    if (!checker->isKing() &&
+            ((move->getDestRow() == 7 && move->getColor() == WHITE)
+            || (move->getDestRow() == 0 && move->getColor() == RED))) {
         move->setKingMove(true);
         crowned = true;
     }
     return crowned;
 }
-/*
-Move *Rules::getDLJump(int row, int col, Board *boardState) {
-    Move *returnMe;
-    Color color = boardState->getTurn();
 
-    int upRow = row + 2;
-    int rtCol = col + 2;
+
+
+Move *Rules::getLLJump(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int downRow = row - 2;
     int ltCol = col - 2;
-    if (upRow < Board::getBOARDHEIGHT()) {
-        if (ltCol >= 0) {
-            // Upper left move
-            Move *ULMove = new Move(row, col, row + 2, col - 2,
-                                    row + 1, col - 1, color);
-            crownMe(ULMove);
+    if (downRow >= 0 && ltCol >= 0) {
+        // Upper left move
+        Move *LLMove = new Move(row, col, downRow, ltCol,
+                                row - 1, col - 1, color);
+        crownMe(LLMove, boardState);
 
-            if (validCapture(ULMove, boardState)) {
-                returnMe->push_back(ULMove);
-            } else
-                delete ULMove;
-        }
-        if(rtCol < Board::getBOARDWIDTH()) {
-            // Upper right move
-            Move *URMove = new Move(row, col, row + 2, col + 2,
-                                    row + 1, col + 1, color);
-            crownMe(URMove);
-
-            if (validCapture(URMove, boardState)) {
-                returnMe->push_back(URMove);
-            } else
-                delete URMove;
+        if (validCapture(LLMove, boardState)) {
+            returnMe = LLMove;
+        } else {
+            delete LLMove;
         }
     }
     return returnMe;
 }
-*/
+
+Move *Rules::getLRJump(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int downRow = row - 2;
+    int rtCol = col + 2;
+    if (downRow >= 0 && rtCol <= Board::getBOARDWIDTH()) {
+        Move *LRMove = new Move(row, col, downRow, rtCol,
+                                row - 1, col + 1, color);
+        crownMe(LRMove, boardState);
+
+        if (validCapture(LRMove, boardState)) {
+            returnMe = LRMove;
+        } else {
+            delete LRMove;
+        }
+    }
+    return returnMe;
+}
+
+Move *Rules::getULJump(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int upRow = row + 2;
+    int ltCol = col - 2;
+    if (upRow <= Board::getBOARDHEIGHT() && ltCol >= 0) {
+        // Upper left move
+        Move *ULMove = new Move(row, col, upRow, ltCol,
+                                row + 1, col - 1, color);
+        crownMe(ULMove, boardState);
+
+        if (validCapture(ULMove, boardState)) {
+            returnMe = ULMove;
+        } else {
+            delete ULMove;
+        }
+    }
+    return returnMe;
+}
+
+Move *Rules::getURJump(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int upRow = row + 2;
+    int rtCol = col + 2;
+    if (upRow <= Board::getBOARDHEIGHT() && rtCol <= Board::getBOARDWIDTH()) {
+        Move *URMove = new Move(row, col, upRow, rtCol,
+                                row + 1, col + 1, color);
+        crownMe(URMove, boardState);
+
+        if (validCapture(URMove, boardState)) {
+            returnMe = URMove;
+        } else {
+            delete URMove;
+        }
+    }
+    return returnMe;
+}
+
+Move *Rules::getLLMove(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int downRow = row - 1;
+    int ltCol = col - 1;
+    if (downRow >= 0 && ltCol >= 0) {
+        int destRow = row - 1;
+        int destCol = col - 1;
+        // Lower left move
+        Move *LLMove = new Move(row, col, destRow, destCol,
+                                -1, -1, color);
+        crownMe(LLMove, boardState);
+        if (validSpace(destRow, destCol, boardState)
+            && legalDirection(LLMove, boardState)) {
+            returnMe = LLMove;
+        } else
+            delete LLMove;
+    }
+    return returnMe;
+}
+
+Move *Rules::getLRMove(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int downRow = row - 1;
+    int rtCol = col + 1;
+    if (downRow >= 0 && rtCol <= Board::getBOARDWIDTH()) {
+        int destRow = row - 1;
+        int destCol = col + 1;
+        // Lower right move
+        Move* LRMove = new Move(row, col, destRow, destCol,
+                                -1, -1, color);
+        crownMe(LRMove, boardState);
+        if (validSpace(destRow, destCol, boardState)
+            && legalDirection(LRMove, boardState)) {
+            returnMe = LRMove;
+        } else
+            delete LRMove;
+    }
+    return returnMe;
+}
+
+Move *Rules::getULMove(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int upRow = row + 2;
+    int ltCol = col - 2;
+    if (upRow <= Board::getBOARDHEIGHT() && ltCol >= 0) {
+        int destRow = row + 1;
+        int destCol = col - 1;
+        // Upper left move
+        Move *ULMove = new Move(row, col, destRow, destCol, -1, -1, color);
+        crownMe(ULMove, boardState);
+        if (validSpace(destRow, destCol, boardState)
+            && legalDirection(ULMove, boardState)) {
+            returnMe = ULMove;
+        } else
+            delete ULMove;
+    }
+    return returnMe;
+}
+
+Move *Rules::getURMove(Checker *c, Board *boardState) {
+    Move *returnMe = nullptr;
+    Color color = c->getColor();
+    int row = c->getRow();
+    int col = c->getCol();
+    int upRow = row + 2;
+    int rtCol = col + 2;
+    if (upRow <= Board::getBOARDHEIGHT() && rtCol <= Board::getBOARDWIDTH()) {
+        int destRow = row + 1;
+        int destCol = col + 1;
+        // Upper right move
+        Move *URMove = new Move(row, col, destRow, destCol, -1, -1, color);
+        crownMe(URMove, boardState);
+        if (validSpace(destRow, destCol, boardState) && legalDirection(URMove, boardState)) {
+            returnMe = URMove;
+        } else
+            delete URMove;
+    }
+    return returnMe;
+}

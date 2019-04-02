@@ -13,7 +13,7 @@
  * holding the pieces of a specific color
  @setup:
    -------------------
-7 |   |   | r |   |   |
+7 |   |   | R |   |   |
   |-------------------|
 6 |   | w |   | w |   |
   |-------------------|
@@ -24,9 +24,9 @@
 5 |   |   |   |   |   |
    -------------------
     d   e   f   g    h
-White's turn
+Red's turn
  */
-TEST_CASE("Rules::getAllLegalMoves | multicapture landing in starting space") {
+TEST_CASE("Rules::getAllLegalMoves | red multicapture landing in starting space") {
     auto *c1 = new Checker(RED, 7, 5);
     c1->makeKing();
     auto *c2 = new Checker(WHITE, 6, 4);
@@ -72,6 +72,121 @@ TEST_CASE("Rules::getAllLegalMoves | multicapture landing in starting space") {
         found2 = true;
     }
     REQUIRE((found1 && found2));
+}
+
+/**
+ * Check that when a piece is captured that it is removed from the vector
+ * holding the pieces of a specific color
+ @setup:
+   -------------------
+7 |   |   | W |   |   |
+  |-------------------|
+6 |   | r |   | r |   |
+  |-------------------|
+7 |   |   |   |   |   |
+  |-------------------|
+6 |   | r |   | r |   |
+  |-------------------|
+5 |   |   |   |   |   |
+   -------------------
+    d   e   f   g    h
+White's turn
+ */
+TEST_CASE("Rules::getAllLegalMoves | white multicapture landing in starting space") {
+    auto *w1 = new Checker(WHITE, 7, 5);
+    w1->makeKing();
+    auto *r1 = new Checker(RED, 6, 4);
+    auto *r2 = new Checker(RED, 6, 6);
+    auto *r3 = new Checker(RED, 4, 4);
+    auto *r4 = new Checker(RED, 4, 6);
+    auto pieces = new std::vector<Checker *>();
+    pieces->push_back(w1);
+    pieces->push_back(r1);
+    pieces->push_back(r2);
+    pieces->push_back(r3);
+    pieces->push_back(r4);
+    auto *board = new Board(pieces, WHITE);
+
+    auto *expected1 = new Move(7, 5, 5, 3, 6, 4, WHITE);
+    auto *m2 = new Move(5, 3, 3, 5, 4, 4, WHITE);
+    expected1->setNextChainMove(m2);
+    auto *m3 = new Move(3, 5, 5, 7, 4, 6, WHITE);
+    m2->setNextChainMove(m3);
+    auto *m4 = new Move(5, 7, 7, 5, 6, 6, WHITE);
+    m3->setNextChainMove(m4);
+
+    Move *expected2 = new Move(7, 5, 5, 7, 6, 6, WHITE);
+    m2 = new Move(5, 7, 3, 5, 4, 6, WHITE);
+    expected2->setNextChainMove(m2);
+    m3 = new Move(3, 5, 5, 3, 4, 4, WHITE);
+    m2->setNextChainMove(m3);
+    m4 = new Move(5, 3, 7, 5, 6, 4, WHITE);
+    m3->setNextChainMove(m4);
+
+    std::vector<Move *> *actual = Rules::getAllLegalMoves(board);
+
+    bool found1 = false;
+    bool found2 = false;
+
+    Move *actual1 = (*actual)[0];
+    Move *actual2 = (*actual)[1];
+
+    if(*expected1 == *actual1 || *expected1 == *actual2) {
+        found1 = true;
+    }
+    if(*expected2 == *actual1 || *expected2 == *actual2) {
+        found2 = true;
+    }
+    REQUIRE((found1 && found2));
+}
+
+
+/**
+ * Check that when a piece is captured that it is removed from the vector
+ * holding the pieces of a specific color
+ @setup:
+   -------------------
+7 |   |   |   |   |   |
+  |-------------------|
+6 |   | r |   | r |   |
+  |-------------------|
+7 |   |   |   |   | w |
+  |-------------------|
+6 |   | r |   | r |   |
+  |-------------------|
+5 |   |   |   |   |   |
+   -------------------
+    d   e   f   g    h
+White's turn
+ */
+TEST_CASE("Rules::getAllLegalMoves | white multicapture ending in kingmove") {
+    /* set up */
+    auto *w1 = new Checker(WHITE, 5, 7);
+    auto *r1 = new Checker(RED, 6, 4);
+    auto *r2 = new Checker(RED, 6, 6);
+    auto *r3 = new Checker(RED, 4, 4);
+    auto *r4 = new Checker(RED, 4, 6);
+    auto pieces = new std::vector<Checker *>();
+    pieces->push_back(w1);
+    pieces->push_back(r1);
+    pieces->push_back(r2);
+    pieces->push_back(r3);
+    pieces->push_back(r4);
+    auto *board = new Board(pieces, WHITE);
+
+    /* condition */
+    auto *expected = new Move(5, 7, 7, 5, 6, 6, WHITE);
+    expected->setKingMove(true);
+
+    Move *actual = (*Rules::getAllLegalMoves(board))[0];
+
+    bool found = false;
+
+    if(*expected == *actual) {
+        found = true;
+    }
+
+    REQUIRE(found);
 }
 
 

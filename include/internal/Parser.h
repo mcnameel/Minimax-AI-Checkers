@@ -41,7 +41,7 @@ private:
      * @param in input string
      * @return a pointer to a move object
      */
-    Move* convertInput(std::string in);
+    Move *convertInput(std::string in, Board *boardState);
 
 public:
     /**
