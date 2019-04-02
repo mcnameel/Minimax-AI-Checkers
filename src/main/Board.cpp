@@ -136,8 +136,9 @@ void Board::move(Move *move, bool changeTurn) {
         c->setCol(temp->getDestCol());
 
         // if the move is a king move then set the piece to be a king
-        if (temp->getKingMove())
+        if (temp->getKingMove()) {
             c->makeKing();
+        }
 
         // Check if piece should be deleted
         if (temp->getCapCol() != -1) {
@@ -153,12 +154,18 @@ void Board::move(Move *move, bool changeTurn) {
         Color curTurn = (getTurn() == RED) ? WHITE : RED;
         setTurn(curTurn);
 
+        std::vector<Move*> *possibleMoves = Rules::getAllLegalMoves(this);
         // check if the game is over
-        if(Rules::getAllLegalMoves(this)->empty()) {
+        if(possibleMoves->empty()) {
             setGameOver(true);
         }
+        // clean up
+        for(int i = 0; i < possibleMoves->size(); ++i) {
+            delete (*possibleMoves)[i];
+        }
+        delete possibleMoves;
     }
-    // clean up
+
     // if lastMove was not a chain move then set it to be deleted
     if(lastMove != nullptr && !lastMove->isChainMove()) {
         delete lastMove;
