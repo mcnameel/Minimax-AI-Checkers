@@ -114,7 +114,6 @@ private:
     // set all the spaces to default to false and then change them in the
     // constructors
     static bool playableSpaces[8][8];
-    static std::vector<Move*>* copy(std::vector<Move*>* vector);
     /* vars */
     static std::vector<Move*>* getDownMoves(int row, int col, Board* boardState);
     static std::vector<Move *>* getUpMoves(int row, int col, Board* boardState);

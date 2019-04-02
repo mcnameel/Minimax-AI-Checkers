@@ -19,13 +19,13 @@ private:
     // the value of the node
     int value;
     // indicates this is a leaf
-    bool terminal = false;
+    bool terminal;
     // the move which this node represents
     Move* move;
     // the successors of this node
-    std::vector<Node*>* successors = nullptr;
+    std::vector<Node*>* successors;
     // the board state of this node
-    Board* boardState = nullptr;
+    Board* boardState;
 
 public:
     /* constructors and destructor */

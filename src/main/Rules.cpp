@@ -91,7 +91,7 @@ bool Rules::isCapture(Move *m) {
 }
 
 std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
-    auto * returnMe = new std::vector<Move*>();
+    std::vector<Move*>* returnMe;
     int row = checker->getRow();
     int col = checker->getCol();
 
@@ -157,7 +157,7 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
         }
     }
     returnMe = combine(returnMe, successorJumps);
-    //delete successorJumps;
+    delete successorJumps;
 
     return returnMe;
 }
@@ -229,7 +229,6 @@ std::vector<Move *> * Rules::getDownJumps(int row, int col, Board *boardState) {
         }
     }
 
-
     return returnMe;
 }
 
@@ -261,8 +260,7 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
     }
     // iterate through each piece and check if any of its moves is a capture
     for (auto &piece : *pieces) {
-        Board * boardCopy = boardState->copy();
-        auto *jumps = getJumpsAtPos(boardCopy, piece);
+        auto *jumps = getJumpsAtPos(boardState, piece);
         // now need a function to
         for (auto &jump : *jumps) {
             returnMe->push_back(jump);
@@ -278,9 +276,7 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
             delete moves;
         }
     }
-
     return returnMe;
-
 }
 
 std::vector<Move*>* Rules::getMovesAtPos(int row, int col, Board* boardState) {
@@ -290,7 +286,6 @@ std::vector<Move*>* Rules::getMovesAtPos(int row, int col, Board* boardState) {
 
     // check the possible moves for a player2 piece, else check for white
     if(color == RED) {
-
         returnMe = getDownMoves(row, col, boardState);
         if(c->isKing()) {
             returnMe = combine(returnMe, getUpMoves(row, col, boardState));
@@ -434,6 +429,7 @@ bool Rules::requiredMultiCapture(Move *move, Board *boardState, bool isKing) {
     for (int i = 0; i < multiJumps->size(); ++i) {
         delete (*multiJumps)[i];
     }
+    delete boardCopy;
     delete mockChecker;
     delete multiJumps;
 

@@ -8,21 +8,22 @@
 
 Node::Node(Board *boardState, std::vector<Node *> *successors, Move *move) {
     this->boardState = boardState;
-    this->successors = successors;
     this->move = move;
+    this->successors = successors;
     this->terminal = false;
 }
 
 Node::Node(Board *boardState, Move *move) {
     this->boardState = boardState;
-    this->terminal = true;
     this->move = move;
+    this->successors = nullptr;
+    this->terminal = true;
 }
 
 Node::~Node() {
     if(successors != nullptr) {
         for (int i = 0; i < successors->size(); i++) {
-            delete successors->at(i);
+            delete (*successors)[i];
         }
     }
 
@@ -137,7 +138,6 @@ Node *Node::seekAndRemoveSuccessor(Move *findMe, Node *searchMe) {
     }
     throw NodeNotFoundException();
 }
-
 
 std::vector<Node *>* Node::getSuccessors() {
     return successors;
