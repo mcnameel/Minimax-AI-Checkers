@@ -90,7 +90,7 @@ private:
     /* vars */
     static std::vector<Move*>* getDownMoves(int row, int col, Board* boardState);
     static std::vector<Move *>* getUpMoves(int row, int col, Board* boardState);
-    static std::vector<Move*>* getMovesAtPos(int row, int col, Board* boardState);
+    static std::vector<Move*>* getMovesAtPos(Checker *checker, Board* boardState);
     static bool legalDirection(Move* move, Board* boardState);
 
     /**
