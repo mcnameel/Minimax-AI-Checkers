@@ -20,7 +20,7 @@ private:
     const std::string PLAYER_TWO_COLOR = "White";
     Color turn = RED;
     // Data structure representing the board
-    Checker* grid[8][8] = {nullptr};
+    Checker* grid[8][8] = {{nullptr}};
     std::vector<std::vector<Checker*>>* boardGrid = new std::vector<std::vector<Checker*>>();
     std::vector<Move*>* movesToDelete = new std::vector<Move*>();
     Move* lastMove = nullptr;
