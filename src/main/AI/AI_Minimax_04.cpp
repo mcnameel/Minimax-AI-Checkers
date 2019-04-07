@@ -4,7 +4,6 @@
 
 #include "../../../include/internal/AI_Minimax_04.h"
 
-
 int AI_Minimax_04::evaluateBoardState(Node *node) {
     int KING_POINT_VAL = 22;
     int MAN_POINT_VAL = 6;

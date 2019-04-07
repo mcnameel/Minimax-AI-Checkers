@@ -89,8 +89,6 @@ Move* GameManager::getLegalMove() {
     return currentMove;
 }
 
-
-
 Move *GameManager::getMove(Board *bs) {
     Move* currentMove;
 

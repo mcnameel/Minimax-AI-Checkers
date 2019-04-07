@@ -20,14 +20,6 @@ Node::Node(Board *boardState, Move *move) {
     this->terminal = true;
 }
 
-Node::Node() {
-    this->boardState = nullptr;
-    this->move = nullptr;
-    this->successors = nullptr;
-    this->terminal = false;
-    this->value = 0;
-}
-
 Node::~Node() {
     if(successors != nullptr) {
         for (int i = 0; i < successors->size(); i++) {
@@ -82,115 +74,6 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     }
     delete moves;
     return new Node(bs, successors, move);
-}
-
-void Node::createTreeWithThreads(Board *bs, int depth, Move *move, std::promise<Node *> *promisedNode) {
-    static int orgDepth = depth;
-    static int i = 0;
-    /* return condition 1 */
-    // if depth is zero we have reached the target depth
-    // return leaf node
-    if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++i;
-        promisedNode->set_value(new Node(bs, move));
-    }
-
-    /* return condition 2 */
-    // there are no moves left for a player to make, aka, they have lost
-    // return leaf node
-    auto *moves = Rules::getAllLegalMoves(bs);
-    if (moves->empty()) {
-        ++i;
-        bs->setGameOver(true);
-        delete moves;
-        promisedNode->set_value(new Node(bs, move));
-    }
-
-    /* return condition 3 */
-    // there are moves left to make by a both players and we have not reached
-    // target depth
-    // spawn a new thread to handle recusively call the createTree function on
-    // each of the moves that can be made
-    // return a node with successors populated
-    std::mutex newSuccessors_mutex;
-    auto *newSuccessors = new std::vector<Node*>();
-    std::vector<std::thread> threads;
-    Move *newMove = nullptr;
-    for(int index = 0; index < moves->size(); index++) {
-        // get the move from the list of moves
-        newMove = moves->at(static_cast<unsigned long>(index));
-        // copy the board state so the move can be safely implemented
-        Board *succBS = bs->copy();
-        succBS->move(newMove, true);
-        // start a new async thread to resursively create the tree w/o spawning
-        // more threads
-        std::future<Node *> future = std::async(createTree, succBS, depth, newMove);
-        newSuccessors->emplace(newSuccessors->begin() + index, future.get());
-    }
-    if(depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << i << std::endl;
-        i = 0;
-    }
-    for (auto & delMove : *moves) {
-        delete delMove;
-    }
-    delete moves;
-    promisedNode->set_value(new Node(bs, newSuccessors, move));
-}
-
-Node *Node::createTreeWithThreads(Board *bs, int depth, Move *move) {
-    static int orgDepth = depth;
-    static int leafNodeCount = 0;
-    static bool spawnThreads = true;
-    /* return condition 1 */
-    // if depth is zero we have reached the target depth
-    // return leaf node
-    if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++leafNodeCount;
-        return new Node(bs, move);
-    }
-
-    /* return condition 2 */
-    // there are no moves left for a player to make, aka, they have lost
-    // return leaf node
-    auto *moves = Rules::getAllLegalMoves(bs);
-    if (moves->empty()) {
-        ++leafNodeCount;
-        bs->setGameOver(true);
-        delete moves;
-        return new Node(bs, move);
-    }
-
-    /* return condition 3 */
-    // there are moves left to make by a both players and we have not reached
-    // target depth
-    // spawn a new thread to handle recursively call the createTree function on
-    // each of the moves that can be made
-    // return a node with successors populated
-    std::mutex newSuccessors_mutex;
-    auto *newSuccessors = new std::vector<Node*>();
-    std::vector<std::thread> threads;
-    Move *newMove = nullptr;
-    for(int index = 0; index < moves->size(); index++) {
-        // get the move from the list of moves
-        newMove = moves->at(static_cast<unsigned long>(index));
-        // copy the board state so the move can be safely implemented
-        Board *succBS = bs->copy();
-        succBS->move(newMove, true);
-        // start a new async thread to resursively create the tree w/o spawning
-        // more threads
-        std::future<Node *> future = std::async(createTree, succBS, depth, newMove);
-        newSuccessors->emplace(newSuccessors->begin() + index, future.get());
-    }
-    if(depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << leafNodeCount << std::endl;
-        leafNodeCount = 0;
-    }
-    /*for (auto & delMove : *moves) {
-        delete delMove;
-    }*/
-    delete moves;
-    return new Node(bs, newSuccessors, move);
 }
 
 Node *Node::appendToTree(Board *bs, int depth, Node *node) {

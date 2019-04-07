@@ -8,7 +8,6 @@
 #include "../../include/internal/Board.h"
 #include "../../include/internal/Rules.h"
 #include "../../include/internal/Node.h"
-#include "../../include/internal/NodeTree.h"
 
 /**
  * Check that when a piece is captured that it is removed from the vector
@@ -47,7 +46,7 @@ TEST_CASE("Node::createTreeWithThreads | ") {
     pieces->push_back(c7);
     auto *board = new Board(pieces, RED, nullptr);
 
-    Node *actual = Node::createTreeWithThreads(board, 2, nullptr);
+   // Node *actual = Node::createTreeWithThreads(board, 2, nullptr);
 
 
     REQUIRE(true);

@@ -27,7 +27,7 @@ Move *Parser::getMove(Board *boardState) {
 bool Parser::validateInput(std::string in) {
     bool returnMe = false;
     if(in == "quit" || in == "gg"
-        || (std::regex_match(in, std::regex("([a-h][0-7])(->[a-h][0-7])*")))) {
+       || (std::regex_match(in, std::regex("([a-h][0-7])(->[a-h][0-7])*")))) {
         returnMe = true;
     }
     return returnMe;
