@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers
+CMAKE_SOURCE_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Minimax_AI_Checkers.dir/depend.make
@@ -59,172 +59,172 @@ include CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o: ../src/main/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/main.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/main.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/main.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/main.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o: ../src/main/POCO/Checker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Checker.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Checker.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Checker.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Checker.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o: ../src/main/Board.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Board.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Board.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Board.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Board.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Board.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Board.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Board.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o: ../src/main/human/Parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/human/Parser.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/human/Parser.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/human/Parser.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/human/Parser.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o: ../src/main/POCO/Move.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Move.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Move.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/POCO/Move.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/POCO/Move.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o: ../src/main/GameManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/GameManager.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/GameManager.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/GameManager.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/GameManager.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o: ../src/main/Rules.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Rules.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Rules.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/Rules.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/Rules.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o: ../src/main/AI/AI_Minimax_01.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_01.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_01.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_01.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_01.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_01.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_01.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_01.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o: ../src/main/AI/Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/Node.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/Node.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/Node.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/Node.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o: ../src/main/AI/AI_Minimax_02.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_02.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_02.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_02.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_02.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_02.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_02.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_02.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o: ../src/main/AI/AI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o: ../src/main/AI/AI_Minimax_03.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_03.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_03.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_03.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_03.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_03.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_03.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_03.cpp.s
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o: CMakeFiles/Minimax_AI_Checkers.dir/flags.make
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o: ../src/main/AI/AI_Minimax_04.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_04.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o -c /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_04.cpp
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_04.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_04.cpp > CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.i
 
 CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_04.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/main/AI/AI_Minimax_04.cpp -o CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.s
 
 # Object files for target Minimax_AI_Checkers
 Minimax_AI_Checkers_OBJECTS = \
@@ -260,7 +260,7 @@ Minimax_AI_Checkers: CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_0
 Minimax_AI_Checkers: CMakeFiles/Minimax_AI_Checkers.dir/src/main/AI/AI_Minimax_04.cpp.o
 Minimax_AI_Checkers: CMakeFiles/Minimax_AI_Checkers.dir/build.make
 Minimax_AI_Checkers: CMakeFiles/Minimax_AI_Checkers.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Minimax_AI_Checkers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Minimax_AI_Checkers"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Minimax_AI_Checkers.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -273,6 +273,6 @@ CMakeFiles/Minimax_AI_Checkers.dir/clean:
 .PHONY : CMakeFiles/Minimax_AI_Checkers.dir/clean
 
 CMakeFiles/Minimax_AI_Checkers.dir/depend:
-	cd /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Minimax_AI_Checkers.dir/depend
 

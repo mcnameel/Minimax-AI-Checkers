@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug
+-- Build files have been written to: /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug

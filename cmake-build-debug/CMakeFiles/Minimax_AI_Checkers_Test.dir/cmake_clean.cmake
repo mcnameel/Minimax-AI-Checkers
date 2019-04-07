@@ -14,6 +14,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Board_Tests.cpp.o"
   "CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/AI_Tests.cpp.o"
   "CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Rules_Tests.cpp.o"
+  "CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Node_Tests.cpp.o"
   "Minimax_AI_Checkers_Test.pdb"
   "Minimax_AI_Checkers_Test"
 )

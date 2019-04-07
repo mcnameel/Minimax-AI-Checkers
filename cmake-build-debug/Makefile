@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers
+CMAKE_SOURCE_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -601,6 +601,33 @@ src/test/Main_Tests.cpp.s:
 	$(MAKE) -f CMakeFiles/Minimax_AI_Checkers_Test.dir/build.make CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Main_Tests.cpp.s
 .PHONY : src/test/Main_Tests.cpp.s
 
+src/test/Node_Tests.o: src/test/Node_Tests.cpp.o
+
+.PHONY : src/test/Node_Tests.o
+
+# target to build an object file
+src/test/Node_Tests.cpp.o:
+	$(MAKE) -f CMakeFiles/Minimax_AI_Checkers_Test.dir/build.make CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Node_Tests.cpp.o
+.PHONY : src/test/Node_Tests.cpp.o
+
+src/test/Node_Tests.i: src/test/Node_Tests.cpp.i
+
+.PHONY : src/test/Node_Tests.i
+
+# target to preprocess a source file
+src/test/Node_Tests.cpp.i:
+	$(MAKE) -f CMakeFiles/Minimax_AI_Checkers_Test.dir/build.make CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Node_Tests.cpp.i
+.PHONY : src/test/Node_Tests.cpp.i
+
+src/test/Node_Tests.s: src/test/Node_Tests.cpp.s
+
+.PHONY : src/test/Node_Tests.s
+
+# target to generate assembly for a file
+src/test/Node_Tests.cpp.s:
+	$(MAKE) -f CMakeFiles/Minimax_AI_Checkers_Test.dir/build.make CMakeFiles/Minimax_AI_Checkers_Test.dir/src/test/Node_Tests.cpp.s
+.PHONY : src/test/Node_Tests.cpp.s
+
 src/test/Rules_Tests.o: src/test/Rules_Tests.cpp.o
 
 .PHONY : src/test/Rules_Tests.o
@@ -686,6 +713,9 @@ help:
 	@echo "... src/test/Main_Tests.o"
 	@echo "... src/test/Main_Tests.i"
 	@echo "... src/test/Main_Tests.s"
+	@echo "... src/test/Node_Tests.o"
+	@echo "... src/test/Node_Tests.i"
+	@echo "... src/test/Node_Tests.s"
 	@echo "... src/test/Rules_Tests.o"
 	@echo "... src/test/Rules_Tests.i"
 	@echo "... src/test/Rules_Tests.s"

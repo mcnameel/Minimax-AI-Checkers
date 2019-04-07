@@ -1,4 +1,4 @@
-/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers_Test.dir
-/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir
+/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers_Test.dir
+/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/cmake-build-debug/CMakeFiles/Minimax_AI_Checkers.dir
