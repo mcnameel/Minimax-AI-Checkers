@@ -337,7 +337,7 @@ bool Rules::crownMe(Move *move, Board *boardState) {
     bool crowned = false;
     Checker *checker = boardState->getAt(move->getCurRow(), move->getCurCol());
 
-    if (checker != nullptr && !checker->isKing() &&
+    if (!checker->isKing() &&
             ((move->getDestRow() == 7 && move->getColor() == WHITE)
             || (move->getDestRow() == 0 && move->getColor() == RED))) {
         move->setKingMove(true);

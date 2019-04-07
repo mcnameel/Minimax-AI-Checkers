@@ -16,14 +16,14 @@ void runXTimes(const int timesToRun) {
         Player *player1;
         Player *player2;
         if(i < timesToRun / 2) {
-            player1 = new AI_Minimax_02(4, RED);
+            player1 = new AI_Minimax_02(6, RED);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_03(4, WHITE);
+            player2 = new AI_Minimax_03(6, WHITE);
             //Player *player2 = new Parser(WHITE);
         } else {
-            player1 = new AI_Minimax_03(4, RED);
+            player1 = new AI_Minimax_03(6, RED);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_02(4, WHITE);
+            player2 = new AI_Minimax_02(6, WHITE);
             //Player *player2 = new Parser(WHITE);
         }
         auto *game = new GameManager(board, player1, player2);
@@ -41,9 +41,9 @@ void runXTimes(const int timesToRun) {
 
 void run() {
     Board* board = new Board();
-    //auto *player1 = new AI_Minimax_03(5, RED);
-    Player *player1 = new Parser(RED);
-    auto *player2 = new AI_Minimax_03(6, WHITE);
+    auto *player1 = new AI_Minimax_03(5, RED);
+    //Player *player1 = new Parser(RED);
+    auto *player2 = new AI_Minimax_02(4, WHITE);
     //Player *player2 = new Parser(WHITE);
     auto *game = new GameManager(board, player1, player2);
     // start the game

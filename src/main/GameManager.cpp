@@ -31,7 +31,7 @@ Color GameManager::play() {
         ++turnCount;
         takeTurn();
 
-        if(isDraw(board, pieceCountDraw, turnsWithoutProfit) || turnCount > 500) {
+        if(isDraw(board, pieceCountDraw, turnsWithoutProfit) || turnCount > 250) {
             gameOver = true;
             winner = NEITHER;
         }
@@ -135,8 +135,6 @@ void GameManager::takeTurn() {
         destroyMe->push_back(curMove);
         // when we have a valid move push the move to the board
         board->move(curMove, true);
-    } else {
-        board->setGameOver(true);
     }
 }
 

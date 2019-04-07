@@ -17,20 +17,15 @@ Move *Parser::getMove(Board *boardState) {
 
     std::cin >> in;
     while(!validateInput(in)) {
-        std::cout << std::endl << "Please enter only the commands: quit, gg, or values matching the regex "
-                  << "[a-h][0-7](->[a-h][0-7])*: ";
+        std::cout << "Please enter only values matching the regex "
+                  << "[a-h][0-7]->[a-h][0-7]: ";
         std::cin >> in;
     }
     return convertInput(in, boardState);
-}
+};
 
 bool Parser::validateInput(std::string in) {
-    bool returnMe = false;
-    if(in == "quit" || in == "gg"
-        || (std::regex_match(in, std::regex("([a-h][0-7])(->[a-h][0-7])*")))) {
-        returnMe = true;
-    }
-    return returnMe;
+    return (std::regex_match(in, std::regex("([a-h][0-7])(->[a-h][0-7])*")));
 }
 
 Move *Parser::convertInput(std::string in, Board *boardState) {
@@ -43,23 +38,20 @@ Move *Parser::convertInput(std::string in, Board *boardState) {
 
     Move* returnMe;
     Move* lastMove;
-    if(in == "quit" || in == "gg") {
-        returnMe = nullptr;
-    } else {
-        for (int i = 0; i < numOfMoves; i++) {
-            Move *temp = new Move(in.at(indexRow1 + (offset * i)) - ROW_SHIFT,
-                                  in.at(indexCol1 + (offset * i)) - COLUMN_SHIFT,
-                                  in.at(indexRow2 + (offset * i)) - ROW_SHIFT,
-                                  in.at(indexCol2 + (offset * i)) - COLUMN_SHIFT,
-                                  getColor());
-            Rules::crownMe(temp, boardState);
+    for(int i = 0; i < numOfMoves; i++) {
+        Move* temp = new Move(in.at(indexRow1 + (offset * i)) - ROW_SHIFT,
+                              in.at(indexCol1 + (offset * i)) - COLUMN_SHIFT,
+                              in.at(indexRow2 + (offset * i)) - ROW_SHIFT,
+                              in.at(indexCol2 + (offset * i)) - COLUMN_SHIFT,
+                              getColor());
+        Rules::crownMe(temp, boardState);
 
-            if (i == 0) {
-                returnMe = lastMove = temp;
-            } else {
-                lastMove->setNextChainMove(temp);
-                lastMove = temp;
-            }
+        if(i == 0) {
+            returnMe = lastMove = temp;
+        }
+        else {
+            lastMove->setNextChainMove(temp);
+            lastMove = temp;
         }
     }
     return returnMe;

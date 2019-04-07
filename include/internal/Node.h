@@ -5,7 +5,9 @@
 #ifndef MINIMAX_AI_CHECKERS_NODE_H
 #define MINIMAX_AI_CHECKERS_NODE_H
 
-#include<vector>
+#include <vector>
+#include <thread>
+#include <future>
 #include "Move.h"
 #include "Board.h"
 
@@ -43,6 +45,8 @@ public:
      * @param boardState the boardstate after the move has been completed
      */
     Node(Board *boardState, Move *move);
+
+    Node();
 
     /**
      * destroys the node and deletes its fields
@@ -100,6 +104,10 @@ public:
     Move* getLastMove();
     Board* getBoardState();
     void setSuccessors(std::vector<Node *> *successors);
+
+    static void createTreeWithThreads(Board *bs, int depth, Move *move, std::promise<Node *> *promisedNode);
+
+    static Node *createTreeWithThreads(Board *bs, int depth, Move *move);
 };
 
 #endif //MINIMAX_AI_CHECKERS_NODE_H
