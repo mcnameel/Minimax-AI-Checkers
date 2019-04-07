@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Minimax_AI_Checkers_02"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers_Test">
+				<Option output="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers_Test/fast">
+				<Option output="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers">
+				<Option output="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers/fast">
+				<Option output="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/external/Catch2/catch.hpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/AI.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/AI_Minimax_01.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/AI_Minimax_02.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/AI_Minimax_03.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/AI_Minimax_04.h">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Board.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Checker.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Color.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/GameManager.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Move.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Node.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Parser.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Player.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/include/internal/Rules.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_01.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_02.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_03.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/AI_Minimax_04.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/AI/Node.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Board.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/GameManager.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/POCO/Move.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/Rules.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/human/Parser.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/main/main.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/test/AI_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/test/Board_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/test/Board_Tests.h">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/test/Main_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/src/test/Rules_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

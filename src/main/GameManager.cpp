@@ -135,6 +135,8 @@ void GameManager::takeTurn() {
         destroyMe->push_back(curMove);
         // when we have a valid move push the move to the board
         board->move(curMove, true);
+    } else {
+        board->setGameOver(true);
     }
 }
 

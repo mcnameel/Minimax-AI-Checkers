@@ -41,9 +41,9 @@ void runXTimes(const int timesToRun) {
 
 void run() {
     Board* board = new Board();
-    auto *player1 = new AI_Minimax_03(5, RED);
-    //Player *player1 = new Parser(RED);
-    auto *player2 = new AI_Minimax_02(4, WHITE);
+    //auto *player1 = new AI_Minimax_03(5, RED);
+    Player *player1 = new Parser(RED);
+    auto *player2 = new AI_Minimax_03(6, WHITE);
     //Player *player2 = new Parser(WHITE);
     auto *game = new GameManager(board, player1, player2);
     // start the game
