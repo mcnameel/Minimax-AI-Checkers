@@ -10,22 +10,22 @@ Board::Board() {
     this->lastMove = nullptr;
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
-   for(int i = 0; i < BOARDHEIGHT; ++i) {
+   for(int i = 0; i < getBOARD_HEIGHT(); ++i) {
         // iterate through each column to add the piece. For each column
         // multiply j by two then add the modulus of i to get the offset for
         // each odd column.
-       for (int j = 0; j < BOARDWIDTH / 2; ++j) {
+       for (int j = 0; j < getBOARD_WIDTH() / 2; ++j) {
             // the player2 pieces go from rows 1-3
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
-                Checker * c = new Checker(WHITE, i, 2 * j + (i % 2));
+                auto * c = new Checker(WHITE, i, 2 * j + (i % 2));
                 whitePieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
             // the player1 pieces go from rows 1-3
             else if(i > 4) {
                 // add a player1 piece to the board and to the container set
-                Checker * c = new Checker(RED, i, 2 * j + (i % 2));
+                auto * c = new Checker(RED, i, 2 * j + (i % 2));
                 redPieces->push_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
@@ -46,9 +46,9 @@ Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove) {
 }
 
 Board::~Board() {
-    for(int i = 0; i < BOARDWIDTH; i++) {
-        for (int j = 0; j < BOARDHEIGHT; ++j) {
-            delete grid[i][j];
+    for(auto & i : grid) {
+        for (auto & j : i) {
+            delete j;
         }
     }
     delete redPieces;
@@ -83,19 +83,9 @@ void Board::removePiece(Checker *c) {
     else
         deleteFromMe = getWhitePieces();
 
-
-    if(deleteFromMe->size() == 1) {
-        deleteFromMe->pop_back();
-    } else {
-        int size = static_cast<int>(deleteFromMe->size());
-        for(int i = 0; i < size; i++) {
-            Checker *curPiece = deleteFromMe->at(i);
-            if (curPiece == c) {
-                deleteFromMe->erase(deleteFromMe->begin() + i);
-                i = size;
-                //break;
-            }
-        }
+    auto it = find(deleteFromMe->begin(), deleteFromMe->end(), c);
+    if(it != deleteFromMe->end()) {
+        deleteFromMe->erase(it);
     }
 }
 
@@ -115,7 +105,8 @@ void Board::printBoard() {
     std::cout << "White: " << getWhitePieces()->size() << std::endl;
     std::cout << "    a   b   c   d   e   f   g   h    ";
     std::cout << "Red:   " << getRedPieces()->size() << std::endl;
-    std::string turn = (getTurn() == RED) ? PLAYER_ONE_COLOR : PLAYER_TWO_COLOR;
+    std::string turn = (getTurn() == RED)
+            ? getPLAYER_ONE_COLOR() : getPLAYER_TWO_COLOR();
     std::cout << turn + "'s turn" << std::endl;
 }
 
@@ -128,8 +119,6 @@ Checker* Board::getAt(int row, int col) {
 }
 
 void Board::move(Move *move, bool changeTurn) {
-    static int statI = 0;
-    statI++;
     Checker* c = grid[move->getCurRow()][move->getCurCol()];
 
     Move* temp = move;
@@ -158,6 +147,16 @@ void Board::move(Move *move, bool changeTurn) {
         }
         temp = temp->getNextChainMove();
     }
+    handTurnChange(changeTurn);
+
+    // if lastMove was not a chain move then set it to be deleted
+    if(lastMove != nullptr && !lastMove->isChainMove()) {
+        delete lastMove;
+    }
+    lastMove = move->copy();
+}
+
+void Board::handTurnChange(bool changeTurn) {
     if(changeTurn) {
         Color curTurn = (getTurn() == RED) ? WHITE : RED;
         setTurn(curTurn);
@@ -168,16 +167,10 @@ void Board::move(Move *move, bool changeTurn) {
             setGameOver(true);
         }
         // clean up
-        for(int i = 0; i < possibleMoves->size(); ++i) {
-            delete (*possibleMoves)[i];
+        for(auto &possibleMove : *possibleMoves) {
+            delete possibleMove;
         }
         delete possibleMoves;
-    }
-
-    // if lastMove was not a chain move then set it to be deleted
-    if(lastMove != nullptr && !lastMove->isChainMove()) {
-        delete lastMove;
-        lastMove = move->copy();
     }
 }
 
@@ -217,14 +210,19 @@ void Board::setGameOver(bool gameOver) {
     this->gameOver = gameOver;
 }
 
-const int Board::getBOARDHEIGHT() {
-    return BOARDHEIGHT;
+// static functions
+const int Board::getBOARD_HEIGHT() {
+    return 8;
 }
 
-const int Board::getBOARDWIDTH() {
-    return BOARDWIDTH;
+const int Board::getBOARD_WIDTH() {
+    return 8;
 }
 
+const std::string Board::getPLAYER_ONE_COLOR() {
+    return "Red";
+}
 
-
-
+const std::string Board::getPLAYER_TWO_COLOR() {
+    return "White";
+}

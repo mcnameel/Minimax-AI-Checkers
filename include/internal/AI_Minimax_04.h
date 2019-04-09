@@ -22,11 +22,6 @@ public:
     AI_Minimax_04(int lookAhead, Color color) : AI(lookAhead, color) {};
 
 private:
-    /* destructor */
-    ~AI_Minimax_04() override {
-        delete currentTree;
-    };
-
     /* methods */
     /**
      * an evaluation function where the location of a non king piece

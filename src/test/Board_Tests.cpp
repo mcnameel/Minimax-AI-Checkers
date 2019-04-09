@@ -2,7 +2,6 @@
 // Created by Luke McNamee on 2019-03-12.
 //
 
-#include "Board_Tests.h"
 #include "../../include/external/Catch2/catch.hpp"
 
 //#define CATCH_CONFIG_MAIN

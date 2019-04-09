@@ -300,3 +300,27 @@ TEST_CASE("AI_Minimax_01::getMove() | When black can win in three moves it choos
     bool returnMe = (*m1 == *m2);
     REQUIRE(returnMe);
 }
+
+TEST_CASE("AI | destructor") {
+    auto *c1 = new Checker(RED, 7, 7);
+    auto *c2 = new Checker(RED, 6, 4);
+    auto *c3 = new Checker(WHITE, 5, 5);
+    auto *c4 = new Checker(WHITE, 5, 3);
+
+    auto pieces = new std::vector<Checker *>();
+    pieces->push_back(c1);
+    pieces->push_back(c2);
+    pieces->push_back(c3);
+    pieces->push_back(c4);
+
+    auto *board = new Board(pieces, WHITE, nullptr);
+    Player *player2 = new AI_Minimax_01(2, WHITE);
+    Move *m1 = player2->getMove(board);
+    auto *m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
+    m2->setKingMove(true);
+    bool returnMe = (*m1 == *m2);
+
+    delete board;
+    delete player2;
+    REQUIRE(true);
+}

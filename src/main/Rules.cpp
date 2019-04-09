@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <set>
 #include <algorithm>
 #include "../../include/internal/Rules.h"
 #include "../../include/internal/Player.h"
@@ -30,11 +29,8 @@ bool Rules::legalMove(Move *move, Board *boardState) {
             legalMove = true;
         }
     }
-    if(!move->getKingMove()){
-        shouldCrown(move);
-    }
-    for(int i = 0; i < possibleMoves->size(); ++i) {
-        delete (*possibleMoves)[i];
+    for(auto & possibleMove : *possibleMoves) {
+        delete possibleMove;
     }
     delete possibleMoves;
     return legalMove;
@@ -62,6 +58,9 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
         for (auto &piece : *pieces) {
             auto *moves = getMovesAtPos(piece, boardState);
             for (auto &move : *moves) {
+                if(!move->getKingMove()){
+                    shouldCrown(move);
+                }
                 returnMe->push_back(move);
             }
             delete moves;
@@ -71,8 +70,6 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
 }
 
 std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker) {
-    static int counter = 0;
-    counter++;
     auto *returnMe = getJumpsAtPos(boardState, checker);
 
     // holds the jumps successor jumps of each move
@@ -112,14 +109,12 @@ std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker
     }
     // for each jump that has a multijump available that has not been found yet
     // remove this jump from the return list
-    for(int i = 0; i < incompleteJumps.size(); ++i) {
-        Move *incJump = incompleteJumps[i];
-        for(int j = 0; j < returnMe->size(); ++j) {
-            Move *jump = (*returnMe)[j];
-            if(*jump == *incJump) {
-                delete jump;
-                returnMe->erase(returnMe->begin() + j);
-            }
+    for(auto incJump : incompleteJumps) {
+        auto it = find(returnMe->begin(), returnMe->end(), incJump);
+        if(it != returnMe->end()) {
+            Move *jump = *it;
+            returnMe->erase(it);
+            delete jump;
         }
     }
     returnMe = combine(returnMe, successorJumps);
@@ -377,7 +372,7 @@ Move *Rules::getLRJump(Checker *c, Board *boardState) {
     int col = c->getCol();
     int downRow = row - 2;
     int rtCol = col + 2;
-    if (downRow >= 0 && rtCol <= Board::getBOARDWIDTH()) {
+    if (downRow >= 0 && rtCol <= Board::getBOARD_WIDTH()) {
         Move *LRMove = new Move(row, col, downRow, rtCol,
                                 row - 1, col + 1, color);
         crownMe(LRMove, boardState);
@@ -398,7 +393,7 @@ Move *Rules::getULJump(Checker *c, Board *boardState) {
     int col = c->getCol();
     int upRow = row + 2;
     int ltCol = col - 2;
-    if (upRow <= Board::getBOARDHEIGHT() && ltCol >= 0) {
+    if (upRow <= Board::getBOARD_HEIGHT() && ltCol >= 0) {
         // Upper left move
         Move *ULMove = new Move(row, col, upRow, ltCol,
                                 row + 1, col - 1, color);
@@ -420,7 +415,7 @@ Move *Rules::getURJump(Checker *c, Board *boardState) {
     int col = c->getCol();
     int upRow = row + 2;
     int rtCol = col + 2;
-    if (upRow <= Board::getBOARDHEIGHT() && rtCol <= Board::getBOARDWIDTH()) {
+    if (upRow <= Board::getBOARD_HEIGHT() && rtCol <= Board::getBOARD_WIDTH()) {
         Move *URMove = new Move(row, col, upRow, rtCol,
                                 row + 1, col + 1, color);
         crownMe(URMove, boardState);
@@ -464,7 +459,7 @@ Move *Rules::getLRMove(Checker *c, Board *boardState) {
     int col = c->getCol();
     int downRow = row - 1;
     int rtCol = col + 1;
-    if (downRow >= 0 && rtCol <= Board::getBOARDWIDTH()) {
+    if (downRow >= 0 && rtCol <= Board::getBOARD_WIDTH()) {
         int destRow = row - 1;
         int destCol = col + 1;
         // Lower right move
@@ -487,7 +482,7 @@ Move *Rules::getULMove(Checker *c, Board *boardState) {
     int col = c->getCol();
     int upRow = row + 2;
     int ltCol = col - 2;
-    if (upRow <= Board::getBOARDHEIGHT() && ltCol >= 0) {
+    if (upRow <= Board::getBOARD_HEIGHT() && ltCol >= 0) {
         int destRow = row + 1;
         int destCol = col - 1;
         // Upper left move
@@ -509,7 +504,7 @@ Move *Rules::getURMove(Checker *c, Board *boardState) {
     int col = c->getCol();
     int upRow = row + 2;
     int rtCol = col + 2;
-    if (upRow <= Board::getBOARDHEIGHT() && rtCol <= Board::getBOARDWIDTH()) {
+    if (upRow <= Board::getBOARD_HEIGHT() && rtCol <= Board::getBOARD_WIDTH()) {
         int destRow = row + 1;
         int destCol = col + 1;
         // Upper right move

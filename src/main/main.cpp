@@ -26,7 +26,7 @@ void runXTimes(const int timesToRun) {
             player2 = new AI_Minimax_02(4, WHITE);
             //Player *player2 = new Parser(WHITE);
         }
-        auto *game = new GameManager(board, player1, player2);
+        auto *game = new GameManager(board, player1, player2, false);
         whoWon[i] =game->play();
 
         delete game;
@@ -43,9 +43,9 @@ void run() {
     Board* board = new Board();
     auto *player1 = new AI_Minimax_03(5, RED);
     //Player *player1 = new Parser(RED);
-    auto *player2 = new AI_Minimax_02(4, WHITE);
+    auto *player2 = new AI_Minimax_02(5, WHITE);
     //Player *player2 = new Parser(WHITE);
-    auto *game = new GameManager(board, player1, player2);
+    auto *game = new GameManager(board, player1, player2, true);
     // start the game
     game->play();
 

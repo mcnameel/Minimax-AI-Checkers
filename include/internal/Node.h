@@ -69,6 +69,15 @@ public:
     static Node *createTree(Board *bs, int depth, Move *move);
 
     /**
+     * creates a tree from the board and move provided to the depth requested
+     * @param bs the current board
+     * @param depth desired depth
+     * @param move the move to start from
+     * @return the head of the node tree
+     */
+    static Node *createTreeWithThreads(Board *bs, int depth, Move *move);
+
+    /**
      * traverses an existing tree to append nodes the the end of that tree
      * until it is the desired depth
      * @param bs the current board

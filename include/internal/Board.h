@@ -16,8 +16,6 @@
 class Board {
 private:
     /* field vars */
-    const std::string PLAYER_ONE_COLOR = "Red";
-    const std::string PLAYER_TWO_COLOR = "White";
     Color turn = RED;
     // Data structure representing the board
     Checker* grid[8][8] = {{nullptr}};
@@ -26,8 +24,6 @@ private:
     std::vector<Checker*>* redPieces = new std::vector<Checker*>();
     std::vector<Checker*>* whitePieces = new std::vector<Checker*>();
     bool gameOver = false;
-    const static int BOARDHEIGHT = 8;
-    const static int BOARDWIDTH = 8;
 public:
     /* constructors, destructor, and copy */
     /**
@@ -88,12 +84,22 @@ public:
      */
     void removePiece(Checker* c);
 
+    /**
+     * check if the turn should change and change it accordingly
+     * @param changeTurn indicates whether the turn ought to change
+     */
+    void handTurnChange(bool changeTurn);
 
     /* accessors and mutators */
+    // static
+    static const int getBOARD_HEIGHT();
+    static const int getBOARD_WIDTH();
+    static const std::string getPLAYER_ONE_COLOR();
+    static const std::string getPLAYER_TWO_COLOR();
+
+    // nonstatic
     bool isGameOver() const;
     void setGameOver(bool gameOver);
-    static const int getBOARDHEIGHT();
-    static const int getBOARDWIDTH();
     Color getTurn();
     void setTurn(Color color);
     Move* getLastMove();

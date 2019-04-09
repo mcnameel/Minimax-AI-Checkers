@@ -34,8 +34,8 @@ private:
 protected:
     /* field vars */
     // pseudo positive and negitive infinity
-    static const int MAX = 32767;
-    static const int MIN = -32767;
+    static const int MAX = 2147483647;
+    static const int MIN = -2147483647;
     // the number of moves to look down head on each move
     int lookAhead;
     // the node tree to be saved in between turns to prevent the recreation of

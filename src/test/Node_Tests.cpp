@@ -46,7 +46,7 @@ TEST_CASE("Node::createTreeWithThreads | ") {
     pieces->push_back(c7);
     auto *board = new Board(pieces, RED, nullptr);
 
-   // Node *actual = Node::createTreeWithThreads(board, 2, nullptr);
+    Node *actual = Node::createTreeWithThreads(board, 2, nullptr);
 
 
     REQUIRE(true);

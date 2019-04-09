@@ -25,7 +25,7 @@ public:
      * @param player1 A pointer to a implementation of the player class
      * @param player2 A pointer to a implementation of the player class
      */
-    GameManager(Board* board, Player* player1, Player* player2);
+    GameManager(Board *board, Player *player1, Player *player2, bool showMoves);
 
     ~GameManager();
 
@@ -40,7 +40,7 @@ private:
     Board* board;
     Player* player1;
     Player* player2;
-    //int turnCount = 0;
+    bool showMoves;
 
     /* functions */
     /**
@@ -69,12 +69,10 @@ private:
     bool isDraw(Board *bs, int *pieceCountDraw, int *turnsWithoutProfit);
 
     /**
-     * Check if a piece should be crowned and if so crowns the piece object
-     * @param move the piece to check
-     * @return true if the piece has been crowned
+     * if the field showMoves is true this method prints all moves a player can
+     * make this turn
      */
-    bool crownMe(Move *move);
+    void printMoves();
 };
-
 
 #endif //MINIMAX_AI_CHECKERS_GAMEMANAGER_H

@@ -189,7 +189,6 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture ending in kingmove") {
     REQUIRE(found);
 }
 
-
 /**
  * Check that when a piece is captured that it is removed from the vector
  * holding the pieces of a specific color

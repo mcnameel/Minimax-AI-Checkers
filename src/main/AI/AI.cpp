@@ -11,37 +11,37 @@ Move *AI::getMove(Board *boardState) {
     // delete the old nodes and successors in the tree except for the move that
     // was taken last turn
     if(currentTree != nullptr) {
-        currentTree = deleteOldNodes(lastBoard, currentTree);
         currentTree = deleteOldNodes(boardState, currentTree);
     }
     std::cout << "Making tree" << std::endl;
-    Node* nextMoveTree = makeTree(boardState);
-    int bestMoveVal = minimaxAB(nextMoveTree, lookAhead, true, MIN, MAX);
+    currentTree = makeTree(boardState);
+    int bestMoveVal = minimaxAB(currentTree, lookAhead, true, MIN, MAX);
     std::cout << "Calculated best move valued at " << bestMoveVal << std::endl;
 
-    Move* nextMove = nullptr;
-    if(nextMoveTree->getSuccessors()->empty()) {
+    if(currentTree->getSuccessors()->empty()) {
         boardState->setGameOver(true);
     }
 
-    auto *bestMoves = new std::vector<Node*>();
-    for(auto &node : *nextMoveTree->getSuccessors()) {
+    std::vector<Node *> bestMoves;
+    for(auto &node : *currentTree->getSuccessors()) {
         if(node->getValue() == bestMoveVal) {
-            bestMoves->push_back(node);
+            bestMoves.push_back(node);
         }
     }
 
-    Node *nodeToSave = bestMoves->at(static_cast<unsigned long>(
-            random(0, static_cast<int>(bestMoves->size() - 1))));
-    nextMove = nodeToSave->getMove()->copy();
+    Node *nodeToSave = bestMoves[static_cast<unsigned long>(random(0,
+                                 static_cast<int>(bestMoves.size() - 1)))];
+    Move* nextMove = nodeToSave->getMove()->copy();
 
+    delete lastBoard;
     lastBoard = boardState->copy();
     lastBoard->move(nextMove, true);
 
-    for (int i = 0; i < bestMoves->size(); ++i) {
-        delete bestMoves->at(i);
+    if(currentTree == nullptr) {
+        currentTree = nodeToSave;
+    } else {
+        currentTree = deleteOldNodes(lastBoard, currentTree);
     }
-    delete bestMoves;
     return nextMove;
 }
 
@@ -106,8 +106,7 @@ Node *AI::makeTree(Board *bs) {
 }
 
 Node *AI::deleteOldNodes(Board *boardState, Node *deleteMe) {
-    Node *newTree = Node::seekAndRemoveSuccessor(
-            boardState->getLastMove(), deleteMe);
+    Node *newTree = Node::seekAndRemoveSuccessor(boardState->getLastMove(), deleteMe);
     delete deleteMe;
     return newTree;
 }

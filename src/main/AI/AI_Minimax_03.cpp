@@ -23,7 +23,7 @@ int AI_Minimax_03::evaluateBoardState(Node *node) {
         if (c->isKing()) {
             redValue += KING_POINT_VAL;
         } else {
-            int rowVal = abs(c->getRow() - (Board::getBOARDHEIGHT() - 1));
+            int rowVal = abs(c->getRow() - (Board::getBOARD_HEIGHT() - 1));
             redValue += (MAN_POINT_VAL + rowVal);
         }
     }

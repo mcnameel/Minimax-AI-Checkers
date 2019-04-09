@@ -6,10 +6,12 @@
 #include "../../include/internal/GameManager.h"
 #include "../../include/internal/Rules.h"
 
-GameManager::GameManager(Board* board, Player* player1, Player* player2) {
+GameManager::GameManager(Board *board, Player *player1, Player *player2,
+        bool showMoves) {
     this->board = board;
     this->player1 = player1;
     this->player2 = player2;
+    this->showMoves = showMoves;
 }
 
 GameManager::~GameManager() {
@@ -31,7 +33,8 @@ Color GameManager::play() {
         ++turnCount;
         takeTurn();
 
-        if(isDraw(board, pieceCountDraw, turnsWithoutProfit) || turnCount > 500) {
+        if(isDraw(board, pieceCountDraw, turnsWithoutProfit)
+           || turnCount > 500) {
             gameOver = true;
             winner = NEITHER;
         }
@@ -41,8 +44,6 @@ Color GameManager::play() {
             winner = board->getTurn();
         }
     }
-    //takeLastTurn();
-    //takeTurn();
 
     std::string winnerStr;
     if(winner == NEITHER) {
@@ -51,7 +52,6 @@ Color GameManager::play() {
         winnerStr = "Game Over: Red wins.";
     } else {
         winnerStr = "Game Over: White wins.";
-
     }
     std::cout << winnerStr << std::endl;
 
@@ -66,19 +66,7 @@ Move* GameManager::getLegalMove() {
     while (invalidMove) {
         // first print the board
         board->printBoard();
-        std::vector<Move*> *moves = Rules::getAllLegalMoves(board);
-        std::cout << "Turn #" << turnCount << " with " << moves->size() << " Possible Moves:" << std::endl;
-        for(auto &move : *moves) {
-            std::cout << "    " << move->toString() << std::endl;
-        }
-        if(moves->empty()) {
-            board->setGameOver(true);
-        } else {
-            for(int i = 0; i < moves->size(); ++i) {
-                delete (*moves)[i];
-            }
-        }
-        delete moves;
+        printMoves();
 
         // call getMove to request the next move from the current player
         currentMove = getMove(board);
@@ -99,16 +87,6 @@ Move *GameManager::getMove(Board *bs) {
         currentMove = player2->getMove(bs);
 
     return currentMove;
-}
-
-bool GameManager::crownMe(Move *move) {
-    bool crowned = false;
-    if((move->getDestRow() == 7 && move->getColor() == WHITE) ||
-       (move->getDestRow() == 0 && move->getColor() == RED)) {
-        move->setKingMove(true);
-        crowned = true;
-    }
-    return crowned;
 }
 
 bool GameManager::isDraw(Board *bs, int *pieceCountDraw,
@@ -138,3 +116,21 @@ void GameManager::takeTurn() {
     }
 }
 
+void GameManager::printMoves() {
+    if(showMoves) {
+        std::vector<Move *> *moves = Rules::getAllLegalMoves(board);
+        std::cout << "Turn #" << turnCount << " with " << moves->size()
+                  << " Possible Moves:" << std::endl;
+        for (auto &move : *moves) {
+            std::cout << "    " << move->toString() << std::endl;
+        }
+        if (moves->empty()) {
+            board->setGameOver(true);
+        } else {
+            for (auto &move : *moves) {
+                delete move;
+            }
+        }
+        delete moves;
+    }
+}

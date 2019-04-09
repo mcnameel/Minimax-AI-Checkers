@@ -30,6 +30,7 @@ Move::~Move() {
 }
 
 Move *Move::copy() {
+
     Move* copy = new Move(getCurRow(), getCurCol(),
                           getDestRow(), getDestCol(),
                           getCapRow(), getCapCol(), getColor());
@@ -52,9 +53,11 @@ std::string Move::toString() {
 }
 
 bool Move::operator==(const Move& m) {
-    bool returnMe1 = curRow == m.curRow && destRow == m.destRow
-                     && destCol == m.destCol && capRow == m.capRow
-                     && capCol == m.capCol && chainMove == m.chainMove && isKing == m.isKing;
+    bool returnMe1 = curRow == m.curRow && curCol == m.curCol
+                     && destRow == m.destRow && destCol == m.destCol
+                     && capRow == m.capRow && capCol == m.capCol
+                     && chainMove == m.chainMove
+                     && isKing == m.isKing;
     bool returnMe = false;
     if(this->getNextChainMove() != nullptr && m.nextChainMove != nullptr) {
         returnMe = (*this->getNextChainMove()) == (*m.nextChainMove);
