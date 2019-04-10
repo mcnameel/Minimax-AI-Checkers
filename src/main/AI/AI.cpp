@@ -6,17 +6,20 @@
 #include "../../../include/internal/AI.h"
 #include "../../../include/internal/Move.h"
 #include "../../../include/internal/Board.h"
-
+#define _timer_ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
 Move *AI::getMove(Board *boardState) {
     // delete the old nodes and successors in the tree except for the move that
     // was taken last turn
     if(currentTree != nullptr) {
         currentTree = deleteOldNodes(boardState, currentTree);
     }
-    std::cout << "Making tree" << std::endl;
+    std::chrono::milliseconds startTimeA = _timer_;
     currentTree = makeTree(boardState);
+    std::chrono::milliseconds endTimeA = _timer_;
+
+    std::chrono::milliseconds startTimeB = _timer_;
     int bestMoveVal = minimaxAB(currentTree, lookAhead, true, MIN, MAX);
-    std::cout << "Calculated best move valued at " << bestMoveVal << std::endl;
+    std::chrono::milliseconds endTimeB = _timer_;
 
     if(currentTree->getSuccessors()->empty()) {
         boardState->setGameOver(true);
@@ -42,6 +45,10 @@ Move *AI::getMove(Board *boardState) {
     } else {
         currentTree = deleteOldNodes(lastBoard, currentTree);
     }
+    std::cout << "Generated nodes in " << ((endTimeA - startTimeA).count() / 1000.0) << "s" << std::endl;
+    std::cout <<"Calculated best move in " << ((endTimeB - startTimeB).count() / 1000.0) << "s" << std::endl;
+    std::cout << "Heuristic value of best choice " << bestMoveVal << std::endl;
+
     return nextMove;
 }
 
@@ -64,7 +71,10 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         returnValue = MIN;
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
-        for (auto &n : *(node->getSuccessors())) {
+        auto *successors = node->getSuccessors();
+        std::sort(successors->begin(), successors->end());
+        for (int i = successors->size() - 1; i >= 0; --i) {
+            Node *n = (*successors)[i];
             returnValue = max(node->getValue(),
                     minimaxAB(n, depth - 1, false, alpha, beta));
             node->setValue(returnValue);
@@ -72,7 +82,7 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 
             // if the alpha our current value is greater than the min break
             if (beta <= alpha) {
-                break;
+                //break;
             }
         }
         return returnValue;
@@ -81,7 +91,9 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         returnValue = MAX;
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
-        for (auto &n : *(node->getSuccessors())) {
+        auto *successors = node->getSuccessors();
+        std::sort(successors->begin(), successors->end());
+        for (auto &n : *successors) {
             // Compare the new minimax node to the last one
             returnValue = min(node->getValue(),
                     minimaxAB(n, depth - 1, true, alpha, beta));
@@ -90,7 +102,7 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 
             // if the alpha our current value is greater than the min break
             if (beta <= alpha) {
-                break;
+                // break;
             }
         }
         return returnValue;
@@ -98,11 +110,16 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 }
 
 Node *AI::makeTree(Board *bs) {
+    int *leafNodeCount = new int();
+    Node *newNode;
     if (currentTree == nullptr) {
-        return Node::createTree(bs->copy(), lookAhead, nullptr);
+        newNode = Node::createTree(bs->copy(), lookAhead, nullptr, leafNodeCount);
     } else {
-        return Node::appendToTree(bs->copy(), lookAhead, currentTree);
+        newNode = Node::appendToTree(bs->copy(), lookAhead, currentTree, leafNodeCount);
     }
+    std::cout << "Moves derivations generated: " << *leafNodeCount << std::endl;
+    delete leafNodeCount;
+    return newNode;
 }
 
 Node *AI::deleteOldNodes(Board *boardState, Node *deleteMe) {

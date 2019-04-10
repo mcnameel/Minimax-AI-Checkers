@@ -236,9 +236,6 @@
 		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/test/Board_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/test/Board_Tests.h">
-			<Option target="Minimax_AI_Checkers_Test"/>
-		</Unit>
 		<Unit filename="/Users/lukemcnamee/CLionProjects/Minimax-AI-Checkers-git-master/src/test/Main_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>

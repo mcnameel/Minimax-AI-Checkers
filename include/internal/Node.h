@@ -66,7 +66,8 @@ public:
      * @param move the move to start from
      * @return the head of the node tree
      */
-    static Node *createTree(Board *bs, int depth, Move *move);
+    static Node *createTree(Board *bs, int depth, Move *move,
+            int *leafNodeCount);
 
     /**
      * creates a tree from the board and move provided to the depth requested
@@ -85,7 +86,8 @@ public:
      * @param node the node to start from
      * @return the head of the node tree
      */
-     static Node *appendToTree(Board *bs, int depth, Node *node);
+     static Node *appendToTree(Board *bs, int depth, Node *node,
+             int *leafNodeCount);
 
     /**
      * a custom exception which triggers if the node is not found in the
@@ -97,6 +99,12 @@ public:
                    "the successors of the node provided";
         }
     };
+
+    /* operators */
+    /**
+     * compares the nodes by value field of the node
+     */
+    bool operator<(const Node &n);
 
     /* accessors and mutators */
     std::vector<Node*>* getSuccessors();

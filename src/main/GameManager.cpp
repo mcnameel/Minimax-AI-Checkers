@@ -94,6 +94,8 @@ bool GameManager::isDraw(Board *bs, int *pieceCountDraw,
     const int maxTurnsWithoutProfit = 40;
     int totalPieces = board->getWhiteCount() + board->getRedCount();
     if (totalPieces <= *pieceCountDraw) {
+        // signal we are entering endgame
+        bs->setEndgame(true);
         if (totalPieces != *pieceCountDraw) {
             *pieceCountDraw = totalPieces;
             *turnsWithoutProfit = 0;

@@ -9,7 +9,6 @@
 #include "Node.h"
 #include "AI.h"
 
-
 /**
  * A definition of evaluateBoardState
  */

@@ -32,14 +32,12 @@ Node::~Node() {
     delete move;
 }
 
-Node * Node::createTree(Board *bs, int depth, Move *move) {
-    static int orgDepth = depth;
-    static int i = 0;
+Node * Node::createTree(Board *bs, int depth, Move *move, int *leafNodeCount) {
     /* return condition 1 */
     // if depth is zero we have reached the target depth
     // return leaf node
     if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++i;
+        ++(*leafNodeCount);
         return new Node(bs, move);
     }
 
@@ -48,7 +46,7 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     // return leaf node
     auto *moves = Rules::getAllLegalMoves(bs);
     if (moves->empty()) {
-        ++i;
+        ++(*leafNodeCount);
         bs->setGameOver(true);
         delete moves;
         return new Node(bs, move);
@@ -62,15 +60,10 @@ Node * Node::createTree(Board *bs, int depth, Move *move) {
     auto *successors = new std::vector<Node *>();
     Move *newMove = nullptr;
     for(int index = 0; index < moves->size(); index++) {
-        //for (auto &newMove : *moves) {
         newMove = moves->at(static_cast<unsigned long>(index));
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        successors->push_back(createTree(succBS, depth - 1, newMove));
-    }
-    if(depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << i << std::endl;
-        i = 0;
+        successors->push_back(createTree(succBS, depth - 1, newMove, leafNodeCount));
     }
     delete moves;
     return new Node(bs, successors, move);
@@ -115,29 +108,31 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *move) {
         succBS->move(newMove, true);
         // start a new async thread to recursively create the tree w/o spawning
         // more threads
+        int *counter = new int();
+        long long *counter1 = new long long();
+        long long *counter2 = new long long();
         std::future<Node *> future = std::async(createTree,
-                succBS, depth, newMove);
+                                                succBS, depth, nullptr, counter);
         newSuccessors->emplace(newSuccessors->begin() + index, future.get());
     }
     // print out the number leaf nodes reached
     if (depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << leafNodeCount << std::endl;
+        std::cout << "Moves derivations generated: " << leafNodeCount
+                  << std::endl;
         leafNodeCount = 0;
     }
     delete moves;
     return new Node(bs, newSuccessors, move);
 }
 
-Node *Node::appendToTree(Board *bs, int depth, Node *node) {
-    static int orgDepth = depth;
-    static int i = 0;
+Node *Node::appendToTree(Board *bs, int depth, Node *node,int *leafNodeCount) {
 
     /* return condition 1 */
     // traverse previous node tree until we need to create more nodes
     auto *successors = node->getSuccessors();
     if (successors != nullptr) {
         for (auto &child : *successors) {
-            appendToTree(child->boardState, depth - 1, child);
+            appendToTree(child->boardState, depth - 1, child, leafNodeCount);
         }
         return node;
     }
@@ -146,7 +141,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     // if depth is zero we have reached the target depth
     // return leaf node
     if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++i;
+        ++(*leafNodeCount);
         return new Node(bs, node->getLastMove());
     }
 
@@ -156,7 +151,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     // return leaf node
     auto *moves = Rules::getAllLegalMoves(bs);
     if (moves->empty()) {
-        ++i;
+        ++(*leafNodeCount);
         bs->setGameOver(true);
         delete moves;
         return new Node(bs, node->getLastMove());
@@ -175,11 +170,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     for (auto &newMove : *moves) {
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        successors->push_back(createTree(succBS, depth - 1, newMove));
-    }
-    if (depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << i << std::endl;
-        i = 0;
+        successors->push_back(createTree(succBS, depth - 1, newMove, leafNodeCount));
     }
     node->setSuccessors(successors);
     delete moves;
@@ -235,4 +226,8 @@ Move *Node::getLastMove() {
 
 void Node::setSuccessors(std::vector<Node *> *successors) {
     Node::successors = successors;
+}
+
+bool Node::operator<(const Node &n) {
+    return (this->getValue() < n.value);
 }

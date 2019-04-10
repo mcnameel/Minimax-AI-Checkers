@@ -109,6 +109,12 @@ protected:
     static int random(int low, int high);
 
     /**
+     * gets the time difference between the two given variables
+     *
+     */
+    static std::chrono::milliseconds timeDiff(std::chrono::milliseconds from,
+            std::chrono::milliseconds to);
+    /**
      * compares two values and returns the maximum
      * @param val1
      * @param val2

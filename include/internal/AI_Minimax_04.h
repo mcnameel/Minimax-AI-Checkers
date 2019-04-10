@@ -31,6 +31,25 @@ private:
      * @return the numerical value of the board state
      */
     int evaluateBoardState(Node *node) override;
-};
 
+    /**
+     * the evaluation function for the early and mid game which uses the
+     * values kings as 22 points and men as 6 points + the distance across the
+     * board then subtracts this value by the same value for the opponents
+     * pieces
+     * @param boardState the board representation
+     * @return a heuristic evaluation of the board
+     */
+    int earlyGameEval(Board *boardState);
+
+    /**
+     * the evaluation function for the endgame which uses the earlyGameEval
+     * function and then also sums the distance between this players king
+     * pieces and the opponent's kings. The lower the distance the better.
+     * @param boardState the board representation
+     * @return a heuristic evaluation of the board
+     */
+    int endGameEval(std::vector<Checker *> *myPcs,
+                    std::vector<Checker *> *otherPcs);
+};
 #endif //MINIMAX_AI_CHECKERS_02_AI_MINIMAX_04_H

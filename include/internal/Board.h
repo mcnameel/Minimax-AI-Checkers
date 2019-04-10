@@ -24,6 +24,8 @@ private:
     std::vector<Checker*>* redPieces = new std::vector<Checker*>();
     std::vector<Checker*>* whitePieces = new std::vector<Checker*>();
     bool gameOver = false;
+    bool endgame;
+
 public:
     /* constructors, destructor, and copy */
     /**
@@ -34,7 +36,7 @@ public:
     /**
     * Constructs a board with pieces ready for play at any configuration given
     */
-    Board(std::vector<Checker *> *startState, Color turn, Move *lastMove);
+    Board(std::vector<Checker *> *startState, Color turn, Move *lastMove, bool endgame);
 
     /**
      * destroys the board and deletes all fields
@@ -105,6 +107,9 @@ public:
     Move* getLastMove();
     int getRedCount();
     int getWhiteCount();
+    bool isEndgame() const;
+    void setEndgame(bool endgame);
+
     /**
      * @return a vector containing pointers to the red checkers still in play
      */

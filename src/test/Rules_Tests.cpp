@@ -39,7 +39,7 @@ TEST_CASE("Rules::getAllLegalMoves | red multicapture landing in starting space"
     pieces->push_back(c3);
     pieces->push_back(c4);
     pieces->push_back(c5);
-    auto *board = new Board(pieces, RED, nullptr);
+    auto *board = new Board(pieces, RED, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
     auto *m2 = new Move(5, 3, 3, 5, 4, 4, RED);
@@ -105,7 +105,7 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture landing in starting spac
     pieces->push_back(r2);
     pieces->push_back(r3);
     pieces->push_back(r4);
-    auto *board = new Board(pieces, WHITE, nullptr);
+    auto *board = new Board(pieces, WHITE, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, WHITE);
     auto *m2 = new Move(5, 3, 3, 5, 4, 4, WHITE);
@@ -172,7 +172,7 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture ending in kingmove") {
     pieces->push_back(r2);
     pieces->push_back(r3);
     pieces->push_back(r4);
-    auto *board = new Board(pieces, WHITE, nullptr);
+    auto *board = new Board(pieces, WHITE, nullptr, false);
 
     /* condition */
     auto *expected = new Move(5, 7, 7, 5, 6, 6, WHITE);
@@ -221,7 +221,7 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     pieces->push_back(w2);
     pieces->push_back(w3);
     pieces->push_back(w4);
-    auto *board = new Board(pieces, RED, nullptr);
+    auto *board = new Board(pieces, RED, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
     auto *m2 = new Move(5, 3, 3, 5, 4, 4, RED);
@@ -278,7 +278,7 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     pieces->push_back(w2);
     pieces->push_back(r3);
     pieces->push_back(r2);
-    auto *board = new Board(pieces, WHITE, nullptr);
+    auto *board = new Board(pieces, WHITE, nullptr, false);
 
     auto *expected1 = new Move(3, 3, 5, 5, 4, 4, WHITE);
     auto *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);

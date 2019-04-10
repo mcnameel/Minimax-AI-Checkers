@@ -8,6 +8,7 @@
 
 Board::Board() {
     this->lastMove = nullptr;
+    this->endgame = false;
     // populate the board by iterating through the board, row then column,
     // to populate the board with pieces
    for(int i = 0; i < getBOARD_HEIGHT(); ++i) {
@@ -33,9 +34,10 @@ Board::Board() {
     }
 }
 
-Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove) {
+Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove, bool endgame) {
     this->turn = turn;
     this->lastMove = lastMove;
+    this->endgame = endgame;
     for (auto &piece : *startState) {
         grid[piece->getRow()][piece->getCol()] = piece;
         if(piece->getColor() == RED)
@@ -67,13 +69,14 @@ Board *Board::copy() {
     for(auto &w : *whitePieces) {
         pieces->push_back(w->copy());
     }
+
     Move *lastMoveCopy;
     if(lastMove != nullptr) {
         lastMoveCopy = lastMove->copy();
     } else {
         lastMoveCopy = nullptr;
     }
-    return new Board(pieces, getTurn(), lastMoveCopy);
+    return new Board(pieces, getTurn(), lastMoveCopy, isEndgame());
 }
 
 void Board::removePiece(Checker *c) {
@@ -208,6 +211,14 @@ bool Board::isGameOver() const {
 
 void Board::setGameOver(bool gameOver) {
     this->gameOver = gameOver;
+}
+
+bool Board::isEndgame() const {
+    return endgame;
+}
+
+void Board::setEndgame(bool endgame) {
+    Board::endgame = endgame;
 }
 
 // static functions
