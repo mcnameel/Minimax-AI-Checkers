@@ -94,10 +94,10 @@ public:
 
     /* accessors and mutators */
     // static
-    static const int getBOARD_HEIGHT();
-    static const int getBOARD_WIDTH();
-    static const std::string getPLAYER_ONE_COLOR();
-    static const std::string getPLAYER_TWO_COLOR();
+    static int getBOARD_HEIGHT();
+    static int getBOARD_WIDTH();
+    static std::string getPLAYER_ONE_COLOR();
+    static std::string getPLAYER_TWO_COLOR();
 
     // nonstatic
     bool isGameOver() const;

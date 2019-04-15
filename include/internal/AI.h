@@ -48,8 +48,9 @@ protected:
      * @param lookAhead the number if moves to look ahead.
      *        MUST BE LARGER THAN 1!
      * @param color the color of the player.
+     * @param name the name of the evaluation function
      */
-    AI(int lookAhead, Color color);
+    AI(int lookAhead, Color color, std::string name);
 
     /**
      * destroy all fields of this class
@@ -59,11 +60,11 @@ protected:
     /* virtual functions */
     /**
      * The evaluation algorithm which minimax will use. Gives a specific board
-     * a numerical value based on how desireable it is.
-     * @param node the node to evaluate
+     * a numerical value based on how desirable it is.
+     * @param boardState the board to evaluate
      * @return a numerical value of the board state
      */
-    virtual int evaluateBoardState(Node *node) = 0;
+    virtual int evaluateBoardState(Board *boardState) = 0;
 
     /* methods */
     /**
@@ -108,12 +109,6 @@ protected:
      */
     static int random(int low, int high);
 
-    /**
-     * gets the time difference between the two given variables
-     *
-     */
-    static std::chrono::milliseconds timeDiff(std::chrono::milliseconds from,
-            std::chrono::milliseconds to);
     /**
      * compares two values and returns the maximum
      * @param val1

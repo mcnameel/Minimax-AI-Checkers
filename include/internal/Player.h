@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Luke on 1/28/2019.
 //
@@ -15,8 +17,9 @@ class Player {
 
 public:
     /* constructor */
-    explicit Player(Color playerColor) {
+    explicit Player(Color playerColor, std::string name) {
         this->playerColor = playerColor;
+        this->name = std::move(name);
     }
 
     /* pure virtual methods */
@@ -32,9 +35,14 @@ public:
         return playerColor;
     }
 
+    // accessor
+    const std::string &getName() const {
+        return name;
+    }
 private:
     /* field vars */
     Color playerColor;
+    std::string name;
 };
 
 #endif //MINIMAX_AI_CHECKERS_PLAYER_H

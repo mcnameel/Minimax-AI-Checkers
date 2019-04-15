@@ -5,10 +5,10 @@
 #include "../../include/external/Catch2/catch.hpp"
 #include "../../include/internal/Checker.h"
 #include "../../include/internal/Board.h"
-#include "../../include/internal/AI_Minimax_01.h"
-#include "../../include/internal/AI_Minimax_04.h"
-#include "../../include/internal/AI_Minimax_03.h"
-#include "../../include/internal/AI_Minimax_02.h"
+#include "../../include/internal/AI_Evaluation_Impl_01.h"
+#include "../../include/internal/AI_Evaluation_Impl_04.h"
+#include "../../include/internal/AI_Evaluation_Impl_03.h"
+#include "../../include/internal/AI_Evaluation_Impl_02.h"
 
 
 /**

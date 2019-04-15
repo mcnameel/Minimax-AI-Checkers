@@ -2,15 +2,14 @@
 // Created by Luke McNamee on 2019-03-21.
 //
 
-#include "../../../include/internal/AI_Minimax_02.h"
+#include "../../../../include/internal/AI_Evaluation_Impl_02.h"
 
-int AI_Minimax_02::evaluateBoardState(Node *node) {
+int AI_Minimax_02::evaluateBoardState(Board *boardState) {
     int KING_POINT_VAL = 15;
     int MAN_POINT_VAL = 3;
     int whiteValue = 0;
     int redValue = 0;
-    Board *bs = node->getBoardState();
-    for (auto &c : *(bs->getWhitePieces())) {
+    for (auto &c : *(boardState->getWhitePieces())) {
         if (c->isKing()) {
             whiteValue += KING_POINT_VAL;
         } else {
@@ -18,7 +17,7 @@ int AI_Minimax_02::evaluateBoardState(Node *node) {
             whiteValue += (MAN_POINT_VAL + rowVal);
         }
     }
-    for (auto &c : *(bs->getRedPieces())) {
+    for (auto &c : *(boardState->getRedPieces())) {
         if (c->isKing()) {
             redValue += KING_POINT_VAL;
         } else {

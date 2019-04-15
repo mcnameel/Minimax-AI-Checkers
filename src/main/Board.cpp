@@ -222,18 +222,18 @@ void Board::setEndgame(bool endgame) {
 }
 
 // static functions
-const int Board::getBOARD_HEIGHT() {
+int Board::getBOARD_HEIGHT() {
     return 8;
 }
 
-const int Board::getBOARD_WIDTH() {
+int Board::getBOARD_WIDTH() {
     return 8;
 }
 
-const std::string Board::getPLAYER_ONE_COLOR() {
+std::string Board::getPLAYER_ONE_COLOR() {
     return "Red";
 }
 
-const std::string Board::getPLAYER_TWO_COLOR() {
+std::string Board::getPLAYER_TWO_COLOR() {
     return "White";
 }

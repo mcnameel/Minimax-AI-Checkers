@@ -22,7 +22,7 @@ public:
      * Create an instance of the AI class implementing player
      * @param lookAhead the number if moves to look ahead
      */
-    AI_Minimax_01(int lookAhead, Color color) : AI(lookAhead, color) {};
+    AI_Minimax_01(int lookAhead, Color color) : AI(lookAhead, color, "King Weighted Value") {};
 
 private:
     /* methods */
@@ -32,7 +32,7 @@ private:
      * @param node the node to evaluate
      * @return the numerical value of the board state
      */
-    int evaluateBoardState(Node *node) override;
+    int evaluateBoardState(Board *boardState) override;
 };
 
 

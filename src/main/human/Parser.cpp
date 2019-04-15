@@ -8,7 +8,7 @@
 #include <string>
 #include <regex>
 
-Parser::Parser(Color color) : Player(color) {}
+Parser::Parser(Color color) : Player(color, "Human") {}
 
 Move *Parser::getMove(Board *boardState) {
     std::string in = "";

@@ -19,17 +19,13 @@ class Rules {
 public:
     /* functions */
 
-    static bool shouldBeCrowned(Checker);
-
-    static bool crownMe(Move *move, Board *boardState);
-
     /**
      * Check if a piece should be crowned and then kings the move
      * @param move
+     * @param boardState
      * @return true if the move is a king move
      */
-    static bool shouldBeCrowned(Move *move);
-
+    static bool crownMe(Move *move, Board *boardState);
 
     /**
      * checks if the move is a legal move
@@ -38,7 +34,6 @@ public:
      */
     static bool legalMoveFromColor(Move *move, Board *boardState);
     static bool legalMove(Move *move, Board *boardState);
-    static bool shouldCrown(Move *move);
     /**
      * Checks if a move is legal
      * @param move
@@ -82,6 +77,8 @@ public:
     static bool validMultiCapture(Move* move, Board* boardState);
     static bool requiredMultiCapture(Move *move, Board *boardState, bool isKing);
     static std::vector<Move*>* getAllLegalMoves(Board* boardState);
+    static std::vector<Move *> *getAllJumpsForPlayer(Board *boardState);
+
 
 private:
     // set all the spaces to default to false and then change them in the

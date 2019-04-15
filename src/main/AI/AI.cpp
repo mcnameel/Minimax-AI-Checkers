@@ -52,7 +52,7 @@ Move *AI::getMove(Board *boardState) {
     return nextMove;
 }
 
-AI::AI(int lookAhead, Color color) : Player(color) {
+AI::AI(int lookAhead, Color color, std::string name) : Player(color, name) {
     this->lookAhead = lookAhead;
 }
 
@@ -60,7 +60,7 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         int alpha, int beta) {
     int returnValue;
     if (depth == 0 || node->isTerminal()) {
-        returnValue = evaluateBoardState(node);
+        returnValue = evaluateBoardState(node->getBoardState());
         node->setValue(returnValue);
         return returnValue;
     }
@@ -110,15 +110,16 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 }
 
 Node *AI::makeTree(Board *bs) {
-    int *leafNodeCount = new int();
+    Node factory;
     Node *newNode;
     if (currentTree == nullptr) {
-        newNode = Node::createTree(bs->copy(), lookAhead, nullptr, leafNodeCount);
+        newNode = factory.createTree(bs->copy(), lookAhead, nullptr);
     } else {
-        newNode = Node::appendToTree(bs->copy(), lookAhead, currentTree, leafNodeCount);
+        newNode = factory.appendToTree(bs->copy(), lookAhead, currentTree);
     }
-    std::cout << "Moves derivations generated: " << *leafNodeCount << std::endl;
-    delete leafNodeCount;
+
+    std::cout << "Moves derivations generated: " << factory.getLeafNodeCount()
+              << std::endl;
     return newNode;
 }
 

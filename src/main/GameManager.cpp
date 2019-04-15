@@ -41,16 +41,16 @@ Color GameManager::play() {
         // check if the game is over
         if (board->isGameOver()) {
             gameOver = true;
-            winner = board->getTurn();
+            winner = (board->getTurn() == RED) ? WHITE : RED;
         }
     }
 
     std::string winnerStr;
     if(winner == NEITHER) {
         winnerStr = "Game Over: Draw.";
-    } else if (winner == WHITE) {
+    } else if (winner == RED) {
         winnerStr = "Game Over: Red wins.";
-    } else {
+    } else if (winner == WHITE){
         winnerStr = "Game Over: White wins.";
     }
     std::cout << winnerStr << std::endl;
@@ -83,7 +83,7 @@ Move *GameManager::getMove(Board *bs) {
     if(player1->getColor() == bs->getTurn())
         currentMove = player1->getMove(bs);
 
-    else if(player2->getColor() == bs->getTurn())
+    else
         currentMove = player2->getMove(bs);
 
     return currentMove;

@@ -21,11 +21,13 @@ private:
     // indicates this is a leaf
     bool terminal;
     // the move which this node represents
-    Move* move;
+    Move *move;
     // the successors of this node
-    std::vector<Node*>* successors;
+    std::vector<Node *> *successors;
     // the board state of this node
-    Board* boardState;
+    Board *boardState;
+    // the counter for the number of leaf nodes generated
+    int leafNodeCount;
 
 public:
     /* constructors and destructor */
@@ -43,6 +45,11 @@ public:
      * @param boardState the boardstate after the move has been completed
      */
     Node(Board *boardState, Move *move);
+
+    /**
+     * constructs a blank node to use to call the createTree method
+     */
+    Node();
 
     /**
      * destroys the node and deletes its fields
@@ -63,20 +70,19 @@ public:
      * creates a tree from the board and move provided to the depth requested
      * @param bs the current board
      * @param depth desired depth
-     * @param move the move to start from
+     * @param pMove the move to start from
      * @return the head of the node tree
      */
-    static Node *createTree(Board *bs, int depth, Move *move,
-            int *leafNodeCount);
+    Node *createTree(Board *bs, int depth, Move *pMove);
 
     /**
      * creates a tree from the board and move provided to the depth requested
      * @param bs the current board
      * @param depth desired depth
-     * @param move the move to start from
+     * @param pMove the move to start from
      * @return the head of the node tree
      */
-    static Node *createTreeWithThreads(Board *bs, int depth, Move *move);
+    Node *createTreeWithThreads(Board *bs, int depth, Move *pMove);
 
     /**
      * traverses an existing tree to append nodes the the end of that tree
@@ -86,8 +92,7 @@ public:
      * @param node the node to start from
      * @return the head of the node tree
      */
-     static Node *appendToTree(Board *bs, int depth, Node *node,
-             int *leafNodeCount);
+    Node *appendToTree(Board *bs, int depth, Node *node);
 
     /**
      * a custom exception which triggers if the node is not found in the
@@ -107,16 +112,28 @@ public:
     bool operator<(const Node &n);
 
     /* accessors and mutators */
-    std::vector<Node*>* getSuccessors();
-    void setMove(Move *move);
+    std::vector<Node *> *getSuccessors();
+
+    void setMove(Move *pMove);
+
     int getValue();
-    void setValue(int value);
+
+    void setValue(int pValue);
+
     bool isTerminal();
-    void setTerminal(bool terminal);
-    Move* getMove();
-    Move* getLastMove();
-    Board* getBoardState();
-    void setSuccessors(std::vector<Node *> *successors);
+
+    void setTerminal(bool pTerminal);
+
+    Move *getMove();
+
+    Move *getLastMove();
+
+    Board *getBoardState();
+
+    void setSuccessors(std::vector<Node *> *pSuccessors);
+
+    int getLeafNodeCount();
+
 };
 
 #endif //MINIMAX_AI_CHECKERS_NODE_H

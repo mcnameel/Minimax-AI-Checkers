@@ -7,6 +7,14 @@
 #include "../../../include/internal/Node.h"
 #include "../../../include/internal/Rules.h"
 
+
+Node::Node() {
+    leafNodeCount = 0;
+    boardState = nullptr;
+    move = nullptr;
+    successors = nullptr;
+}
+
 Node::Node(Board *boardState, std::vector<Node *> *successors, Move *move) {
     this->boardState = boardState;
     this->move = move;
@@ -32,13 +40,13 @@ Node::~Node() {
     delete move;
 }
 
-Node * Node::createTree(Board *bs, int depth, Move *move, int *leafNodeCount) {
+Node * Node::createTree(Board *bs, int depth, Move *pMove) {
     /* return condition 1 */
     // if depth is zero we have reached the target depth
     // return leaf node
     if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++(*leafNodeCount);
-        return new Node(bs, move);
+        ++leafNodeCount;
+        return new Node(bs, pMove);
     }
 
     /* return condition 2 */
@@ -46,10 +54,10 @@ Node * Node::createTree(Board *bs, int depth, Move *move, int *leafNodeCount) {
     // return leaf node
     auto *moves = Rules::getAllLegalMoves(bs);
     if (moves->empty()) {
-        ++(*leafNodeCount);
+        ++leafNodeCount;
         bs->setGameOver(true);
         delete moves;
-        return new Node(bs, move);
+        return new Node(bs, pMove);
     }
 
     /* return condition 3 */
@@ -57,27 +65,23 @@ Node * Node::createTree(Board *bs, int depth, Move *move, int *leafNodeCount) {
     // target depth
     // recursively call this function on each of the moves that can be made
     // return a node with successors populated
-    auto *successors = new std::vector<Node *>();
-    Move *newMove = nullptr;
-    for(int index = 0; index < moves->size(); index++) {
-        newMove = moves->at(static_cast<unsigned long>(index));
+    auto *nextSuccessors = new std::vector<Node *>();
+    for(auto & newMove : *moves) {
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        successors->push_back(createTree(succBS, depth - 1, newMove, leafNodeCount));
+        nextSuccessors->push_back(createTree(succBS, depth - 1, newMove));
     }
     delete moves;
-    return new Node(bs, successors, move);
+    return new Node(bs, nextSuccessors, pMove);
 }
 
-Node *Node::createTreeWithThreads(Board *bs, int depth, Move *move) {
-    static int orgDepth = depth;
-    static int leafNodeCount = 0;
+Node *Node::createTreeWithThreads(Board *bs, int depth, Move *pMove) {
     /* return condition 1 */
     // if depth is zero we have reached the target depth
     // return leaf node
     if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
         ++leafNodeCount;
-        return new Node(bs, move);
+        return new Node(bs, pMove);
     }
 
     /* return condition 2 */
@@ -88,12 +92,12 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *move) {
         ++leafNodeCount;
         bs->setGameOver(true);
         delete moves;
-        return new Node(bs, move);
+        return new Node(bs, pMove);
     }
 
     /* return condition 3 */
     // there are moves left to make by a both players and we have not reached
-    // target depth. For each move that can be made this turn.
+    // target depth. For each pMove that can be made this turn.
     // On the first call, the functions will spawn a thread for
     // each recursive call which will then run in sync.
     // return a node with successors populated
@@ -101,38 +105,29 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *move) {
     auto *newSuccessors = new std::vector<Node *>(numMoves);
     Move *newMove = nullptr;
     for (int index = 0; index < numMoves; index++) {
-        // get the move from the list of moves
+        // get the pMove from the list of moves
         newMove = moves->at(static_cast<unsigned long>(index));
-        // copy the board state so the move can be safely implemented
+        // copy the board state so the pMove can be safely implemented
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
         // start a new async thread to recursively create the tree w/o spawning
         // more threads
-        int *counter = new int();
-        long long *counter1 = new long long();
-        long long *counter2 = new long long();
-        std::future<Node *> future = std::async(createTree,
-                                                succBS, depth, nullptr, counter);
-        newSuccessors->emplace(newSuccessors->begin() + index, future.get());
-    }
-    // print out the number leaf nodes reached
-    if (depth == orgDepth) {
-        std::cout << "Moves derivations generated: " << leafNodeCount
-                  << std::endl;
-        leafNodeCount = 0;
+        //std::future<Node *> future = std::async(createTree(
+        //                                        succBS, depth, nullptr));
+        //newSuccessors->emplace(newSuccessors->begin() + index, future.get());
     }
     delete moves;
-    return new Node(bs, newSuccessors, move);
+    return new Node(bs, newSuccessors, pMove);
 }
 
-Node *Node::appendToTree(Board *bs, int depth, Node *node,int *leafNodeCount) {
+Node *Node::appendToTree(Board *bs, int depth, Node *node) {
 
     /* return condition 1 */
     // traverse previous node tree until we need to create more nodes
-    auto *successors = node->getSuccessors();
-    if (successors != nullptr) {
-        for (auto &child : *successors) {
-            appendToTree(child->boardState, depth - 1, child, leafNodeCount);
+    auto *nextSuccessors = node->getSuccessors();
+    if (nextSuccessors != nullptr) {
+        for (auto &child : *nextSuccessors) {
+            appendToTree(child->boardState, depth - 1, child);
         }
         return node;
     }
@@ -141,7 +136,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node,int *leafNodeCount) {
     // if depth is zero we have reached the target depth
     // return leaf node
     if (depth == 0 /*|| if the game is over but depth not reached make a leaf node */) {
-        ++(*leafNodeCount);
+        ++leafNodeCount;
         return new Node(bs, node->getLastMove());
     }
 
@@ -151,7 +146,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node,int *leafNodeCount) {
     // return leaf node
     auto *moves = Rules::getAllLegalMoves(bs);
     if (moves->empty()) {
-        ++(*leafNodeCount);
+        ++leafNodeCount;
         bs->setGameOver(true);
         delete moves;
         return new Node(bs, node->getLastMove());
@@ -166,13 +161,13 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node,int *leafNodeCount) {
     // target depth
     // recursively call this function on each of the moves that can be made
     // return a node with successors populated
-    successors = new std::vector<Node *>();
+    nextSuccessors = new std::vector<Node *>();
     for (auto &newMove : *moves) {
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        successors->push_back(createTree(succBS, depth - 1, newMove, leafNodeCount));
+        nextSuccessors->push_back(createTree(succBS, depth - 1, newMove));
     }
-    node->setSuccessors(successors);
+    node->setSuccessors(nextSuccessors);
     delete moves;
     return node;
 }
@@ -196,8 +191,8 @@ int Node::getValue() {
     return value;
 }
 
-void Node::setValue(int value) {
-    this->value = value;
+void Node::setValue(int pValue) {
+    this->value = pValue;
 }
 
 bool Node::isTerminal() {
@@ -208,26 +203,31 @@ Move *Node::getMove() {
     return move;
 }
 
-void Node::setTerminal(bool terminal) {
-    this->terminal = terminal;
+void Node::setTerminal(bool pTerminal) {
+    this->terminal = pTerminal;
 }
 
 Board *Node::getBoardState() {
     return boardState;
 }
 
-void Node::setMove(Move *move) {
-    Node::move = move;
+void Node::setMove(Move *pMove) {
+    Node::move = pMove;
 }
 
 Move *Node::getLastMove() {
     return boardState->getLastMove();
 }
 
-void Node::setSuccessors(std::vector<Node *> *successors) {
-    Node::successors = successors;
+void Node::setSuccessors(std::vector<Node *> *pSuccessors) {
+    Node::successors = pSuccessors;
+}
+
+int Node::getLeafNodeCount() {
+    return leafNodeCount;
 }
 
 bool Node::operator<(const Node &n) {
     return (this->getValue() < n.value);
 }
+

@@ -6,7 +6,7 @@
 
 //#define CATCH_CONFIG_MAIN
 #include "../../include/internal/Rules.h"
-#include "../../include/internal/AI_Minimax_01.h"
+#include "../../include/internal/AI_Evaluation_Impl_01.h"
 
 // Test Case 1, ensure constructors work
 TEST_CASE("First Test case") {

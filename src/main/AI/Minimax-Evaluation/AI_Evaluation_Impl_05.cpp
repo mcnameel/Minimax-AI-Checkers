@@ -1,21 +1,22 @@
 //
-// Created by Luke McNamee on 2019-04-05.
+// Created by Luke McNamee on 2019-04-15.
 //
 
-#include "../../../include/internal/AI_Minimax_04.h"
+#include "../../../../include/internal/AI_Evaluation_Impl_05.h"
 
 
-int AI_Minimax_04::evaluateBoardState(Node *node) {
-    Board *bs = node->getBoardState();
-    int piecesVal = earlyGameEval(bs);
+int AI_Minimax_05::evaluateBoardState(Board *boardState) {
+    int piecesVal = earlyGameEval(boardState);
 
-    if (bs->isEndgame()) {
+    if (boardState->isEndgame()) {
         // endgame function: Sum distance of all kings, lower is better
         int kingSum = 0;
         if (this->getColor() == RED) {
-            kingSum = endGameEval(bs->getRedPieces(), bs->getWhitePieces());
+            kingSum = endGameEval(boardState->getRedPieces(),
+                                  boardState->getWhitePieces());
         } else {
-            kingSum = endGameEval(bs->getWhitePieces(), bs->getRedPieces());
+            kingSum = endGameEval(boardState->getWhitePieces(),
+                                  boardState->getRedPieces());
         }
         piecesVal += kingSum;
     }
@@ -23,9 +24,9 @@ int AI_Minimax_04::evaluateBoardState(Node *node) {
     return piecesVal;
 }
 
-int AI_Minimax_04::earlyGameEval(Board *boardState) {
-    int KING_POINT_VAL = 22;
-    int MAN_POINT_VAL = 6;
+int AI_Minimax_05::earlyGameEval(Board *boardState) {
+    int KING_POINT_VAL = 15;
+    int MAN_POINT_VAL = 5;
     int whiteValue = 0;
     int redValue = 0;
 
@@ -55,8 +56,8 @@ int AI_Minimax_04::earlyGameEval(Board *boardState) {
     return returnMe;
 }
 
-int AI_Minimax_04::endGameEval(std::vector<Checker *> *myPcs,
-        std::vector<Checker *> *otherPcs) {
+int AI_Minimax_05::endGameEval(std::vector<Checker *> *myPcs,
+                               std::vector<Checker *> *otherPcs) {
     // return value
     int kingSum = 0;
     // indicates whether value be aggressive or defensive play
@@ -70,7 +71,7 @@ int AI_Minimax_04::endGameEval(std::vector<Checker *> *myPcs,
     for (auto &p : *otherPcs) {
         if (p->isKing()) otherKings.push_back(p);
     }
-    isAggressor = myKings.size() > otherKings.size();
+    isAggressor = myKings.size() >= otherKings.size();
 
     for (auto &king : myKings) {
         for (auto &wk : otherKings) {
@@ -78,14 +79,14 @@ int AI_Minimax_04::endGameEval(std::vector<Checker *> *myPcs,
             int rowDelta = abs(king->getRow() - wk->getRow()) - 1;
             int colDelta = abs(king->getCol() - wk->getCol()) - 1;
             int delta = (rowDelta > colDelta) ? rowDelta : colDelta;
-                if(isAggressor) {
-                    // if we are the aggressor then we want to get closer
-                    kingSum += abs(6 - delta);
-                } else {
-                    // otherwise the distance is a direct conversion to points
-                    kingSum += delta;
-                }
+            if(isAggressor) {
+                // if we are the aggressor then we want to get closer
+                kingSum += abs(6 - delta);
+            } else {
+                // otherwise the distance is a direct conversion to points
+                kingSum += delta;
+            }
         }
     }
-    return kingSum;
+    return kingSum * 2;
 }

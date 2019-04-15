@@ -166,7 +166,8 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture ending in kingmove") {
     auto *r2 = new Checker(RED, 6, 6);
     auto *r3 = new Checker(RED, 4, 4);
     auto *r4 = new Checker(RED, 4, 6);
-    auto pieces = new std::vector<Checker *>();
+    auto pieces = new std::vector<Checker *>({r1, r2, r3, r4, w1});
+
     pieces->push_back(w1);
     pieces->push_back(r1);
     pieces->push_back(r2);
@@ -214,13 +215,8 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
     auto *w2 = new Checker(WHITE, 6, 6);
     auto *w3 = new Checker(WHITE, 4, 4);
     auto *w4 = new Checker(WHITE, 4, 6);
-    auto pieces = new std::vector<Checker *>();
-    pieces->push_back(r1);
-    pieces->push_back(r2);
-    pieces->push_back(w1);
-    pieces->push_back(w2);
-    pieces->push_back(w3);
-    pieces->push_back(w4);
+    auto pieces = new std::vector<Checker *>({r1, r2, w3, w4, w1, w2});
+
     auto *board = new Board(pieces, RED, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
@@ -267,34 +263,102 @@ TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one
 White's turn
  */
 TEST_CASE("Rules::getAllLegalMoves | multiple captures available lets either one be taken if one becomes a king") {
-    auto *w1 = new Checker(WHITE, 3, 3);
-    auto *w2 = new Checker(WHITE, 3, 5);
-    auto *r1 = new Checker(RED, 6, 4);
-    auto *r2 = new Checker(RED, 4, 4);
-    auto *r3 = new Checker(RED, 4, 6);
-    auto pieces = new std::vector<Checker *>();
-    pieces->push_back(r1);
-    pieces->push_back(w1);
-    pieces->push_back(w2);
-    pieces->push_back(r3);
-    pieces->push_back(r2);
+auto *w1 = new Checker(WHITE, 3, 3);
+auto *w2 = new Checker(WHITE, 3, 5);
+auto *r1 = new Checker(RED, 6, 4);
+auto *r2 = new Checker(RED, 4, 4);
+auto *r3 = new Checker(RED, 4, 6);
+auto pieces = new std::vector<Checker *>({r1, r2, r3, w1, w2});
+auto *board = new Board(pieces, WHITE, nullptr, false);
+
+auto *expected1 = new Move(3, 3, 5, 5, 4, 4, WHITE);
+auto *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
+m2->setKingMove(true);
+expected1->setNextChainMove(m2);
+
+auto *expected2 = new Move(3, 5, 5, 3, 4, 4, WHITE);
+m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
+m2->setKingMove(true);
+expected2->setNextChainMove(m2);
+
+auto *expected3 = new Move(3, 5, 5, 7, 4, 6, WHITE);
+
+bool l1 = Rules::legalMoveFromColor(expected1, board);
+bool l2 = Rules::legalMoveFromColor(expected2, board);
+bool l3 = Rules::legalMoveFromColor(expected3, board);
+bool success = l1 && l2 && l3;
+REQUIRE(success);
+}
+
+TEST_CASE("Rules::getAllLegalMoves | edge case") {
+    auto *r1 = new Checker(WHITE, 1, 1);
+    auto pieces = new std::vector<Checker *>({r1});
     auto *board = new Board(pieces, WHITE, nullptr, false);
 
-    auto *expected1 = new Move(3, 3, 5, 5, 4, 4, WHITE);
-    auto *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
-    m2->setKingMove(true);
-    expected1->setNextChainMove(m2);
-
-    auto *expected2 = new Move(3, 5, 5, 3, 4, 4, WHITE);
-    m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
-    m2->setKingMove(true);
-    expected2->setNextChainMove(m2);
-
-    auto *expected3 = new Move(3, 5, 5, 7, 4, 6, WHITE);
+    auto *expected1 = new Move(1, 1, 2, 0, -1, -1, WHITE);
 
     bool l1 = Rules::legalMoveFromColor(expected1, board);
-    bool l2 = Rules::legalMoveFromColor(expected2, board);
-    bool l3 = Rules::legalMoveFromColor(expected3, board);
-    bool success = l1 && l2 && l3;
+    bool success = l1;
     REQUIRE(success);
 }
+
+/**
+ * e6 to move
+  |-------------------------------|
+7 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+6 |   |   |   |   | W |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   | R |   | r |
+  |-------------------------------|
+2 | r |   |   |   |   |   |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   | R |   |   |
+  |-------------------------------|
+0 |   |   | w |   |   |   |   |   |
+   -------------------------------   White: 2
+    a   b   c   d   e   f   g   h    Red:   4
+
+ */
+TEST_CASE("Ruels | Test case: Edge case") {
+    auto *w1 = new Checker(WHITE, 0, 2);
+    auto *w2 = new Checker(WHITE, 6, 4);
+    w2->makeKing();
+    auto *r1 = new Checker(RED, 3, 5);
+    r1->makeKing();
+    auto *r2 = new Checker(RED, 3, 7);
+    auto *r3 = new Checker(RED, 1, 5);
+    r3->makeKing();
+    auto *r4 = new Checker(RED, 2, 0);
+
+    auto *pieces = new std::vector<Checker*>({w1, w2, r1, r2, r3, r4});
+    auto *board = new Board(pieces, WHITE, nullptr, false);
+
+    auto *expected1 = new Move(6, 4, 7, 5, -1, -1, WHITE);
+    bool l1 = Rules::legalMoveFromColor(expected1, board);
+    REQUIRE(l1);
+}
+
+/*
+ *   |-------------------------------|
+7 |   |   |   | W |   |   |   |   |
+  |-------------------------------|
+6 | r |   | r |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   | r |
+  |-------------------------------|
+4 | r |   |   |   | r |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | w |   |   |   |   |   |   |   |
+  |-------------------------------|
+1 |   | R |   |   |   |   |   | w |
+  |-------------------------------|
+0 |   |   |   |   |   |   |   |   |
+   -------------------------------   White:
+ */

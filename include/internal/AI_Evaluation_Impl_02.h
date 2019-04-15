@@ -19,7 +19,7 @@ public:
      * Create an instance of the AI class implementing player
      * @param lookAhead the number if moves to look ahead
      */
-    AI_Minimax_02(int lookAhead, Color color) : AI(lookAhead, color) {};
+    AI_Minimax_02(int lookAhead, Color color) : AI(lookAhead, color, "KingMe v1") {};
 
 private:
     /* methods */
@@ -29,7 +29,7 @@ private:
      * @param node the node to evaluate
      * @return the numerical value of the board state
      */
-    int evaluateBoardState(Node *node) override;
+    int evaluateBoardState(Board *boardState) override;
 };
 
 #endif //MINIMAX_AI_CHECKERS_02_AI_MINIMAX_02_H
