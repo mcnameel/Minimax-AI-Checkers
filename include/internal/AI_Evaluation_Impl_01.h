@@ -22,7 +22,8 @@ public:
      * Create an instance of the AI class implementing player
      * @param lookAhead the number if moves to look ahead
      */
-    AI_Minimax_01(int lookAhead, Color color) : AI(lookAhead, color, "King Weighted Value") {};
+    AI_Minimax_01(int lookAhead, Color color, bool usePruning)
+        : AI(lookAhead, color, "King Weighted Value", usePruning) {};
 
 private:
     /* methods */

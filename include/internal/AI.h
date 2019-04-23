@@ -31,6 +31,8 @@ private:
     // The board state from the last time this player moved
     Board *lastBoard = nullptr;
 
+    // indicates whether to use alpha beta pruning
+    bool usePruning;
 protected:
     /* field vars */
     // pseudo positive and negitive infinity
@@ -50,7 +52,7 @@ protected:
      * @param color the color of the player.
      * @param name the name of the evaluation function
      */
-    AI(int lookAhead, Color color, std::string name);
+    AI(int lookAhead, Color color, std::string name, bool usePruning);
 
     /**
      * destroy all fields of this class
@@ -68,9 +70,23 @@ protected:
 
     /* methods */
     /**
-     * Minimax with alpha beta pruning. Alternate between the maximizing and
+     * Standard Minimax algorithm. Alternate between the maximizing and
      * minimizing players moves through a tree of nodes to return the most
      * favorable move to make assuming the opponent also makes the best moves
+     * @param node node at the head of the tree
+     * @param depth the depth in the tree to pursue
+     * @param maximizingPlayer a boolean which should be true when called
+     * @return the value of the best node to choose which will be found in the
+     *        successors of the head
+     */
+    int minimax(Node *node, int depth, bool maximizingPlayer);
+
+    /**
+     * Minimax with alpha beta pruning. Alternate between the maximizing and
+     * minimizing players moves through a tree of nodes to return the most
+     * favorable move to make assuming the opponent also makes the best moves.
+     * Uses alpha beta pruning to cut off subtrees which will not need to be
+     * evaluated.
      * @param node node at the head of the tree
      * @param depth the depth in the tree to pursue
      * @param maximizingPlayer a boolean which should be true when called

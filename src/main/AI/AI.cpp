@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Luke McNamee on 2019-03-21.
 //
@@ -7,6 +9,16 @@
 #include "../../../include/internal/Move.h"
 #include "../../../include/internal/Board.h"
 #define _timer_ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
+
+AI::AI(int lookAhead, Color color, std::string name, bool usePruning)
+        : Player(color, std::move(name)),
+          usePruning(usePruning), lookAhead(lookAhead) {}
+
+AI::~AI() {
+    delete currentTree;
+    delete lastBoard;
+}
+
 Move *AI::getMove(Board *boardState) {
     // delete the old nodes and successors in the tree except for the move that
     // was taken last turn
@@ -18,7 +30,12 @@ Move *AI::getMove(Board *boardState) {
     std::chrono::milliseconds endTimeA = _timer_;
 
     std::chrono::milliseconds startTimeB = _timer_;
-    int bestMoveVal = minimaxAB(currentTree, lookAhead, true, MIN, MAX);
+    int bestMoveVal = MAX;
+    if(usePruning) {
+        bestMoveVal = minimaxAB(currentTree, lookAhead, true, MIN, MAX);
+    } else {
+        bestMoveVal = minimax(currentTree, lookAhead, true);
+    }
     std::chrono::milliseconds endTimeB = _timer_;
 
     if(currentTree->getSuccessors()->empty()) {
@@ -52,10 +69,6 @@ Move *AI::getMove(Board *boardState) {
     return nextMove;
 }
 
-AI::AI(int lookAhead, Color color, std::string name) : Player(color, name) {
-    this->lookAhead = lookAhead;
-}
-
 int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         int alpha, int beta) {
     int returnValue;
@@ -82,7 +95,7 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 
             // if the alpha our current value is greater than the min break
             if (beta <= alpha) {
-                //break;
+                break;
             }
         }
         return returnValue;
@@ -102,8 +115,46 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
 
             // if the alpha our current value is greater than the min break
             if (beta <= alpha) {
-                // break;
+                 break;
             }
+        }
+        return returnValue;
+    }
+}
+
+int AI::minimax(Node *node, int depth, bool maximizingPlayer) {
+    int returnValue;
+    if (depth == 0 || node->isTerminal()) {
+        returnValue = evaluateBoardState(node->getBoardState());
+        node->setValue(returnValue);
+        return returnValue;
+    }
+    // each time minimax is recursively called it returns the node from the
+    // params with the best value from its successors as its value
+    if (maximizingPlayer) {
+        // set value to something lower than is possible in the game
+        returnValue = MIN;
+        // set the curBest to something to be overwritten
+        node->setValue(returnValue);
+        auto *successors = node->getSuccessors();
+        std::sort(successors->begin(), successors->end());
+        for (int i = successors->size() - 1; i >= 0; --i) {
+            Node *n = (*successors)[i];
+            returnValue = max(node->getValue(), minimax(n, depth - 1, false));
+            node->setValue(returnValue);
+        }
+        return returnValue;
+
+    } else { // minimizing player
+        returnValue = MAX;
+        // set the curBest to something to be overwritten
+        node->setValue(returnValue);
+        auto *successors = node->getSuccessors();
+        std::sort(successors->begin(), successors->end());
+        for (auto &n : *successors) {
+            // Compare the new minimax node to the last one
+            returnValue = min(node->getValue(), minimax(n, depth - 1, true));
+            node->setValue(returnValue);
         }
         return returnValue;
     }
@@ -149,9 +200,4 @@ int AI::max(int val1, int val2) {
     if(val1 < val2)
         returnMe = val2;
     return returnMe;
-}
-
-AI::~AI() {
-    delete currentTree;
-    delete lastBoard;
 }
