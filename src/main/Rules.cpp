@@ -50,7 +50,7 @@ std::vector<Move*>* Rules::getAllJumpsForPlayer(Board *boardState) {
         auto *jumps = getAllJumpsAtPos(boardState, piece);
         // now need a function to
         for (auto &jump : *jumps) {
-            returnMe->push_back(jump);
+            returnMe->emplace_back(jump);
         }
         delete jumps;
     }
@@ -71,7 +71,7 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
         auto *jumps = getAllJumpsAtPos(boardState, piece);
         // now need a function to
         for (auto &jump : *jumps) {
-            returnMe->push_back(jump);
+            returnMe->emplace_back(jump);
         }
         delete jumps;
     }
@@ -80,7 +80,7 @@ std::vector<Move*>* Rules::getAllLegalMoves(Board* boardState) {
         for (auto &piece : *pieces) {
             auto *moves = getMovesAtPos(piece, boardState);
             for (auto &move : *moves) {
-                returnMe->push_back(move);
+                returnMe->emplace_back(move);
             }
             delete moves;
         }
@@ -98,11 +98,13 @@ std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker
 
     // for each jump that is found check if that jump has a multicapture available
     for(auto &jump: *returnMe) {
+        // deleted at the end of function
         Board* boardCopy = boardState->copy();
         // push the jump to the mock board
         boardCopy->move(jump, false);
 
-        //create a fake checker which is used to check if there is a capture available
+        // create a fake checker which is used to check if there is a capture available
+        // deleted at the end of this function
         auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
 
         // for the current jump get all of the jumps it has available
@@ -115,11 +117,12 @@ std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker
         // if the move has next jump available add the incomplete jump to the
         // vector and get all the jumps available to it
         if(!jumps->empty()) {
-            incompleteJumps.push_back(jump);
+            incompleteJumps.emplace_back(jump);
             for (auto &nextJump : *jumps) {
+                // deleted by caller
                 Move* jumpCopy = jump->copy();
                 jumpCopy->setNextChainMove(nextJump);
-                successorJumps->push_back(jumpCopy);
+                successorJumps->emplace_back(jumpCopy);
             }
         }
         delete boardCopy;
@@ -137,9 +140,6 @@ std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker
         }
     }
     returnMe = combine(returnMe, successorJumps);
-    for(auto &jump : *successorJumps) {
-        delete jump;
-    }
     delete successorJumps;
 
     return returnMe;
@@ -153,40 +153,40 @@ std::vector<Move *> *Rules::getJumpsAtPos(Board *boardState, Checker *checker) {
     if(color == RED) {
         Move *LLJump = getLLJump(checker, boardState);
         if(LLJump != nullptr) {
-            returnMe->push_back(LLJump);
+            returnMe->emplace_back(LLJump);
         }
         Move *LRJump = getLRJump(checker, boardState);
         if(LRJump != nullptr) {
-            returnMe->push_back(LRJump);
+            returnMe->emplace_back(LRJump);
         }
         if(checker->isKing()) {
             Move *ULJump = getULJump(checker, boardState);
             if(ULJump != nullptr) {
-                returnMe->push_back(ULJump);
+                returnMe->emplace_back(ULJump);
             }
             Move *URJump = getURJump(checker, boardState);
             if(URJump != nullptr) {
-                returnMe->push_back(URJump);
+                returnMe->emplace_back(URJump);
             }
         }
     } else {
         // do the same with player2 but in the opposite direction
         Move *ULJump = getULJump(checker, boardState);
         if(ULJump != nullptr) {
-            returnMe->push_back(ULJump);
+            returnMe->emplace_back(ULJump);
         }
         Move *URJump = getURJump(checker, boardState);
         if(URJump != nullptr) {
-            returnMe->push_back(URJump);
+            returnMe->emplace_back(URJump);
         }
         if(checker->isKing()) {
             Move *LLJump = getLLJump(checker, boardState);
             if (LLJump != nullptr) {
-                returnMe->push_back(LLJump);
+                returnMe->emplace_back(LLJump);
             }
             Move *LRJump = getLRJump(checker, boardState);
             if (LRJump != nullptr) {
-                returnMe->push_back(LRJump);
+                returnMe->emplace_back(LRJump);
             }
         }
     }
@@ -215,7 +215,6 @@ bool Rules::validCapture(Move *move, Board* boardState) {
         returnMe = false;
     }
     return returnMe;
-
 }
 
 bool Rules::isCapture(Move *m) {
@@ -246,7 +245,7 @@ bool Rules::isCapture(Move *m) {
 
 std::vector<Move*>* Rules::combine(std::vector<Move*>* vec1, std::vector<Move*>* vec2) {
     for(auto &move : *vec2) {
-        vec1->emplace_back(move->copy());
+        vec1->emplace_back(move);
     }
 
     return vec1;
@@ -269,40 +268,40 @@ std::vector<Move*>* Rules::getMovesAtPos(Checker *checker, Board* boardState) {
     if (color == RED) {
         Move *LLMove = getLLMove(checker, boardState);
         if (LLMove != nullptr) {
-            returnMe->push_back(LLMove);
+            returnMe->emplace_back(LLMove);
         }
         Move *LRMove = getLRMove(checker, boardState);
         if (LRMove != nullptr) {
-            returnMe->push_back(LRMove);
+            returnMe->emplace_back(LRMove);
         }
         if (checker->isKing()) {
             Move *ULMove = getULMove(checker, boardState);
             if (ULMove != nullptr) {
-                returnMe->push_back(ULMove);
+                returnMe->emplace_back(ULMove);
             }
             Move *URMove = getURMove(checker, boardState);
             if (URMove != nullptr) {
-                returnMe->push_back(URMove);
+                returnMe->emplace_back(URMove);
             }
         }
     } else {
         // do the same with player2 but in the opposite direction
         Move *ULMove = getULMove(checker, boardState);
         if (ULMove != nullptr) {
-            returnMe->push_back(ULMove);
+            returnMe->emplace_back(ULMove);
         }
         Move *URMove = getURMove(checker, boardState);
         if (URMove != nullptr) {
-            returnMe->push_back(URMove);
+            returnMe->emplace_back(URMove);
         }
         if (checker->isKing()) {
             Move *LLMove = getLLMove(checker, boardState);
             if (LLMove != nullptr) {
-                returnMe->push_back(LLMove);
+                returnMe->emplace_back(LLMove);
             }
             Move *LRMove = getLRMove(checker, boardState);
             if (LRMove != nullptr) {
-                returnMe->push_back(LRMove);
+                returnMe->emplace_back(LRMove);
             }
         }
     }

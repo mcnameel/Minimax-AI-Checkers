@@ -45,15 +45,18 @@ Move *AI::getMove(Board *boardState) {
     std::vector<Node *> bestMoves;
     for(auto &node : *currentTree->getSuccessors()) {
         if(node->getValue() == bestMoveVal) {
-            bestMoves.push_back(node);
+            bestMoves.emplace_back(node);
         }
     }
 
-    Node *nodeToSave = bestMoves[static_cast<unsigned long>(random(0,
-                                 static_cast<int>(bestMoves.size() - 1)))];
+    Node *nodeToSave = bestMoves[0];
+            //static_cast<unsigned long>(random(0,
+            //                     static_cast<int>(bestMoves.size() - 1)))];
+    // deleted by next iteration of the following line or by this destructor
     Move* nextMove = nodeToSave->getMove()->copy();
 
     delete lastBoard;
+    // deleted next time the function is called or at destructor
     lastBoard = boardState->copy();
     lastBoard->move(nextMove, true);
 
@@ -80,10 +83,39 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
     // each time minimax is recursively called it returns the node from the
     // params with the best value from its successors as its value
     if (maximizingPlayer) {
-        return searchSuccessors(node, depth, maximizingPlayer, alpha, beta, max);
-    } else {
-        // minimizing player
-        return searchSuccessors(node, depth, maximizingPlayer, alpha, beta, min);
+        // set value to something lower than is possible in the game
+        returnValue = MIN;
+        // set the curBest to something to be overwritten
+        node->setValue(returnValue);
+        for (auto &n : *node->getSuccessors()) {
+            returnValue = max(node->getValue(),
+                    minimaxAB(n, depth - 1, false, alpha, beta));
+            node->setValue(returnValue);
+            alpha = max(alpha, returnValue);
+
+            // if the alpha our current value is greater than the min break
+            if (beta < alpha)
+                return returnValue;
+        }
+        return returnValue;
+
+    } else { // minimizing player
+        returnValue = MAX;
+        // set the curBest to something to be overwritten
+        node->setValue(returnValue);
+        auto *successors = node->getSuccessors();
+        for (auto &n : *successors) {
+            // Compare the new minimax node to the last one
+            returnValue = min(node->getValue(),
+                    minimaxAB(n, depth - 1, true, alpha, beta));
+            node->setValue(returnValue);
+            beta = min(beta, returnValue);
+
+            // if the alpha our current value is greater than the min break
+            if (beta <= alpha)
+                return returnValue;
+        }
+        return returnValue;
     }
 }
 
@@ -123,29 +155,6 @@ int AI::minimax(Node *node, int depth, bool maximizingPlayer) {
         }
         return returnValue;
     }
-}
-
-int AI::searchSuccessors(Node *node, int depth, bool maximizingPlayer,
-        int alpha, int beta, int (*comp)(int, int)) {
-    // set value to something lower/higher than is possible by the evaluation
-    int returnValue = maximizingPlayer ? MIN : MAX;
-    // set the curBest to something to be overwritten
-    node->setValue(returnValue);
-    for (auto &n : *node->getSuccessors()) {
-        returnValue = comp(node->getValue(),
-                          minimaxAB(n, depth - 1, !maximizingPlayer, alpha, beta));
-        node->setValue(returnValue);
-        if (maximizingPlayer)
-            alpha = comp(alpha, returnValue);
-        else
-            beta = comp(beta, returnValue);
-
-        // if the alpha our current value is greater than the min break
-        if (beta < alpha) {
-            return returnValue;
-        }
-    }
-    return returnValue;
 }
 
 Node *AI::makeTree(Board *bs) {

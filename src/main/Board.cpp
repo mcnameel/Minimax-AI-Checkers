@@ -20,30 +20,31 @@ Board::Board() {
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
                 auto * c = new Checker(WHITE, i, 2 * j + (i % 2));
-                whitePieces->push_back(c);
+                whitePieces->emplace_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
             // the player1 pieces go from rows 1-3
             else if(i > 4) {
                 // add a player1 piece to the board and to the container set
                 auto * c = new Checker(RED, i, 2 * j + (i % 2));
-                redPieces->push_back(c);
+                redPieces->emplace_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
         }
     }
 }
 
-Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove, bool endgame) {
+Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove,
+        bool endgame) {
     this->turn = turn;
     this->lastMove = lastMove;
     this->endgame = endgame;
     for (auto &piece : *startState) {
         grid[piece->getRow()][piece->getCol()] = piece;
         if(piece->getColor() == RED)
-            redPieces->push_back(piece);
+            redPieces->emplace_back(piece);
         else
-            whitePieces->push_back(piece);
+            whitePieces->emplace_back(piece);
     }
 }
 
@@ -62,16 +63,19 @@ Board *Board::copy() {
     static int i = 0;
     auto *pieces = new std::vector<Checker *>();
     for(auto &r : *redPieces) {
+        // deleted with destructor of board copy
         Checker* c = r->copy();
-        pieces->push_back(c);
+        pieces->emplace_back(c);
         ++i;
     }
     for(auto &w : *whitePieces) {
-        pieces->push_back(w->copy());
+        // deleted with destructor of board copy
+        pieces->emplace_back(w->copy());
     }
 
     Move *lastMoveCopy;
     if(lastMove != nullptr) {
+        // deleted with destructor of board copy or next call of Board::move
         lastMoveCopy = lastMove->copy();
     } else {
         lastMoveCopy = nullptr;
@@ -153,10 +157,14 @@ void Board::move(Move *move, bool changeTurn) {
     handTurnChange(changeTurn);
 
     // if lastMove was not a chain move then set it to be deleted
-    if(lastMove != nullptr && !lastMove->isChainMove()) {
+    if(lastMove == nullptr) {
+        // deleted at end of next time function is called or this destructor
+        lastMove = move->copy();
+    } else if(!lastMove->isChainMove()) {
         delete lastMove;
+        // deleted at end of next time function is called or this destructor
+        lastMove = move->copy();
     }
-    lastMove = move->copy();
 }
 
 void Board::handTurnChange(bool changeTurn) {

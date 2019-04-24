@@ -34,11 +34,11 @@ TEST_CASE("Rules::getAllLegalMoves | red multicapture landing in starting space"
     auto *c4 = new Checker(WHITE, 4, 4);
     auto *c5 = new Checker(WHITE, 4, 6);
     auto pieces = new std::vector<Checker *>();
-    pieces->push_back(c1);
-    pieces->push_back(c2);
-    pieces->push_back(c3);
-    pieces->push_back(c4);
-    pieces->push_back(c5);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
+    pieces->emplace_back(c3);
+    pieces->emplace_back(c4);
+    pieces->emplace_back(c5);
     auto *board = new Board(pieces, RED, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, RED);
@@ -100,11 +100,11 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture landing in starting spac
     auto *r3 = new Checker(RED, 4, 4);
     auto *r4 = new Checker(RED, 4, 6);
     auto pieces = new std::vector<Checker *>();
-    pieces->push_back(w1);
-    pieces->push_back(r1);
-    pieces->push_back(r2);
-    pieces->push_back(r3);
-    pieces->push_back(r4);
+    pieces->emplace_back(w1);
+    pieces->emplace_back(r1);
+    pieces->emplace_back(r2);
+    pieces->emplace_back(r3);
+    pieces->emplace_back(r4);
     auto *board = new Board(pieces, WHITE, nullptr, false);
 
     auto *expected1 = new Move(7, 5, 5, 3, 6, 4, WHITE);
@@ -168,11 +168,11 @@ TEST_CASE("Rules::getAllLegalMoves | white multicapture ending in kingmove") {
     auto *r4 = new Checker(RED, 4, 6);
     auto pieces = new std::vector<Checker *>({r1, r2, r3, r4, w1});
 
-    pieces->push_back(w1);
-    pieces->push_back(r1);
-    pieces->push_back(r2);
-    pieces->push_back(r3);
-    pieces->push_back(r4);
+    pieces->emplace_back(w1);
+    pieces->emplace_back(r1);
+    pieces->emplace_back(r2);
+    pieces->emplace_back(r3);
+    pieces->emplace_back(r4);
     auto *board = new Board(pieces, WHITE, nullptr, false);
 
     /* condition */

@@ -40,6 +40,7 @@ Move *Move::copy() {
         copy->setIsChainMove(true);
     }
     if(this->getNextChainMove() != nullptr) {
+        // deleted by destructor
         copy->setNextChainMove(this->getNextChainMove()->copy());
     }
     return copy;

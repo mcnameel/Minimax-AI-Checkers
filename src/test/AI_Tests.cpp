@@ -41,8 +41,8 @@ TEST_CASE("Red capture") {
 
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
 
     Board *board = new Board(pieces, RED, nullptr, false);
     //board->printBoard();
@@ -107,8 +107,8 @@ TEST_CASE("White king-capture") {
 
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
 
     Board *board = new Board(pieces, WHITE, nullptr, false);
 
@@ -162,9 +162,9 @@ TEST_CASE("White king-multicapture") {
     auto *r1 = new Checker(RED, 6, 4);
     auto *r2 = new Checker(RED, 4, 6);
     auto *w1 = new Checker(WHITE, 3, 7);
-    pieces->push_back(r1);
-    pieces->push_back(r2);
-    pieces->push_back(w1);
+    pieces->emplace_back(r1);
+    pieces->emplace_back(r2);
+    pieces->emplace_back(w1);
 
     Move *expected = new Move(3, 7, 5, 5, 4, 6, WHITE);
     Move *expectedChain = new Move(5, 5, 7, 3, 6, 4, WHITE);
@@ -210,9 +210,9 @@ TEST_CASE("Game Over turn after") {
     auto *c3 = new Checker(WHITE, 3, 7);
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
-    pieces->push_back(c3);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
+    pieces->emplace_back(c3);
 
     auto *board = new Board(pieces, RED, nullptr, false);
     // board->printBoard();
@@ -256,9 +256,9 @@ TEST_CASE("Game Over this turn") {
     auto *c2 = new Checker(WHITE, 3, 7);
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
-    //pieces->push_back(c3);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
+    //pieces->emplace_back(c3);
 
     Board *board = new Board(pieces, WHITE, nullptr, false);
     // board->printBoard();
@@ -292,10 +292,10 @@ TEST_CASE("AI_Minimax_01::getMove() | When black can win in three moves it choos
     auto *c4 = new Checker(WHITE, 5, 3);
 
     auto pieces = new std::vector<Checker *>();
-    pieces->push_back(c1);
-    pieces->push_back(c2);
-    pieces->push_back(c3);
-    pieces->push_back(c4);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
+    pieces->emplace_back(c3);
+    pieces->emplace_back(c4);
 
     auto *board = new Board(pieces, WHITE, nullptr, false);
     auto player2 = new AI_Minimax_02(4, WHITE);

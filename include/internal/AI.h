@@ -99,8 +99,6 @@ protected:
      */
     int minimaxAB(Node *node, int depth, bool maximizingPlayer, int alpha, int beta);
 
-    int searchSuccessors(Node *node, int depth, bool maximizingPlayer, int alpha, int beta, int (*comp)(int, int) );
-
     /**
      * Creates a tree with the given board state
      * @param bs the current board state
@@ -133,7 +131,7 @@ protected:
      * @param val2
      * @return the maximum of the two values
      */
-    static int max(int val1, int val2);
+    int max(int val1, int val2);
 
     /**
      * compares two values and returns the minimum
@@ -141,6 +139,6 @@ protected:
      * @param val2
      * @return the minimum of the two values
      */
-    static int min(int val1, int val2);
+    int min(int val1, int val2);
 };
 #endif //MINIMAX_AI_CHECKERS_02_AI_H

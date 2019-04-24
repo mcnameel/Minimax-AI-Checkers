@@ -24,24 +24,24 @@ TEST_CASE("First Test case") {
             if(i < 3) {
                 // add a player2 piece to the board and to the container set
                 auto * c = new Checker(WHITE, i, 2 * j + (i % 2));
-                whitePieces->push_back(c);
+                whitePieces->emplace_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
                 // the player1 pieces go from rows 1-3
             else if(i > 4) {
                 // add a player1 piece to the board and to the container set
                 Checker* c = new Checker(RED, i, 2 * j + (i % 2));
-                redPieces->push_back(c);
+                redPieces->emplace_back(c);
                 grid[i][2 * j + (i % 2)] = c;
             }
         }
     }
     std::vector<Checker*> * pieces = new std::vector<Checker*>();
     for(auto &piece : *redPieces) {
-        pieces->push_back(piece);
+        pieces->emplace_back(piece);
     }
     for(auto &piece : *whitePieces) {
-        pieces->push_back(piece);
+        pieces->emplace_back(piece);
     }
 
     Board* board2 = new Board(pieces, RED, nullptr, false);
@@ -102,9 +102,9 @@ TEST_CASE("Game Over Case 1") {
 
     std::vector<Checker*>* pieces = new std::vector<Checker*>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
-    pieces->push_back(c3);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
+    pieces->emplace_back(c3);
 
     Board* board = new Board(pieces, RED);
     board->printBoard();
@@ -153,8 +153,8 @@ Red's turn
     auto *c1 = new Checker(RED, 6, 4);
     auto *c2 = new Checker(WHITE, 5, 5);
     auto pieces = new std::vector<Checker *>();
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
     auto *board = new Board(pieces, WHITE, nullptr, false);
     auto *move = new Move(5, 5, 7, 3, 6, 4, WHITE);
     move->setKingMove(true);
@@ -182,8 +182,8 @@ Red's turn
     auto *c2 = new Checker(WHITE, 5, 5);
 
     auto pieces = new std::vector<Checker *>();
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
 
     auto *board = new Board(pieces, WHITE, nullptr, false);
     auto *move = new Move(5, 5, 7, 3, 6, 4, WHITE);
@@ -222,8 +222,8 @@ Red's turn
 
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
 
     auto *board = new Board(pieces, RED, nullptr, false);
 
@@ -261,8 +261,8 @@ Red's turn
 
     auto pieces = new std::vector<Checker *>();
 
-    pieces->push_back(c1);
-    pieces->push_back(c2);
+    pieces->emplace_back(c1);
+    pieces->emplace_back(c2);
 
     auto *board = new Board(pieces, RED, nullptr, false);
 

@@ -67,10 +67,12 @@ Node * Node::createTree(Board *bs, int depth, Move *pMove) {
     // return a node with successors populated
     auto *nextSuccessors = new std::vector<Node *>();
     for(auto & newMove : *moves) {
+        // deleted at end of next resursive call or by destructor of leaf node
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        nextSuccessors->push_back(createTree(succBS, depth - 1, newMove));
+        nextSuccessors->emplace_back(createTree(succBS, depth - 1, newMove));
     }
+    delete boardState;
     delete moves;
     return new Node(bs, nextSuccessors, pMove);
 }
@@ -121,13 +123,12 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *pMove) {
 }
 
 Node *Node::appendToTree(Board *bs, int depth, Node *node) {
-
     /* return condition 1 */
     // traverse previous node tree until we need to create more nodes
     auto *nextSuccessors = node->getSuccessors();
     if (nextSuccessors != nullptr) {
         for (auto &child : *nextSuccessors) {
-            appendToTree(child->boardState, depth - 1, child);
+            appendToTree(child->getBoardState(), depth - 1, child);
         }
         return node;
     }
@@ -163,10 +164,12 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     // return a node with successors populated
     nextSuccessors = new std::vector<Node *>();
     for (auto &newMove : *moves) {
+        // deleted with destructor of node or at the end of createTree
         Board *succBS = bs->copy();
         succBS->move(newMove, true);
-        nextSuccessors->push_back(createTree(succBS, depth - 1, newMove));
+        nextSuccessors->emplace_back(createTree(succBS, depth - 1, newMove));
     }
+    delete boardState;
     node->setSuccessors(nextSuccessors);
     delete moves;
     return node;

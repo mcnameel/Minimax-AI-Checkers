@@ -18,19 +18,19 @@ void runXTimes(const int timesToRun) {
     std::vector<Color> whoWon(timesToRun);
     for(int i = 0; i < timesToRun; ++i) {
         std::cout << "\n\n\n\nGame: " << i << std::endl;
-        Board* board = new Board();
+        auto* board = new Board();
 
         Player *player1;
         Player *player2;
         if(i < (timesToRun / 2)) {
-            player1 = new AI_Minimax_07(3, RED, true);
+            player1 = new AI_Minimax_01(5, RED, true);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_07(3, WHITE, false);
+            player2 = new AI_Minimax_01(5, WHITE, true);
             //Player *player2 = new Parser(WHITE);
         } else {
-            player1 = new AI_Minimax_07(3, RED, false);
+            player1 = new AI_Minimax_01(5, RED, true);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_07(3, WHITE, true);
+            player2 = new AI_Minimax_01(5, WHITE, true);
             //Player *player2 = new Parser(WHITE);
         }
         if(i == 0) {
@@ -88,7 +88,7 @@ void runXTimes(const int timesToRun) {
 }
 
 void run() {
-    Board* board = new Board();
+    auto *board = new Board();
     auto *player1 = new AI_Minimax_04(7, RED, false);
     //Player *player1 = new Parser(RED);
     //auto *player2 = new AI_Minimax_03(7, WHITE);
@@ -103,7 +103,7 @@ void run() {
 int main() {
     auto startTime = _timer_;
     //run();
-    runXTimes(500);
+    runXTimes(1000);
     auto endTime = _timer_;
     std::cout << "Game finished in " << ((endTime - startTime).count() / ( 1000.0)) << "s" << std::endl;
 
