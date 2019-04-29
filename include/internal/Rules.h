@@ -18,7 +18,6 @@
 class Rules {
 public:
     /* functions */
-
     /**
      * Check if a piece should be crowned and then kings the move
      * @param move
@@ -33,7 +32,16 @@ public:
      * @return true if the move is legal
      */
     static bool legalMoveFromColor(Move *move, Board *boardState);
+
+    /**
+     * checks if a move is legal by comparing the passed in move to all the
+     * possible moves this turn
+     * @param move the move to check
+     * @param boardState the board state when the move will be made
+     * @return true if the move is legal
+     */
     static bool legalMove(Move *move, Board *boardState);
+
     /**
      * Checks if a move is legal
      * @param move
@@ -42,28 +50,9 @@ public:
     static bool validCapture(Move *move, Board* boardState);
 
     /**
-     * get all jumps which can be made in current row -2
-     * @param row
-     * @param col
-     * @param boardState
-     * @return vector of jumps which can be made
-     */
-    static std::vector<Move *> *getDownJumps(int row, int col, Board *boardState);
-
-    /**
-     * get all jumps which can be made in current row +2
-     * @param row
-     * @param col
-     * @param boardState
-     * @return vector of jumps which can be made
-     */
-    static std::vector<Move*>* getUpJumps(int row, int col, Board* boardState);
-
-
-    /**
      * combine two vectors
      */
-    static std::vector<Move*>* combine(std::vector<Move*>* vec1, std::vector<Move*>* vec2);
+    static std::vector<Move*> *combine(std::vector<Move*>* vec1, std::vector<Move*>* vec2);
 
     /**
      * Returns all the legal jumps for a piece at the given location
@@ -72,23 +61,43 @@ public:
      * @param col the column of the piece
      * @return A vector of all the possible moves
      */
-     static std::vector<Move *> *getAllJumpsAtPos(Board *boardState, Checker *checker);
+    static std::vector<Move*> *getAllJumpsAtPos(Board *boardState, Checker *checker);
 
-    static bool validMultiCapture(Move* move, Board* boardState);
-    static bool requiredMultiCapture(Move *move, Board *boardState, bool isKing);
-    static std::vector<Move*>* getAllLegalMoves(Board* boardState);
-    static std::vector<Move *> *getAllJumpsForPlayer(Board *boardState);
+    /**
+     * returns all legal moves that can be made this turn
+     * @param boardState the current board
+     * @return collection of all legal moves this turn
+     */
+    static std::vector<Move*> *getAllLegalMoves(Board* boardState);
 
+    /**
+     * get all the jumps that a player can make this turn
+     * @param boardState the current board
+     * @return all jumps that a player can make this turn
+     */
+    static std::vector<Move*> *getAllJumpsForPlayer(Board *boardState);
 
 private:
-    // set all the spaces to default to false and then change them in the
-    // constructors
-    static bool playableSpaces[8][8];
     /* vars */
-    static std::vector<Move*>* getDownMoves(int row, int col, Board* boardState);
-    static std::vector<Move *>* getUpMoves(int row, int col, Board* boardState);
-    static std::vector<Move*>* getMovesAtPos(Checker *checker, Board* boardState);
-    static bool legalDirection(Move* move, Board* boardState);
+    // set all the spaces to default to false and then change them in the
+    static bool playableSpaces[8][8];
+
+    /* functions */
+    /**
+     * get all moves for a given piece
+     * @param checker the piece to get the moves from
+     * @param boardState the current board
+     * @return all moves this piece can make
+     */
+    static std::vector<Move*> *getMovesAtPos(Checker *checker, Board *boardState);
+
+    /**
+     * checks if a move is going in a legal direction for the color
+     * @param move the move to check
+     * @param boardState the current board
+     * @return true if the direction is legal
+     */
+    static bool legalDirection(Move *move, Board *boardState);
 
     /**
      * getDownLeftJumps
@@ -108,7 +117,7 @@ private:
      * @param boardState
      * @return a pointer to the move if the jump is valid otherwise nullptr
      */
-    static Move* getLRJump(Checker *c, Board* boardState);
+    static Move *getLRJump(Checker *c, Board* boardState);
 
     /**
      * get the which can be made in current row +2, column -2
@@ -127,7 +136,7 @@ private:
      * @param boardState
      * @return a pointer to the move if the jump is valid otherwise nullptr
      */
-    static Move* getURJump(Checker *c, Board* boardState);
+    static Move *getURJump(Checker *c, Board* boardState);
 
     /**
     * getDownLeftMove
@@ -147,7 +156,7 @@ private:
      * @param boardState
      * @return a pointer to the move, if valid, otherwise nullptr
      */
-    static Move* getLRMove(Checker *c, Board* boardState);
+    static Move *getLRMove(Checker *c, Board* boardState);
 
     /**
      * getUpperLeftMove
@@ -167,7 +176,7 @@ private:
      * @param boardState
      * @return a pointer to the move if valid otherwise nullptr
      */
-    static Move* getURMove(Checker *c, Board* boardState);
+    static Move *getURMove(Checker *c, Board* boardState);
 
     /**
      * Returns all the legal jumps for a piece at the given location
@@ -176,7 +185,7 @@ private:
      * @param col the column of the piece
      * @return A vector of all the possible moves
      */
-    static std::vector<Move *> *getJumpsAtPos(Board *boardState, Checker *checker);
+    static std::vector<Move*> *getJumpsAtPos(Board *boardState, Checker *checker);
 
     /**
      * Checks if the given move is a capture and if it is set the capture
@@ -184,7 +193,7 @@ private:
      * @param m
      * @return true if the move is a capture
      */
-    static bool isCapture(Move* m);
+    static bool isCapture(Move *m);
 
     /**
      * Checks if the space is on a black square (aka a playable space) and if

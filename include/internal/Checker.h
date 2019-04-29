@@ -28,7 +28,11 @@ public:
      * @param col
      */
     Checker(Color color, int row, int col);
-    Checker* copy();
+
+    /**
+     * Copy constructor, copies all fields and deep copies all pointers
+     */
+    Checker(const Checker &copyMe) = default;
 
     /* util method */
     std::string toString();

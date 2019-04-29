@@ -11,13 +11,6 @@ Checker::Checker(Color color, int row, int col) {
     this->col = col;
 }
 
-Checker *Checker::copy() {
-    auto * c = new Checker(getColor(),getRow(), getCol());
-    if(this->isKing())
-        c->makeKing();
-    return c;
-}
-
 std::string Checker::toString() {
     std::cout << getColor() << " row: " << getRow() << " | column: " << getCol() << std::endl;
     return "";

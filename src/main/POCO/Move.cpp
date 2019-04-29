@@ -24,13 +24,22 @@ Move::Move(int curRow, int curCol, int destRow, int destCol, int capRow,
     this->color = color;
 }
 
+Move::Move(const Move &move) : curRow(move.curRow), curCol(move.curCol),
+            destRow(move.destRow), destCol(move.destCol), capRow(move.capRow),
+            capCol(move.capCol), color(move.color), isKing(move.isKing),
+            chainMove(move.chainMove) {
+    if(move.nextChainMove != nullptr) {
+        // deleted by this' destructor
+        nextChainMove = new Move(*move.nextChainMove);
+    }
+}
+
 Move::~Move() {
     if(getNextChainMove() != nullptr)
         delete nextChainMove;
 }
 
 Move *Move::copy() {
-
     Move* copy = new Move(getCurRow(), getCurCol(),
                           getDestRow(), getDestCol(),
                           getCapRow(), getCapCol(), getColor());

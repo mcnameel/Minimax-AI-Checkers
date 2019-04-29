@@ -1,3 +1,5 @@
+#include <random>
+
 //
 // Created by Luke on 2/19/2019.
 //
@@ -66,13 +68,13 @@ Node * Node::createTree(Board *bs, int depth, Move *pMove) {
     // recursively call this function on each of the moves that can be made
     // return a node with successors populated
     auto *nextSuccessors = new std::vector<Node *>();
-    for(auto & newMove : *moves) {
-        // deleted at end of next resursive call or by destructor of leaf node
-        Board *succBS = bs->copy();
-        succBS->move(newMove, true);
-        nextSuccessors->emplace_back(createTree(succBS, depth - 1, newMove));
+    for(auto newMove : *moves) {
+        // deleted upon destruction of node
+        Board *successorBS = new Board(*bs);
+        // deleted at end of next recursive call or by destructor of leaf node
+        successorBS->move(newMove, true);
+        nextSuccessors->emplace_back(createTree(successorBS, depth - 1, newMove));
     }
-    delete boardState;
     delete moves;
     return new Node(bs, nextSuccessors, pMove);
 }
@@ -110,7 +112,7 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *pMove) {
         // get the pMove from the list of moves
         newMove = moves->at(static_cast<unsigned long>(index));
         // copy the board state so the pMove can be safely implemented
-        Board *succBS = bs->copy();
+        auto *succBS = new Board(*bs);
         succBS->move(newMove, true);
         // start a new async thread to recursively create the tree w/o spawning
         // more threads
@@ -158,18 +160,17 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     }
 
     /* return condition 4 */
-    // there are moves left to make by a both players and we have not reached
+    // there are moves left to make by both players and we have not reached
     // target depth
     // recursively call this function on each of the moves that can be made
     // return a node with successors populated
     nextSuccessors = new std::vector<Node *>();
     for (auto &newMove : *moves) {
-        // deleted with destructor of node or at the end of createTree
-        Board *succBS = bs->copy();
+        // deleted with destructor of node
+        Board *succBS = new Board(*bs);
         succBS->move(newMove, true);
         nextSuccessors->emplace_back(createTree(succBS, depth - 1, newMove));
     }
-    delete boardState;
     node->setSuccessors(nextSuccessors);
     delete moves;
     return node;

@@ -47,7 +47,7 @@ TEST_CASE("Red capture") {
     Board *board = new Board(pieces, RED, nullptr, false);
     //board->printBoard();
 
-    AI_Minimax_01 *player2 = new AI_Minimax_01(2, RED);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, RED, false);
 
     Move *m1 = player2->getMove(board);
     Move *m2 = new Move(6, 4, 4, 6, 5, 5, RED);
@@ -112,7 +112,7 @@ TEST_CASE("White king-capture") {
 
     Board *board = new Board(pieces, WHITE, nullptr, false);
 
-    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE, false);
 
     Move *m1 = player2->getMove(board);
     Move *m2 = new Move(5, 5, 7, 3, 6, 4, WHITE);
@@ -173,7 +173,7 @@ TEST_CASE("White king-multicapture") {
 
     /* condition */
     Board *board = new Board(pieces, WHITE, nullptr, false);
-    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE, false);
     Move *actual = player2->getMove(board);
 
     REQUIRE((*actual == *expected));
@@ -217,7 +217,7 @@ TEST_CASE("Game Over turn after") {
     auto *board = new Board(pieces, RED, nullptr, false);
     // board->printBoard();
 
-    AI_Minimax_01 *player1 = new AI_Minimax_01(2, RED);
+    AI_Minimax_01 *player1 = new AI_Minimax_01(2, RED, false);
 
     Move *m = player1->getMove(board);
     board->move(m, true);
@@ -263,7 +263,7 @@ TEST_CASE("Game Over this turn") {
     Board *board = new Board(pieces, WHITE, nullptr, false);
     // board->printBoard();
 
-    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE);
+    AI_Minimax_01 *player2 = new AI_Minimax_01(2, WHITE, false);
 
     Move *m = player2->getMove(board);
     board->move(m, true);
@@ -298,7 +298,7 @@ TEST_CASE("AI_Minimax_01::getMove() | When black can win in three moves it choos
     pieces->emplace_back(c4);
 
     auto *board = new Board(pieces, WHITE, nullptr, false);
-    auto player2 = new AI_Minimax_02(4, WHITE);
+    auto player2 = new AI_Minimax_02(4, WHITE, false);
     Move *m1 = player2->getMove(board);
     auto *m2 = new Move(5, 3, 7, 5, 6, 4, WHITE);
     m2->setKingMove(true);
@@ -341,7 +341,7 @@ TEST_CASE("AI_Minimax_01::getMove() | Check that king flees from other king") {
 
     auto pieces = new std::vector<Checker *>({r1, r2, w1});
     auto *board = new Board(pieces, WHITE, nullptr, true);
-    auto *player2 = new AI_Minimax_04(4, WHITE);
+    auto *player2 = new AI_Minimax_04(4, WHITE, false);
 
     auto *actual = player2->getMove(board);
     auto *expected1 = new Move(5, 5, 6, 6, -1, -1, WHITE);
@@ -387,7 +387,7 @@ w1->makeKing();
 
 auto pieces = new std::vector<Checker *>({r1, r2, w1});
 auto *board = new Board(pieces, RED, nullptr, true);
-auto *player2 = new AI_Minimax_04(2, RED);
+auto *player2 = new AI_Minimax_04(2, RED, false);
 
 auto *expected = player2->getMove(board);
 auto *actual1 = new Move(2, 4, 3, 3, -1, -1, RED);

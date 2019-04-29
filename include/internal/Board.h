@@ -34,6 +34,11 @@ public:
     Board();
 
     /**
+     * Copy constructor, copies all fields and deep copies all pointers
+     */
+    Board(const Board &board);
+
+    /**
     * Constructs a board with pieces ready for play at any configuration given
     */
     Board(std::vector<Checker *> *startState, Color turn, Move *lastMove, bool endgame);
@@ -42,12 +47,6 @@ public:
      * destroys the board and deletes all fields
      */
     ~Board();
-
-    /**
-     * returns a pointer to a copy of this object
-     * @return a copy of this
-     */
-    Board *copy();
 
     /* util functions  */
 

@@ -37,9 +37,9 @@ public:
     int turnCount = 0;
 private:
     /* field vars */
-    Board* board;
-    Player* player1;
-    Player* player2;
+    Board *board;
+    Player *player1;
+    Player *player2;
     bool showMoves;
 
     /* functions */

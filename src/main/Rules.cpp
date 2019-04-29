@@ -99,13 +99,14 @@ std::vector<Move *> *Rules::getAllJumpsAtPos(Board *boardState, Checker *checker
     // for each jump that is found check if that jump has a multicapture available
     for(auto &jump: *returnMe) {
         // deleted at the end of function
-        Board* boardCopy = boardState->copy();
+        auto* boardCopy = new Board(*boardState);
         // push the jump to the mock board
         boardCopy->move(jump, false);
 
-        // create a fake checker which is used to check if there is a capture available
-        // deleted at the end of this function
-        auto * mockChecker = boardCopy->getAt(jump->getDestRow(), jump->getDestCol())->copy();
+        // create a fake checker which is used to check if there is a capture
+        // available. Deleted at the end of this function
+        auto * mockChecker = new Checker(*boardCopy->getAt(
+                jump->getDestRow(), jump->getDestCol()));
 
         // for the current jump get all of the jumps it has available
         std::vector<Move *> * jumps;
@@ -249,15 +250,6 @@ std::vector<Move*>* Rules::combine(std::vector<Move*>* vec1, std::vector<Move*>*
     }
 
     return vec1;
-}
-
-bool Rules::validMultiCapture(Move *move, Board* boardState) {
-    Move* newMove = move->getNextChainMove();
-    bool legal = (newMove != nullptr) && (isCapture(newMove) && validCapture(newMove, boardState) &&
-            move->getDestRow() == newMove->getCurRow() &&
-            move->getDestCol() == newMove->getCurCol());
-
-    return legal;
 }
 
 std::vector<Move*>* Rules::getMovesAtPos(Checker *checker, Board* boardState) {

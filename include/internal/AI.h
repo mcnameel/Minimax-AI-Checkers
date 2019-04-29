@@ -115,7 +115,7 @@ protected:
      * @param deleteMe the node to be deleted
      * @return the node represents the last move from boardState
      */
-    Node* deleteOldNodes(Board *boardState, Node *deleteMe);
+    static Node* deleteOldNodes(Board &boardState, Node *deleteMe);
 
     /**
      * generates a pseudo-random number

@@ -56,6 +56,11 @@ public:
             int capCol, Color color);
 
     /**
+     * Copy constructor, copies all fields and deep copies all pointers
+     */
+     Move(const Move &move);
+
+    /**
      * delete the chainMove if it is not null
      */
     ~Move();

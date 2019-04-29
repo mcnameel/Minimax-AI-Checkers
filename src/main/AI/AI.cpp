@@ -8,7 +8,8 @@
 #include "../../../include/internal/AI.h"
 #include "../../../include/internal/Move.h"
 #include "../../../include/internal/Board.h"
-#define _timer_ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
+#define _timer_A std::chrono::duration_cast<std::chrono::milliseconds>
+#define _timer_ _timer_A(std::chrono::system_clock::now().time_since_epoch())
 
 AI::AI(int lookAhead, Color color, std::string name, bool usePruning)
         : Player(color, std::move(name)),
@@ -23,7 +24,7 @@ Move *AI::getMove(Board *boardState) {
     // delete the old nodes and successors in the tree except for the move that
     // was taken last turn
     if(currentTree != nullptr) {
-        currentTree = deleteOldNodes(boardState, currentTree);
+        currentTree = deleteOldNodes(*boardState, currentTree);
     }
     std::chrono::milliseconds startTimeA = _timer_;
     currentTree = makeTree(boardState);
@@ -45,28 +46,29 @@ Move *AI::getMove(Board *boardState) {
     std::vector<Node *> bestMoves;
     for(auto &node : *currentTree->getSuccessors()) {
         if(node->getValue() == bestMoveVal) {
-            bestMoves.emplace_back(node);
+            bestMoves.push_back(node);
         }
     }
 
-    Node *nodeToSave = bestMoves[0];
-            //static_cast<unsigned long>(random(0,
-            //                     static_cast<int>(bestMoves.size() - 1)))];
-    // deleted by next iteration of the following line or by this destructor
-    Move* nextMove = nodeToSave->getMove()->copy();
-
+    Node *nodeToSave = bestMoves[
+            static_cast<unsigned long>(random(0,
+                    static_cast<int>(bestMoves.size() - 1)))];
+    // deleted by next call to this function or by this' destructor
+    Move* nextMove = new Move(*nodeToSave->getMove());
     delete lastBoard;
     // deleted next time the function is called or at destructor
-    lastBoard = boardState->copy();
+    lastBoard = new Board(*boardState);
     lastBoard->move(nextMove, true);
 
     if(currentTree == nullptr) {
         currentTree = nodeToSave;
     } else {
-        currentTree = deleteOldNodes(lastBoard, currentTree);
+        currentTree = deleteOldNodes(*lastBoard, currentTree);
     }
-    std::cout << "Generated nodes in " << ((endTimeA - startTimeA).count() / 1000.0) << "s" << std::endl;
-    std::cout <<"Calculated best move in " << ((endTimeB - startTimeB).count() / 1000.0) << "s" << std::endl;
+    std::cout << "Generated nodes in " <<
+        ((endTimeA - startTimeA).count() / 1000.0) << "s" << std::endl;
+    std::cout << "Calculated best move in " <<
+        ((endTimeB - startTimeB).count() / 1000.0) << "s" << std::endl;
     std::cout << "Heuristic value of best choice " << bestMoveVal << std::endl;
 
     return nextMove;
@@ -80,6 +82,13 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         node->setValue(returnValue);
         return returnValue;
     }
+
+    auto *successors = node->getSuccessors();
+    // shuffle the moves is important for alpha beta pruning to work correctly
+    // std::shuffle(successors->begin(), successors->end(),
+    //        std::mt19937(std::random_device()()));
+
+
     // each time minimax is recursively called it returns the node from the
     // params with the best value from its successors as its value
     if (maximizingPlayer) {
@@ -87,14 +96,14 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         returnValue = MIN;
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
-        for (auto &n : *node->getSuccessors()) {
+        for (auto &n : *successors) {
             returnValue = max(node->getValue(),
                     minimaxAB(n, depth - 1, false, alpha, beta));
             node->setValue(returnValue);
             alpha = max(alpha, returnValue);
 
             // if the alpha our current value is greater than the min break
-            if (beta < alpha)
+            if (beta <= alpha)
                 return returnValue;
         }
         return returnValue;
@@ -103,7 +112,6 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
         returnValue = MAX;
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
-        auto *successors = node->getSuccessors();
         for (auto &n : *successors) {
             // Compare the new minimax node to the last one
             returnValue = min(node->getValue(),
@@ -161,9 +169,16 @@ Node *AI::makeTree(Board *bs) {
     Node factory;
     Node *newNode;
     if (currentTree == nullptr) {
-        newNode = factory.createTree(bs->copy(), lookAhead, nullptr);
+        // board deleted with destructor
+
+        auto *newBoard = new Board(*bs);
+        // pass in nullptr for move because we dont know what the head of the
+        // tree is yet.
+        newNode = factory.createTree(newBoard, lookAhead, nullptr);
     } else {
-        newNode = factory.appendToTree(bs->copy(), lookAhead, currentTree);
+        // pass nullptr for the board because we already have an current board
+        // from the node tree
+        newNode = factory.appendToTree(nullptr, lookAhead, currentTree);
     }
 
     std::cout << "Moves derivations generated: " << factory.getLeafNodeCount()
@@ -171,8 +186,9 @@ Node *AI::makeTree(Board *bs) {
     return newNode;
 }
 
-Node *AI::deleteOldNodes(Board *boardState, Node *deleteMe) {
-    Node *newTree = Node::seekAndRemoveSuccessor(boardState->getLastMove(), deleteMe);
+Node *AI::deleteOldNodes(Board &boardState, Node *deleteMe) {
+    Node *newTree =
+            Node::seekAndRemoveSuccessor(boardState.getLastMove(), deleteMe);
     delete deleteMe;
     return newTree;
 }

@@ -34,6 +34,29 @@ Board::Board() {
     }
 }
 
+Board::Board(const Board &board) : turn(board.turn), endgame(board.endgame) {
+    for(auto &r : *board.redPieces) {
+        // deleted with destructor of board copy
+        auto *piece = new Checker(*r);
+        grid[piece->getRow()][piece->getCol()] = piece;
+        redPieces->emplace_back(piece);
+    }
+    for(auto &w : *board.whitePieces) {
+        // deleted with destructor of board copy
+        auto *piece = new Checker(*w);
+        grid[piece->getRow()][piece->getCol()] = piece;
+        whitePieces->emplace_back(piece);
+    }
+    Move *lastMoveCopy;
+    if(board.lastMove != nullptr) {
+        // deleted with destructor of board copy or next call of Board::move
+        lastMoveCopy = new Move(*board.lastMove);
+    } else {
+        lastMoveCopy = nullptr;
+    }
+    lastMove = lastMoveCopy;
+}
+
 Board::Board(std::vector<Checker *> *startState, Color turn, Move *lastMove,
         bool endgame) {
     this->turn = turn;
@@ -57,30 +80,6 @@ Board::~Board() {
     delete redPieces;
     delete whitePieces;
     delete lastMove;
-}
-
-Board *Board::copy() {
-    static int i = 0;
-    auto *pieces = new std::vector<Checker *>();
-    for(auto &r : *redPieces) {
-        // deleted with destructor of board copy
-        Checker* c = r->copy();
-        pieces->emplace_back(c);
-        ++i;
-    }
-    for(auto &w : *whitePieces) {
-        // deleted with destructor of board copy
-        pieces->emplace_back(w->copy());
-    }
-
-    Move *lastMoveCopy;
-    if(lastMove != nullptr) {
-        // deleted with destructor of board copy or next call of Board::move
-        lastMoveCopy = lastMove->copy();
-    } else {
-        lastMoveCopy = nullptr;
-    }
-    return new Board(pieces, getTurn(), lastMoveCopy, isEndgame());
 }
 
 void Board::removePiece(Checker *c) {

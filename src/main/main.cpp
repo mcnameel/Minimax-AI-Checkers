@@ -23,14 +23,14 @@ void runXTimes(const int timesToRun) {
         Player *player1;
         Player *player2;
         if(i < (timesToRun / 2)) {
-            player1 = new AI_Minimax_01(5, RED, true);
+            player1 = new AI_Minimax_04(8, RED, false);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_01(5, WHITE, true);
+            player2 = new AI_Minimax_07(7, WHITE, false);
             //Player *player2 = new Parser(WHITE);
         } else {
-            player1 = new AI_Minimax_01(5, RED, true);
+            player1 = new AI_Minimax_07(7, RED, false);
             //Player *player1 = new Parser(RED);
-            player2 = new AI_Minimax_01(5, WHITE, true);
+            player2 = new AI_Minimax_04(8, WHITE, false);
             //Player *player2 = new Parser(WHITE);
         }
         if(i == 0) {
@@ -103,7 +103,7 @@ void run() {
 int main() {
     auto startTime = _timer_;
     //run();
-    runXTimes(1000);
+    runXTimes(500);
     auto endTime = _timer_;
     std::cout << "Game finished in " << ((endTime - startTime).count() / ( 1000.0)) << "s" << std::endl;
 
