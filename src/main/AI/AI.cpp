@@ -31,7 +31,7 @@ Move *AI::getMove(Board *boardState) {
     std::chrono::milliseconds endTimeA = _timer_;
 
     std::chrono::milliseconds startTimeB = _timer_;
-    int bestMoveVal = MAX;
+    int bestMoveVal;
     if(usePruning) {
         bestMoveVal = minimaxAB(currentTree, lookAhead, true, MIN, MAX);
     } else {
@@ -65,11 +65,15 @@ Move *AI::getMove(Board *boardState) {
     } else {
         currentTree = deleteOldNodes(*lastBoard, currentTree);
     }
-    std::cout << "Generated nodes in " <<
-        ((endTimeA - startTimeA).count() / 1000.0) << "s" << std::endl;
-    std::cout << "Calculated best move in " <<
-        ((endTimeB - startTimeB).count() / 1000.0) << "s" << std::endl;
+    double genTime = ((endTimeA - startTimeA).count() / 1000.0);
+    double evalTime = ((endTimeB - startTimeB).count() / 1000.0);
+
+    //totalGenTime += genTime;
+    //totalEvalTime += evalTime;
+    std::cout << "Generated nodes in " << genTime << "s" << std::endl;
+    std::cout << "Calculated best move in " << evalTime << "s" << std::endl;
     std::cout << "Heuristic value of best choice " << bestMoveVal << std::endl;
+    //std::cout << "Evaluated avg of " << (totalNodes / totalEvalTime) << " nodes per second" << std::endl;
 
     return nextMove;
 }
@@ -84,10 +88,6 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
     }
 
     auto *successors = node->getSuccessors();
-    // shuffle the moves is important for alpha beta pruning to work correctly
-    // std::shuffle(successors->begin(), successors->end(),
-    //        std::mt19937(std::random_device()()));
-
 
     // each time minimax is recursively called it returns the node from the
     // params with the best value from its successors as its value
@@ -103,8 +103,8 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
             alpha = max(alpha, returnValue);
 
             // if the alpha our current value is greater than the min break
-            if (beta <= alpha)
-                return returnValue;
+            if (beta < alpha)
+                return alpha;
         }
         return returnValue;
 
@@ -120,8 +120,8 @@ int AI::minimaxAB(Node *node, int depth, bool maximizingPlayer,
             beta = min(beta, returnValue);
 
             // if the alpha our current value is greater than the min break
-            if (beta <= alpha)
-                return returnValue;
+            if (beta < alpha)
+                return beta;
         }
         return returnValue;
     }
@@ -142,7 +142,6 @@ int AI::minimax(Node *node, int depth, bool maximizingPlayer) {
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
         auto *successors = node->getSuccessors();
-        std::sort(successors->begin(), successors->end());
         for (int i = successors->size() - 1; i >= 0; --i) {
             Node *n = (*successors)[i];
             returnValue = max(node->getValue(), minimax(n, depth - 1, false));
@@ -151,11 +150,11 @@ int AI::minimax(Node *node, int depth, bool maximizingPlayer) {
         return returnValue;
 
     } else { // minimizing player
+        // set value to something lower than is possible in the game
         returnValue = MAX;
         // set the curBest to something to be overwritten
         node->setValue(returnValue);
         auto *successors = node->getSuccessors();
-        std::sort(successors->begin(), successors->end());
         for (auto &n : *successors) {
             // Compare the new minimax node to the last one
             returnValue = min(node->getValue(), minimax(n, depth - 1, true));
@@ -169,8 +168,8 @@ Node *AI::makeTree(Board *bs) {
     Node factory;
     Node *newNode;
     if (currentTree == nullptr) {
-        // board deleted with destructor
-
+        // board deleted with destructor or with the next call to
+        // deleteOldNodes
         auto *newBoard = new Board(*bs);
         // pass in nullptr for move because we dont know what the head of the
         // tree is yet.
@@ -180,7 +179,7 @@ Node *AI::makeTree(Board *bs) {
         // from the node tree
         newNode = factory.appendToTree(nullptr, lookAhead, currentTree);
     }
-
+    totalNodes += factory.getLeafNodeCount();
     std::cout << "Moves derivations generated: " << factory.getLeafNodeCount()
               << std::endl;
     return newNode;

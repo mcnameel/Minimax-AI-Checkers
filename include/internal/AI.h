@@ -33,6 +33,10 @@ private:
 
     // indicates whether to use alpha beta pruning
     bool usePruning;
+
+    long long totalNodes = 0;
+    //long double totalGenTime = 0;
+    //long double totalEvalTime = 0;
 protected:
     /* field vars */
     // pseudo positive and negitive infinity
@@ -140,5 +144,7 @@ protected:
      * @return the minimum of the two values
      */
     int min(int val1, int val2);
+
+
 };
 #endif //MINIMAX_AI_CHECKERS_02_AI_H

@@ -91,7 +91,7 @@ Move *GameManager::getMove(Board *bs) {
 
 bool GameManager::isDraw(Board *bs, int *pieceCountDraw,
                          int *turnsWithoutProfit) {
-    const int maxTurnsWithoutProfit = 40;
+    const int maxTurnsWithoutProfit = 50;
     int totalPieces = board->getWhiteCount() + board->getRedCount();
     if (totalPieces <= *pieceCountDraw) {
         // signal we are entering endgame
