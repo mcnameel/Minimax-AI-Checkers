@@ -55,11 +55,12 @@ Move *Move::copy() {
     return copy;
 }
 
-std::string Move::toString() {
+const std::string Move::toString() {
     std::string cur = std::to_string(curRow) + std::to_string(curCol) + " -> ";
     std::string cap = (capRow == -1) ? "" : std::to_string(capRow) + std::to_string(capCol) + " - > ";
     std::string dest = std::to_string(destRow) + std::to_string(destCol);
-    return cur + cap + dest;
+    std::string otherInfo = (isKing? " King Move " : "") + (chainMove ? getNextChainMove()->toString() : "");
+    return cur + cap + dest + otherInfo;
 }
 
 bool Move::operator==(const Move& m) {

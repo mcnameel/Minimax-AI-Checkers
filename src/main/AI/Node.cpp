@@ -70,7 +70,7 @@ Node * Node::createTree(Board *bs, int depth, Move *pMove) {
     auto *nextSuccessors = new std::vector<Node *>();
     for(auto newMove : *moves) {
         // deleted upon destruction of node
-        Board *successorBS = new Board(*bs);
+        auto *successorBS = new Board(*bs);
         // deleted at end of next recursive call or by destructor of leaf node
         successorBS->move(newMove, true);
         nextSuccessors->emplace_back(createTree(successorBS, depth - 1, newMove));
@@ -106,7 +106,7 @@ Node *Node::createTreeWithThreads(Board *bs, int depth, Move *pMove) {
     // each recursive call which will then run in sync.
     // return a node with successors populated
     int numMoves = moves->size();
-    auto *newSuccessors = new std::vector<Node *>(numMoves);
+    auto *newSuccessors = new std::vector<Node *>(static_cast<unsigned int>(numMoves));
     Move *newMove = nullptr;
     for (int index = 0; index < numMoves; index++) {
         // get the pMove from the list of moves
@@ -167,7 +167,7 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
     nextSuccessors = new std::vector<Node *>();
     for (auto &newMove : *moves) {
         // deleted with destructor of node
-        Board *succBS = new Board(*bs);
+        auto *succBS = new Board(*bs);
         succBS->move(newMove, true);
         nextSuccessors->emplace_back(createTree(succBS, depth - 1, newMove));
     }
@@ -177,14 +177,15 @@ Node *Node::appendToTree(Board *bs, int depth, Node *node) {
 }
 
 Node *Node::seekAndRemoveSuccessor(Move *findMe, Node *searchMe) {
-    for (auto & successor : *searchMe->getSuccessors()) {
+    Node *returnMe = nullptr;
+    for (auto &successor : *searchMe->getSuccessors()) {
         if(*(successor->getMove()) == *findMe) {
-            auto *temp = successor;
+            returnMe = successor;
             successor = nullptr;
-            return temp;
+            break;
         }
     }
-    throw NodeNotFoundException();
+    return returnMe;
 }
 
 std::vector<Node *>* Node::getSuccessors() {

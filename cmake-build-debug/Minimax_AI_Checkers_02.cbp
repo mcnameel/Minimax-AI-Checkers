@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Minimax_AI_Checkers_02"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers">
+				<Option output="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers/fast">
+				<Option output="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers_Test">
+				<Option output="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Minimax_AI_Checkers_Test/fast">
+				<Option output="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/external/Catch2/catch.hpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_01.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_02.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_03.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_04.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_05.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_06.h">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_07.h">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Board.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Checker.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Color.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/GameManager.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Move.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Node.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Parser.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Player.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/include/internal/Rules.h">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/AI.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_01.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_02.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_03.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_04.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_05.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_06.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_07.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/AI/Node.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/Board.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/GameManager.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/POCO/Move.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/Rules.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/human/Parser.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/main/main.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/test/AI_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/test/Board_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/test/Main_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/test/Node_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/src/test/Rules_Tests.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
+		</Unit>
+		<Unit filename="C:/Users/Luke/Documents/Projects/Minimax-AI-Checkers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

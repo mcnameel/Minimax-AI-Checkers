@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "../../include/internal/Board.h"
 #include "../../include/internal/Parser.h"
 #include "../../include/internal/GameManager.h"

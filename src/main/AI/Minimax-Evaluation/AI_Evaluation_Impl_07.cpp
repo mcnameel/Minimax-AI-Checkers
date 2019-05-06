@@ -2,6 +2,7 @@
 // Created by Luke McNamee on 2019-04-15.
 //
 
+#include <algorithm>
 #include "../../../../include/internal/AI_Evaluation_Impl_07.h"
 #include "../../../../include/internal/Rules.h"
 
@@ -35,7 +36,7 @@ int AI_Minimax_07::earlyGameEval(Board *boardState, std::vector<Checker*> *willB
     int redValue = 0;
 
     for (auto &c : *(boardState->getWhitePieces())) {
-        if(find(willBeCaptured->begin(), willBeCaptured->end(), c) != willBeCaptured->end()) {
+        if(std::find(willBeCaptured->begin(), willBeCaptured->end(), c) != willBeCaptured->end()) {
             continue;
         }
         if (c->isKing()) {
@@ -47,7 +48,7 @@ int AI_Minimax_07::earlyGameEval(Board *boardState, std::vector<Checker*> *willB
         }
     }
     for (auto &c : *(boardState->getRedPieces())) {
-        if(find(willBeCaptured->begin(), willBeCaptured->end(), c) != willBeCaptured->end()) {
+        if(std::find(willBeCaptured->begin(), willBeCaptured->end(), c) != willBeCaptured->end()) {
             continue;
         }
         if (c->isKing()) {

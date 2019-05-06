@@ -4,6 +4,7 @@
 
 #include "../../include/internal/Board.h"
 #include "../../include/internal/Rules.h"
+#include <algorithm>    // std::find
 #include <iostream>
 
 Board::Board() {
@@ -89,7 +90,7 @@ void Board::removePiece(Checker *c) {
     else
         deleteFromMe = getWhitePieces();
 
-    auto it = find(deleteFromMe->begin(), deleteFromMe->end(), c);
+    auto it = std::find(deleteFromMe->begin(), deleteFromMe->end(), c);
     if(it != deleteFromMe->end()) {
         deleteFromMe->erase(it);
     }

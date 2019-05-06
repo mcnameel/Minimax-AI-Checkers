@@ -20,7 +20,6 @@ int AI_Minimax_05::evaluateBoardState(Board *boardState) {
         }
         piecesVal += kingSum;
     }
-
     return piecesVal;
 }
 

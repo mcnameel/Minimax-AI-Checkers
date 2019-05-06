@@ -68,7 +68,7 @@ public:
     Move* copy();
 
     /* util functions */
-    std::string toString();
+    const std::string toString();
     bool operator==(const Move& m);
 
     /* accessors and mutators */

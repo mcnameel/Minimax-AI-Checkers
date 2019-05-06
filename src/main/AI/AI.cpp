@@ -5,11 +5,12 @@
 //
 
 #include <iostream>
+#include <chrono>
 #include "../../../include/internal/AI.h"
 #include "../../../include/internal/Move.h"
 #include "../../../include/internal/Board.h"
-#define _timer_A std::chrono::duration_cast<std::chrono::milliseconds>
-#define _timer_ _timer_A(std::chrono::system_clock::now().time_since_epoch())
+
+#define _timer_ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
 
 AI::AI(int lookAhead, Color color, std::string name, bool usePruning)
         : Player(color, std::move(name)),
@@ -187,7 +188,7 @@ Node *AI::makeTree(Board *bs) {
 
 Node *AI::deleteOldNodes(Board &boardState, Node *deleteMe) {
     Node *newTree =
-            Node::seekAndRemoveSuccessor(boardState.getLastMove(), deleteMe);
+            Node::seekAndRemoveSuccessor((boardState.getLastMove()), deleteMe);
     delete deleteMe;
     return newTree;
 }
