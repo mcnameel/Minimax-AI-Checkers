@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Minimax_AI_Checkers_Test">
-				<Option output="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option output="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Minimax_AI_Checkers_Test/fast">
-				<Option output="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option output="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers_Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,15 +71,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers_Test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Minimax_AI_Checkers">
-				<Option output="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option output="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -91,15 +91,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Minimax_AI_Checkers/fast">
-				<Option output="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug"/>
+				<Option output="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Minimax_AI_Checkers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -111,160 +111,160 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 Minimax_AI_Checkers/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lucas.mm/Projects/Minimax-AI-Checkers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/external/Catch2/single_include/catch2/catch.hpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/external/Catch2/single_include/catch2/catch.hpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI.h">
-			<Option target="Minimax_AI_Checkers_Test"/>
-			<Option target="Minimax_AI_Checkers"/>
-		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_01.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_02.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_01.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_03.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_02.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_04.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_03.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_05.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_04.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_06.h">
-			<Option target="Minimax_AI_Checkers"/>
-		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_07.h">
-			<Option target="Minimax_AI_Checkers"/>
-		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Board.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_05.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Checker.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_06.h">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/AI_Evaluation_Impl_07.h">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Board.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Color.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Checker.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/GameManager.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Color.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Move.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/GameManager.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Node.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Move.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Parser.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Node.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Player.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Parser.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/include/internal/Rules.h">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Player.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/AI.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/include/internal/Rules.h">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_01.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/AI.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_02.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_01.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_03.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_02.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_04.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_03.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_05.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_04.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_06.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_05.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_07.cpp">
-			<Option target="Minimax_AI_Checkers"/>
-		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/AI/Node.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_06.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/Board.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Minimax-Evaluation/AI_Evaluation_Impl_07.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/AI/Node.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/GameManager.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/Board.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/POCO/Checker.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/GameManager.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/POCO/Move.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/POCO/Checker.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/Rules.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/POCO/Move.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/human/Parser.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/Rules.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/main/main.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/human/Parser.cpp">
+			<Option target="Minimax_AI_Checkers_Test"/>
 			<Option target="Minimax_AI_Checkers"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/test/AI_Tests.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/main/main.cpp">
+			<Option target="Minimax_AI_Checkers"/>
+		</Unit>
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/test/AI_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/test/Board_Tests.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/test/Board_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/test/Main_Tests.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/test/Main_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/test/Node_Tests.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/test/Node_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/src/test/Rules_Tests.cpp">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/src/test/Rules_Tests.cpp">
 			<Option target="Minimax_AI_Checkers_Test"/>
 		</Unit>
-		<Unit filename="/Users/lucas.mm/Documents/Projects/attempt3/Minimax-AI-Checkers/CMakeLists.txt">
+		<Unit filename="/Users/lucas.mm/Projects/Minimax-AI-Checkers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
