@@ -2,7 +2,7 @@
 // Created by Luke McNamee on 2019-03-12.
 //
 
-#include "../../include/external/Catch2/catch.hpp"
+#include "../../include/external/Catch2/single_include/catch2/catch.hpp"
 #include "../../include/internal/Checker.h"
 #include "../../include/internal/Board.h"
 #include "../../include/internal/AI_Evaluation_Impl_01.h"

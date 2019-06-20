@@ -2,7 +2,7 @@
 // Created by Luke McNamee on 2019-03-12.
 //
 
-#include "../../include/external/Catch2/catch.hpp"
+#include "../../include/external/Catch2/single_include/catch2/catch.hpp"
 
 //#define CATCH_CONFIG_MAIN
 #include "../../include/internal/Rules.h"

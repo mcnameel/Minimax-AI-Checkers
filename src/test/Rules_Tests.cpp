@@ -3,7 +3,7 @@
 //
 
 
-#include "../../include/external/Catch2/catch.hpp"
+#include "../../include/external/Catch2/single_include/catch2/catch.hpp"
 #include "../../include/internal/Checker.h"
 #include "../../include/internal/Board.h"
 #include "../../include/internal/Rules.h"
