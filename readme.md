@@ -1,4 +1,4 @@
-# Note this is an old project from college 
+**Archive Notice:** This is an archived project from college in 2019. It was a learning experience to dive deeper into making a computationally expensive c++ project. While it's no longer maintained, it's preserved here for reference.
 
 # Checkers AI with Minimax
 
