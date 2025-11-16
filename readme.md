@@ -1,3 +1,5 @@
+# Note this is an old project from college 
+
 # Checkers AI with Minimax
 
 Checkers AI with Minimax is a program which runs in terminal
